@@ -15,6 +15,8 @@
 		A1B456532A873C020088A39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B456512A873C020088A39E /* Main.storyboard */; };
 		A1B456552A873C030088A39E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B456542A873C030088A39E /* Assets.xcassets */; };
 		A1B456582A873C030088A39E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B456562A873C030088A39E /* LaunchScreen.storyboard */; };
+		A1B4565F2A878D800088A39E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4565E2A878D800088A39E /* Player.swift */; };
+		A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456602A87992B0088A39E /* InGameBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		A1B456522A873C020088A39E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1B456542A873C030088A39E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B456572A873C030088A39E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1B4565E2A878D800088A39E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A1B456602A87992B0088A39E /* InGameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				A1B456492A873C020088A39E /* GameScene.sks */,
 				A1B4564B2A873C020088A39E /* Actions.sks */,
 				A1B4564D2A873C020088A39E /* GameScene.swift */,
+				A1B456602A87992B0088A39E /* InGameBackground.swift */,
+				A1B4565E2A878D800088A39E /* Player.swift */,
 				A1B4564F2A873C020088A39E /* GameViewController.swift */,
 				A1B456512A873C020088A39E /* Main.storyboard */,
 				A1B456542A873C030088A39E /* Assets.xcassets */,
@@ -144,6 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,
+				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
@@ -299,8 +307,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,8 +335,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
