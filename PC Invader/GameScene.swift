@@ -36,10 +36,12 @@ class GameScene: SKScene {
                                                 , zPosition: 0)
 
         // initiate player
-        player = Player(textureName: "player-ship"
+        player = Player(textureName: "player-ship 1"
                             , zPosition: 2
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
-                            , scale: 1)
+                            , scale: 1
+                            , trailEmitterName: "MyParticle")
+        
         
         player.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
         
@@ -47,6 +49,7 @@ class GameScene: SKScene {
         // add all node to the scene
         self.addChild(inGameBackGround)
         self.addChild(player)
+        self.addChild(player.trailEmitter)
     }
     
     func randomFloat() -> CGFloat{ // Return a random float
@@ -68,10 +71,15 @@ class GameScene: SKScene {
         
         let endPosition = CGPoint(x: endX, y: -self.size.height*0.1) // y coordinate is negative, under the screen
         
-        let enemy = SKSpriteNode(imageNamed: "enemyShip")
-        enemy.setScale(1)
-        enemy.position = startPosition
-        enemy.zPosition = 2
+        let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
+        
+        let enemy = Enemy(textureName: "enemyShip"
+                          , zPosition: 2
+                          , position: startPosition
+                          , scale: 1
+                          , trailEmitterName: "PlayerSpaceShipTrail")
+
+        enemy.zRotation = rotation
         self.addChild(enemy)
         
         let moveEnemy = SKAction.move(to: endPosition, duration: 2)
@@ -95,7 +103,7 @@ class GameScene: SKScene {
             let bulletMove = SKAction.moveTo(y: self.size.height, duration: 1)
             let deleteBullet = SKAction.removeFromParent()
             let playSoundBullet = bullet.soundSkAction!
-            let bulletSequence = SKAction.sequence([playSoundBullet, bulletMove, deleteBullet])
+            let bulletSequence = SKAction.sequence([ bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
             bullet.run(bulletSequence)
         }
     }
@@ -128,18 +136,38 @@ class GameScene: SKScene {
             if let playerPosition = player?.position{
                 player.position.x += distanceDragX
                 player.position.y += distanceDragY
+                player.trailEmitter.position.x += distanceDragX
+                player.trailEmitter.position.y += distanceDragY
+//                player.trailEmitter.emissionAngle = atan2(distanceDragY, distanceDragX) + CGFloat.pi / 2
                 print("Player X: \(playerPosition.x)")
                 print("Player Y: \(playerPosition.y)")
+                print("Player Trail X: \(playerPosition.x)")
+                print("Player Trail Y: \(playerPosition.y)")
             }
-            
+            //Constraint in x for player to stay within game area
             if player.position.x > gamePlayableArea.maxX - player.size.width/2{
                 player.position.x = gamePlayableArea.maxX - player.size.width/2
+                player.trailEmitter.position.x = gamePlayableArea.maxX - player.size.width/2
+                player.trailEmitter.position.x += 5
             }
             
             if player.position.x < gamePlayableArea.minX + player.size.width/2{
                 player.position.x = gamePlayableArea.minX + player.size.width/2
+                player.trailEmitter.position.x = gamePlayableArea.minX + player.size.width/2
+                player.trailEmitter.position.x += 5
             }
             
+            //Constraint in y for player to stay within game area
+            if player.position.y > gamePlayableArea.maxY - player.size.height/2{
+                player.position.y = gamePlayableArea.maxY - player.size.height/2
+                player.trailEmitter.position.y = gamePlayableArea.maxY - player.size.height/2
+            }
+            
+            if player.position.y < gamePlayableArea.minY + player.size.height/2{
+                player.position.y = gamePlayableArea.minY + player.size.height/2
+                player.trailEmitter.position.y = gamePlayableArea.minY + player.size.height/2
+            }
+                    
             spawnEnemy()
         }
     }

@@ -1,14 +1,14 @@
 //
-//  Player.swift
+//  Enemy.swift
 //  PC Invader
 //
-//  Created by An on 8/12/23.
+//  Created by An on 8/14/23.
 //
 
 import Foundation
 import SpriteKit
 
-class Player: SKSpriteNode{
+class Enemy: SKSpriteNode{
     var trailEmitter: SKEmitterNode!
     convenience init(textureName: String, zPosition: CGFloat, position: CGPoint, scale: CGFloat, trailEmitterName: String) { // convenience keyword is call the designated constructor of the SKSpriteNode class
         let texture = SKTexture(imageNamed: textureName)
