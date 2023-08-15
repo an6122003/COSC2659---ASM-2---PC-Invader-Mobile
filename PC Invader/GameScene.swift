@@ -53,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
                             , scale: 1
                             , trailEmitterName: "MyParticle"
-                            , health: 1)
+                            , health: 5)
         
         healthBar = HealthBar(player: player)
         healthBar.position = CGPoint(x: size.width / 4, y: size.height * 0.9)
@@ -149,7 +149,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let changeSceneAction = SKAction.run { [self] in
             changeScene(sceneToMove: GameOverScene())
         }
-        let wait = SKAction.wait(forDuration: 2)
+        let wait = SKAction.wait(forDuration: 1)
         let changeSceneSequence = SKAction.sequence([wait, changeSceneAction])
         self.run(changeSceneSequence)
     }
