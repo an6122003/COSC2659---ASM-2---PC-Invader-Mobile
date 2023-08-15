@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var gamePlayableArea: CGRect
     var player: Player!
     var lastUpdateTime: TimeInterval = 0
@@ -29,6 +29,9 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        //initate physics world
+        self.physicsWorld.contactDelegate = self
+        
         // initiate background
         let inGameBackGround = InGameBackground(textureName: "background"
                                                 , position: CGPoint(x: self.size.width/2, y: self.size.height/2)
@@ -42,6 +45,12 @@ class GameScene: SKScene {
                             , scale: 1
                             , trailEmitterName: "MyParticle")
         
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size) //physics body size = self.size
+        player.physicsBody!.affectedByGravity = false //remove affect of gravity
+        player.physicsBody?.categoryBitMask = physicsCategories.Player // asign this physics body into category of Player
+        player.physicsBody?.collisionBitMask = physicsCategories.None
+        player.physicsBody?.contactTestBitMask = physicsCategories.Enemy
+        
         
         player.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
         
@@ -50,6 +59,70 @@ class GameScene: SKScene {
         self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
+        spawnEnemyPerSecond(enemyName: "enemyShip", timeInterval: 1)
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) { // This function process contact of 2 bodies call Body A and Body B
+        var body1 = SKPhysicsBody()
+        var body2 = SKPhysicsBody()
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask { // Ensure when a contact happens, the body with lower categoryBitMask will always be Body 1, so don't need to check a type of 1 body for 2 time (Body A and B)
+            body1 = contact.bodyA
+            body2 = contact.bodyB
+        }else{
+            body1 = contact.bodyB
+            body2 = contact.bodyA
+        }
+        
+        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy{
+            //Bullet hit Enemy
+            if body2.node != nil{ // only remove the enemy when inside the screen area
+                if body2.node!.position.y < self.size.height{
+                    spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+                    body2.node?.removeFromParent()
+                }
+                else{
+                    spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+                }
+            }
+            body1.node?.removeFromParent()
+            body2.node?.removeFromParent()
+        }
+        
+        if body1.categoryBitMask == physicsCategories.Player && body2.categoryBitMask == physicsCategories.Enemy{
+            // Player hit Enemy
+            if body1.node != nil{
+                spawnExplosion(position: body1.node!.position, explosionName: "explosion")
+            }// prevent error if there the node not exist
+            
+            if body2.node != nil{
+                spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+            } // prevent error if there the node not exist
+            
+            body1.node?.removeFromParent() //TODO: Remove the trail
+            body2.node?.removeFromParent()
+        }
+    }
+    
+    func spawnExplosion(position: CGPoint, explosionName: String){
+        let explosion = SKSpriteNode(imageNamed: explosionName)
+        explosion.position = position
+        explosion.zPosition = 3
+        self.addChild(explosion)
+        
+        let fadeIn = SKAction.fadeIn(withDuration: 0.1)
+        let fadeOut = SKAction.fadeOut(withDuration: 0.1)
+        let deleteExplosion = SKAction.removeFromParent()
+        let explosionSequence = SKAction.sequence([fadeIn, fadeOut, deleteExplosion])
+        explosion.run(explosionSequence)
+    }
+    
+    struct physicsCategories{ //We arrange the physics bodies into different categories, so we can manage the interaction more efficient
+        static let None: UInt32 = 0 // for contact with nothing
+        static let Player: UInt32 = 0b1 // 1 in binary
+        static let Bullet: UInt32 = 0b10 // 2 in binary
+        static let Enemy: UInt32 = 0b100 // 4 in binary, 3 will represent bot Player and Bullet (1 and 2)
+        
     }
     
     func randomFloat() -> CGFloat{ // Return a random float
@@ -60,7 +133,7 @@ class GameScene: SKScene {
         return randomFloat() * (max - min) + min
     }
     
-    func spawnEnemy(){
+    func spawnEnemy(enemyName: String){
         let startX = randomFloat(min: gamePlayableArea.minX
                                  , max: gamePlayableArea.maxX)
         
@@ -73,11 +146,16 @@ class GameScene: SKScene {
         
         let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
         
-        let enemy = Enemy(textureName: "enemyShip"
+        let enemy = Enemy(textureName: enemyName
                           , zPosition: 2
                           , position: startPosition
                           , scale: 1
                           , trailEmitterName: "PlayerSpaceShipTrail")
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size) //enemy physics body
+        enemy.physicsBody?.affectedByGravity = false
+        enemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
+        enemy.physicsBody?.collisionBitMask = physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
+        enemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player // allow contact with Bullet and Player category
 
         enemy.zRotation = rotation
         self.addChild(enemy)
@@ -85,9 +163,20 @@ class GameScene: SKScene {
         let moveEnemy = SKAction.move(to: endPosition, duration: 2)
         let disposeEnemy = SKAction.removeFromParent()
         let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
-        
         enemy.run(sequenceEnemy)
     }
+    
+    func spawnEnemyPerSecond(enemyName: String, timeInterval: Float) {
+        
+        let spawnEnemyAction = SKAction.run { [weak self] in
+                self?.spawnEnemy(enemyName: enemyName)
+            }
+        let wait = SKAction.wait(forDuration: TimeInterval(timeInterval), withRange: 0.1)
+        let spawnSequence = SKAction.sequence([spawnEnemyAction, wait])
+        let spawnForever = SKAction.repeatForever(spawnSequence)
+        self.run(SKAction.repeatForever(spawnForever))
+    }
+
     
     func shootBullet(){
         if let playerPosition = player?.position{
@@ -98,6 +187,12 @@ class GameScene: SKScene {
                                 , soundName: "shooting.wav")
             bullet.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
             bullet.setScale(10)
+            bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
+            bullet.physicsBody?.affectedByGravity = false
+            bullet.physicsBody?.categoryBitMask = physicsCategories.Bullet
+            bullet.physicsBody?.collisionBitMask = physicsCategories.None
+            bullet.physicsBody?.contactTestBitMask = physicsCategories.Enemy
+            
             self.addChild(bullet)
             
             let bulletMove = SKAction.moveTo(y: self.size.height, duration: 1)
@@ -167,8 +262,6 @@ class GameScene: SKScene {
                 player.position.y = gamePlayableArea.minY + player.size.height/2
                 player.trailEmitter.position.y = gamePlayableArea.minY + player.size.height/2
             }
-                    
-            spawnEnemy()
         }
     }
     
