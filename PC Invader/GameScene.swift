@@ -15,6 +15,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timeSinceLastBullet: TimeInterval = 0
     let bulletDelay: TimeInterval = 0.1 // Adjust this delay as needed
     
+    enum gameState{
+        case Menu
+        case inGame
+        case gameOver
+    }
+    
+    var currentGameState = gameState.inGame
+    
     override init(size: CGSize) {
         let aspectRatio = 19.5/9.0 // aspect ratio of iphone 14 pro
         let maxPlayableWidth = size.height / aspectRatio
@@ -45,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
                             , scale: 1
                             , trailEmitterName: "MyParticle"
-                            , health: 10)
+                            , health: 1)
         
         healthBar = HealthBar(player: player)
         healthBar.position = CGPoint(x: size.width / 4, y: size.height * 0.9)
@@ -109,11 +117,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
 //            body1.node?.removeFromParent() //TODO: Remove the trail
             body2.node?.removeFromParent()
-            player.health -= 1
+            playerHit()
             print("Player Health: ", player.health!)
             healthBar.updateHealthBar()
 
         }
+    }
+    
+    func playerHit(){
+        player.health -= 1
+        if player.health == 0{
+            gameOver()
+        }
+    }
+    
+    func gameOver(){
+        currentGameState = gameState.gameOver
+        
+        self.removeAllActions()
+        
+        self.enumerateChildNodes(withName: "Bullet"){
+            bullet, arg in
+            bullet.removeAllActions()
+        }
+        
+        self.enumerateChildNodes(withName: "Enemy"){
+            enemy, arg in
+            enemy.removeAllActions()
+        }
+        
+        let changeSceneAction = SKAction.run { [self] in
+            changeScene(sceneToMove: GameOverScene())
+        }
+        let wait = SKAction.wait(forDuration: 2)
+        let changeSceneSequence = SKAction.sequence([wait, changeSceneAction])
+        self.run(changeSceneSequence)
+    }
+    
+    func changeScene(sceneToMove: SKScene){
+        sceneToMove.size = self.size
+        sceneToMove.scaleMode = self.scaleMode
+        let transition = SKTransition.fade(withDuration: 1)
+        self.view?.presentScene(sceneToMove, transition: transition)
     }
     
     func spawnExplosion(position: CGPoint, explosionName: String){
@@ -163,6 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                           , position: startPosition
                           , scale: 1
                           , trailEmitterName: "PlayerSpaceShipTrail")
+        enemy.name = "Enemy" // Name to gather all enemy objects to dispose later
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size) //enemy physics body
         enemy.physicsBody?.affectedByGravity = false
         enemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
@@ -192,26 +238,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func shootBullet(){
         if let playerPosition = player?.position{
-            let bullet = Bullet(textureName: "bullet 1"
-                                , position: playerPosition
-                                , zPosition: 1
-                                , scale: 10
-                                , soundName: "shooting.wav")
-            bullet.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
-            bullet.setScale(10)
-            bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
-            bullet.physicsBody?.affectedByGravity = false
-            bullet.physicsBody?.categoryBitMask = physicsCategories.Bullet
-            bullet.physicsBody?.collisionBitMask = physicsCategories.None
-            bullet.physicsBody?.contactTestBitMask = physicsCategories.Enemy
-            
-            self.addChild(bullet)
-            
-            let bulletMove = SKAction.moveTo(y: self.size.height, duration: 1)
-            let deleteBullet = SKAction.removeFromParent()
-            let playSoundBullet = bullet.soundSkAction!
-            let bulletSequence = SKAction.sequence([ bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
-            bullet.run(bulletSequence)
+            if currentGameState == gameState.inGame{
+                let bullet = Bullet(textureName: "bullet 1"
+                                    , position: playerPosition
+                                    , zPosition: 1
+                                    , scale: 10
+                                    , soundName: "shooting.wav")
+                bullet.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
+                bullet.setScale(10)
+                bullet.name = "Bullet" // Name to gather all bullet objects to dispose later
+                bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
+                bullet.physicsBody?.affectedByGravity = false
+                bullet.physicsBody?.categoryBitMask = physicsCategories.Bullet
+                bullet.physicsBody?.collisionBitMask = physicsCategories.None
+                bullet.physicsBody?.contactTestBitMask = physicsCategories.Enemy
+                
+                self.addChild(bullet)
+                
+                let bulletMove = SKAction.moveTo(y: self.size.height, duration: 1)
+                let deleteBullet = SKAction.removeFromParent()
+                let playSoundBullet = bullet.soundSkAction!
+                let bulletSequence = SKAction.sequence([ bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
+                bullet.run(bulletSequence)
+            }
         }
     }
     
@@ -241,15 +290,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let distanceDragY = touchLocation.y - previousTouchLocation.y
             
             if let playerPosition = player?.position{
-                player.position.x += distanceDragX
-                player.position.y += distanceDragY
-                player.trailEmitter.position.x += distanceDragX
-                player.trailEmitter.position.y += distanceDragY
-//                player.trailEmitter.emissionAngle = atan2(distanceDragY, distanceDragX) + CGFloat.pi / 2
-//                print("Player X: \(playerPosition.x)")
-//                print("Player Y: \(playerPosition.y)")
-//                print("Player Trail X: \(playerPosition.x)")
-//                print("Player Trail Y: \(playerPosition.y)")
+                if currentGameState == gameState.inGame{
+                    player.position.x += distanceDragX
+                    player.position.y += distanceDragY
+                    player.trailEmitter.position.x += distanceDragX
+                    player.trailEmitter.position.y += distanceDragY
+    //                player.trailEmitter.emissionAngle = atan2(distanceDragY, distanceDragX) + CGFloat.pi / 2
+    //                print("Player X: \(playerPosition.x)")
+    //                print("Player Y: \(playerPosition.y)")
+    //                print("Player Trail X: \(playerPosition.x)")
+    //                print("Player Trail Y: \(playerPosition.y)")
+                }
             }
             //Constraint in x for player to stay within game area
             if player.position.x > gamePlayableArea.maxX - player.size.width/2{

@@ -12,6 +12,7 @@
 		A15E9A6E2A8A54BF00416761 /* PlayerSpaceShipTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */; };
 		A15E9A702A8A550100416761 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* MyParticle.sks */; };
 		A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */; };
+		A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */; };
 		A1B456482A873C010088A39E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456472A873C010088A39E /* AppDelegate.swift */; };
 		A1B4564A2A873C020088A39E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1B456492A873C020088A39E /* GameScene.sks */; };
 		A1B4564C2A873C020088A39E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1B4564B2A873C020088A39E /* Actions.sks */; };
@@ -31,6 +32,7 @@
 		A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerSpaceShipTrail.sks; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeathBar.swift; sourceTree = "<group>"; };
+		A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A1B456442A873C010088A39E /* PC Invader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PC Invader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B456472A873C010088A39E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B456492A873C020088A39E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			name = Sfx;
 			sourceTree = "<group>";
 		};
+		A1B3AB232A8BCEC700F0DBA1 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
 		A1B4563B2A873C010088A39E = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 				A1B456492A873C020088A39E /* GameScene.sks */,
 				A1B4564B2A873C020088A39E /* Actions.sks */,
 				A1B4564D2A873C020088A39E /* GameScene.swift */,
+				A1B3AB232A8BCEC700F0DBA1 /* Scene */,
 				A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */,
 				A15E9A6F2A8A550100416761 /* MyParticle.sks */,
 				A15013072A87C3D100DDB2AC /* Sfx */,
@@ -202,6 +213,7 @@
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
+				A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */,
 				A1B456632A87BA640088A39E /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
