@@ -11,6 +11,7 @@
 		A15013092A87C3F500DDB2AC /* shooting.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15013082A87C3F500DDB2AC /* shooting.wav */; };
 		A15E9A6E2A8A54BF00416761 /* PlayerSpaceShipTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */; };
 		A15E9A702A8A550100416761 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* MyParticle.sks */; };
+		A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */; };
 		A1B456482A873C010088A39E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456472A873C010088A39E /* AppDelegate.swift */; };
 		A1B4564A2A873C020088A39E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1B456492A873C020088A39E /* GameScene.sks */; };
 		A1B4564C2A873C020088A39E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1B4564B2A873C020088A39E /* Actions.sks */; };
@@ -29,6 +30,7 @@
 		A15013082A87C3F500DDB2AC /* shooting.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shooting.wav; sourceTree = "<group>"; };
 		A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerSpaceShipTrail.sks; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeathBar.swift; sourceTree = "<group>"; };
 		A1B456442A873C010088A39E /* PC Invader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PC Invader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B456472A873C010088A39E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B456492A873C020088A39E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				A1B456622A87BA640088A39E /* Bullet.swift */,
 				A1B4565E2A878D800088A39E /* Player.swift */,
 				A118A7252A8A8F12004E4EB2 /* Enemy.swift */,
+				A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */,
 				A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */,
 				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,

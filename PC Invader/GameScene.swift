@@ -10,6 +10,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var gamePlayableArea: CGRect
     var player: Player!
+    var healthBar: HealthBar!
     var lastUpdateTime: TimeInterval = 0
     var timeSinceLastBullet: TimeInterval = 0
     let bulletDelay: TimeInterval = 0.1 // Adjust this delay as needed
@@ -43,7 +44,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             , zPosition: 2
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
                             , scale: 1
-                            , trailEmitterName: "MyParticle")
+                            , trailEmitterName: "MyParticle"
+                            , health: 10)
+        
+        healthBar = HealthBar(player: player)
+        healthBar.position = CGPoint(x: size.width / 4, y: size.height * 0.9)
+        healthBar.setScale(10)
+        healthBar.zPosition = 4
+        addChild(healthBar)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size) //physics body size = self.size
         player.physicsBody!.affectedByGravity = false //remove affect of gravity
@@ -99,8 +107,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spawnExplosion(position: body2.node!.position, explosionName: "explosion")
             } // prevent error if there the node not exist
             
-            body1.node?.removeFromParent() //TODO: Remove the trail
+//            body1.node?.removeFromParent() //TODO: Remove the trail
             body2.node?.removeFromParent()
+            player.health -= 1
+            print("Player Health: ", player.health!)
+            healthBar.updateHealthBar()
+
         }
     }
     
@@ -234,10 +246,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.trailEmitter.position.x += distanceDragX
                 player.trailEmitter.position.y += distanceDragY
 //                player.trailEmitter.emissionAngle = atan2(distanceDragY, distanceDragX) + CGFloat.pi / 2
-                print("Player X: \(playerPosition.x)")
-                print("Player Y: \(playerPosition.y)")
-                print("Player Trail X: \(playerPosition.x)")
-                print("Player Trail Y: \(playerPosition.y)")
+//                print("Player X: \(playerPosition.x)")
+//                print("Player Y: \(playerPosition.y)")
+//                print("Player Trail X: \(playerPosition.x)")
+//                print("Player Trail Y: \(playerPosition.y)")
             }
             //Constraint in x for player to stay within game area
             if player.position.x > gamePlayableArea.maxX - player.size.width/2{
