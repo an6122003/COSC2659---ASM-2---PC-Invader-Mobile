@@ -6,9 +6,9 @@
 //
 
 import SpriteKit
-public var gamePlayableArea: CGRect = CGRect(x: 0, y: 0, width: 1024, height: 768) // Default value
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
+
     var player: Player!
     var healthBar: HealthBar!
     var lastUpdateTime: TimeInterval = 0
@@ -24,12 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentGameState = gameState.inGame
     
     override init(size: CGSize) {
-        let aspectRatio = 19.5/9.0 // aspect ratio of iphone 14 pro
-        let maxPlayableWidth = size.height / aspectRatio
-        let margin = (size.width - maxPlayableWidth)/2 // /2 to get 1 margin
-        gamePlayableArea = CGRect(x: margin, y: 0, width: maxPlayableWidth, height: size.height)
-        
         super.init(size: size)
+        GameManager.gameManager.calculatePlayableArea(size: size)
         
     }
     
@@ -75,7 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
-        spawnEnemyPerSecond(enemyName: "enemyShip", timeInterval: 1)
+        spawnEnemyPerSecond(timeInterval: 1)
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) { // This function process contact of 2 bodies call Body A and Body B
@@ -190,45 +187,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return randomFloat() * (max - min) + min
     }
     
-    func spawnEnemy(enemyName: String){
-        let startX = randomFloat(min: gamePlayableArea.minX
-                                 , max: gamePlayableArea.maxX)
-
-        let endX = randomFloat(min: gamePlayableArea.minX
-                                 , max: gamePlayableArea.maxX)
-
-        let startPosition = CGPoint(x: startX, y: self.size.height*1.1)
-
-        let endPosition = CGPoint(x: endX, y: -self.size.height*0.1) // y coordinate is negative, under the screen
-
-        let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
-        
-        let enemy = Enemy(textureName: enemyName
-                          , zPosition: 2
-                          , position: startPosition
-                          , scale: 1
-                          , health: 10
-                          , bullet: Bullet(textureName: "bullet 1"
-                                           , position: player.position
-                                           , zPosition: 1
-                                           , scale: 10
-                                           , soundName: "shooting.wav"))
-        enemy.name = "Enemy" // Name to gather all enemy objects to dispose later
-        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size) //enemy physics body
-        enemy.physicsBody?.affectedByGravity = false
-        enemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
-        enemy.physicsBody?.collisionBitMask = physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
-        enemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player // allow contact with Bullet and Player category
-
-        enemy.zRotation = rotation
-        self.addChild(enemy)
-        
-        let moveEnemy = SKAction.move(to: endPosition, duration: 2)
-        let disposeEnemy = SKAction.removeFromParent()
-        let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
-        enemy.run(sequenceEnemy)
-        
-        let randomMoveEnemy = RandomMovementEnemy(textureName: enemyName
+    func spawnEnemy(){
+        let randomMoveEnemy = RandomMovementEnemy(textureName: "enemyShip"
                                                   , zPosition: 2
                                                   , scale: 1
                                                   , health: 5
@@ -239,17 +199,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                                    , soundName: "shooting.wav"))
         randomMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: randomMoveEnemy.size)
         randomMoveEnemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
-        randomMoveEnemy.physicsBody?.collisionBitMask = physicsCategories.None
-        randomMoveEnemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player
-        
+        randomMoveEnemy.physicsBody?.collisionBitMask = physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
+        randomMoveEnemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player// allow contact with Bullet and Player category
+
         self.addChild(randomMoveEnemy)
         randomMoveEnemy.move()
+        
+        
+        let verticalMoveEnemy = VerticalMovementEnemy(textureName: "enemyShip"
+                                                  , zPosition: 2
+                                                  , scale: 1
+                                                  , health: 5
+                                                  , bullet: Bullet(textureName: "bullet 1"
+                                                                   , position: player.position
+                                                                   , zPosition: 1
+                                                                   , scale: 10
+                                                                   , soundName: "shooting.wav"))
+        verticalMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: verticalMoveEnemy.size)
+//        verticalMoveEnemy.physicsBody?.affectedByGravity = false
+        verticalMoveEnemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
+        verticalMoveEnemy.physicsBody?.collisionBitMask = physicsCategories.None
+        verticalMoveEnemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player
+        
+        self.addChild(verticalMoveEnemy)
+        verticalMoveEnemy.move()
+        
     }
     
-    func spawnEnemyPerSecond(enemyName: String, timeInterval: Float) {
+    func spawnEnemyPerSecond(timeInterval: Float) {
         
         let spawnEnemyAction = SKAction.run { [weak self] in
-                self?.spawnEnemy(enemyName: enemyName)
+                self?.spawnEnemy()
             }
         let wait = SKAction.wait(forDuration: TimeInterval(timeInterval), withRange: 0.1)
         let spawnSequence = SKAction.sequence([spawnEnemyAction, wait])
@@ -325,27 +305,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             //Constraint in x for player to stay within game area
-            if player.position.x > gamePlayableArea.maxX - player.size.width/2{
-                player.position.x = gamePlayableArea.maxX - player.size.width/2
-                player.trailEmitter.position.x = gamePlayableArea.maxX - player.size.width/2
+            if player.position.x > GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/2{
+                player.position.x = GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/2
+                player.trailEmitter.position.x = GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/2
                 player.trailEmitter.position.x += 5
             }
             
-            if player.position.x < gamePlayableArea.minX + player.size.width/2{
-                player.position.x = gamePlayableArea.minX + player.size.width/2
-                player.trailEmitter.position.x = gamePlayableArea.minX + player.size.width/2
+            if player.position.x < GameManager.gameManager.gamePlayableArea!.minX + player.size.width/2{
+                player.position.x = GameManager.gameManager.gamePlayableArea!.minX + player.size.width/2
+                player.trailEmitter.position.x = GameManager.gameManager.gamePlayableArea!.minX + player.size.width/2
                 player.trailEmitter.position.x += 5
             }
             
             //Constraint in y for player to stay within game area
-            if player.position.y > gamePlayableArea.maxY - player.size.height/2{
-                player.position.y = gamePlayableArea.maxY - player.size.height/2
-                player.trailEmitter.position.y = gamePlayableArea.maxY - player.size.height/2
+            if player.position.y > GameManager.gameManager.gamePlayableArea!.maxY - player.size.height/2{
+                player.position.y = GameManager.gameManager.gamePlayableArea!.maxY - player.size.height/2
+                player.trailEmitter.position.y = GameManager.gameManager.gamePlayableArea!.maxY - player.size.height/2
             }
             
-            if player.position.y < gamePlayableArea.minY + player.size.height/2{
-                player.position.y = gamePlayableArea.minY + player.size.height/2
-                player.trailEmitter.position.y = gamePlayableArea.minY + player.size.height/2
+            if player.position.y < GameManager.gameManager.gamePlayableArea!.minY + player.size.height/2{
+                player.position.y = GameManager.gameManager.gamePlayableArea!.minY + player.size.height/2
+                player.trailEmitter.position.y = GameManager.gameManager.gamePlayableArea!.minY + player.size.height/2
             }
         }
     }

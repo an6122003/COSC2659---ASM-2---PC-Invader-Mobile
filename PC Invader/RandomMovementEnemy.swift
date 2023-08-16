@@ -15,9 +15,9 @@ class RandomMovementEnemy: Enemy{
          health: Int,
          bullet: Bullet) {
         
-        let startPosition = CGPoint(x: randomFloat(min: gamePlayableArea.minX,
-                                                   max: gamePlayableArea.maxX),
-                                    y: gamePlayableArea.size.height * 1.1)
+        let startPosition = CGPoint(x: randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX,
+                                                   max: GameManager.gameManager.gamePlayableArea!.maxX),
+                                    y: GameManager.gameManager.gamePlayableArea!.size.height * 1.1)
         
         super.init(textureName: textureName,
                    zPosition: zPosition,
@@ -34,15 +34,15 @@ class RandomMovementEnemy: Enemy{
     }
     
     override func move() {
-        let startX = randomFloat(min: gamePlayableArea.minX
-                                 , max: gamePlayableArea.maxX)
+        let startX = randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX
+                                 , max: GameManager.gameManager.gamePlayableArea!.maxX)
         
-        let endX = randomFloat(min: gamePlayableArea.minX
-                                 , max: gamePlayableArea.maxX)
+        let endX = randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX
+                               , max: GameManager.gameManager.gamePlayableArea!.maxX)
         
-        let startPosition = CGPoint(x: startX, y: gamePlayableArea.size.height*1.1)
+        let startPosition = position
         
-        let endPosition = CGPoint(x: endX, y: -gamePlayableArea.size.height*0.1) // y coordinate is negative, under the screen
+        let endPosition = CGPoint(x: endX, y: -GameManager.gameManager.gamePlayableArea!.size.height*0.1) // y coordinate is negative, under the screen
         
         let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
         
@@ -52,5 +52,6 @@ class RandomMovementEnemy: Enemy{
         let disposeEnemy = SKAction.removeFromParent()
         let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
         self.run(sequenceEnemy)
+        print("Wrong: startPo: \(startPosition), endPo: \(endPosition), rotation: \(rotation)")
     }
 }
