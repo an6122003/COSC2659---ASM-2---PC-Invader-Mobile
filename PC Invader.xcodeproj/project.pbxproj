@@ -24,6 +24,8 @@
 		A1B4565F2A878D800088A39E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4565E2A878D800088A39E /* Player.swift */; };
 		A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456602A87992B0088A39E /* InGameBackground.swift */; };
 		A1B456632A87BA640088A39E /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456622A87BA640088A39E /* Bullet.swift */; };
+		A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */; };
+		A1E7503B2A8CAD5800E43ED8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		A1B4565E2A878D800088A39E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		A1B456602A87992B0088A39E /* InGameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameBackground.swift; sourceTree = "<group>"; };
 		A1B456622A87BA640088A39E /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMovementEnemy.swift; sourceTree = "<group>"; };
+		A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,7 @@
 			children = (
 				A1B456622A87BA640088A39E /* Bullet.swift */,
 				A1B4565E2A878D800088A39E /* Player.swift */,
-				A118A7252A8A8F12004E4EB2 /* Enemy.swift */,
+				A1E750362A8CA9CC00E43ED8 /* Enemy */,
 				A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */,
 			);
 			name = Entity;
@@ -116,6 +120,7 @@
 				A1B456492A873C020088A39E /* GameScene.sks */,
 				A1B4564B2A873C020088A39E /* Actions.sks */,
 				A1B4564D2A873C020088A39E /* GameScene.swift */,
+				A1E750392A8CAD4800E43ED8 /* Ultils */,
 				A1B3AB232A8BCEC700F0DBA1 /* Scene */,
 				A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */,
 				A15E9A6F2A8A550100416761 /* MyParticle.sks */,
@@ -128,6 +133,23 @@
 				A1B456562A873C030088A39E /* LaunchScreen.storyboard */,
 			);
 			path = "PC Invader";
+			sourceTree = "<group>";
+		};
+		A1E750362A8CA9CC00E43ED8 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				A118A7252A8A8F12004E4EB2 /* Enemy.swift */,
+				A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */,
+			);
+			name = Enemy;
+			sourceTree = "<group>";
+		};
+		A1E750392A8CAD4800E43ED8 /* Ultils */ = {
+			isa = PBXGroup;
+			children = (
+				A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */,
+			);
+			name = Ultils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +230,11 @@
 			files = (
 				A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */,
 				A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */,
+				A1E7503B2A8CAD5800E43ED8 /* Utilities.swift in Sources */,
 				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
+				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
 				A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */,

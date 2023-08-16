@@ -6,9 +6,9 @@
 //
 
 import SpriteKit
-
+public var gamePlayableArea: CGRect = CGRect(x: 0, y: 0, width: 1024, height: 768) // Default value
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    var gamePlayableArea: CGRect
+    
     var player: Player!
     var healthBar: HealthBar!
     var lastUpdateTime: TimeInterval = 0
@@ -193,21 +193,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnEnemy(enemyName: String){
         let startX = randomFloat(min: gamePlayableArea.minX
                                  , max: gamePlayableArea.maxX)
-        
+
         let endX = randomFloat(min: gamePlayableArea.minX
                                  , max: gamePlayableArea.maxX)
-        
+
         let startPosition = CGPoint(x: startX, y: self.size.height*1.1)
-        
+
         let endPosition = CGPoint(x: endX, y: -self.size.height*0.1) // y coordinate is negative, under the screen
-        
+
         let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
         
         let enemy = Enemy(textureName: enemyName
                           , zPosition: 2
                           , position: startPosition
                           , scale: 1
-                          , trailEmitterName: "PlayerSpaceShipTrail")
+                          , health: 10
+                          , bullet: Bullet(textureName: "bullet 1"
+                                           , position: player.position
+                                           , zPosition: 1
+                                           , scale: 10
+                                           , soundName: "shooting.wav"))
         enemy.name = "Enemy" // Name to gather all enemy objects to dispose later
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size) //enemy physics body
         enemy.physicsBody?.affectedByGravity = false
@@ -222,6 +227,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let disposeEnemy = SKAction.removeFromParent()
         let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
         enemy.run(sequenceEnemy)
+        
+        let randomMoveEnemy = RandomMovementEnemy(textureName: enemyName
+                                                  , zPosition: 2
+                                                  , scale: 1
+                                                  , health: 5
+                                                  , bullet: Bullet(textureName: "bullet 1"
+                                                                   , position: player.position
+                                                                   , zPosition: 1
+                                                                   , scale: 10
+                                                                   , soundName: "shooting.wav"))
+        randomMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: randomMoveEnemy.size)
+        randomMoveEnemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
+        randomMoveEnemy.physicsBody?.collisionBitMask = physicsCategories.None
+        randomMoveEnemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player
+        
+        self.addChild(randomMoveEnemy)
+        randomMoveEnemy.move()
     }
     
     func spawnEnemyPerSecond(enemyName: String, timeInterval: Float) {
