@@ -11,9 +11,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var player: Player!
     var healthBar: HealthBar!
+    var spawnManager: SpawnManager?
     var lastUpdateTime: TimeInterval = 0
     var timeSinceLastBullet: TimeInterval = 0
     let bulletDelay: TimeInterval = 0.1 // Adjust this delay as needed
+    var timeSinceLastEnemySpawn: TimeInterval = 0
+    let spawnDelay: TimeInterval = 1 // Adjest time to spawn enemy wave
     
     enum gameState{
         case Menu
@@ -26,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override init(size: CGSize) {
         super.init(size: size)
         GameManager.gameManager.calculatePlayableArea(size: size)
+        spawnManager = SpawnManager(gameScene: self)
         
     }
     
@@ -71,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
-        spawnEnemyPerSecond(timeInterval: 1)
+//        spawnEnemyPerSecond(timeInterval: 1)
         
     }
     
@@ -188,42 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnEnemy(){
-        let randomMoveEnemy = RandomMovementEnemy(textureName: "enemyShip"
-                                                  , zPosition: 2
-                                                  , scale: 1
-                                                  , health: 5
-                                                  , bullet: Bullet(textureName: "bullet 1"
-                                                                   , position: player.position
-                                                                   , zPosition: 1
-                                                                   , scale: 10
-                                                                   , soundName: "shooting.wav"))
-        randomMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: randomMoveEnemy.size)
-        randomMoveEnemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
-        randomMoveEnemy.physicsBody?.collisionBitMask = physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
-        randomMoveEnemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player// allow contact with Bullet and Player category
-
-        self.addChild(randomMoveEnemy)
-        randomMoveEnemy.move()
-        
-        
-        let verticalMoveEnemy = VerticalMovementEnemy(textureName: "enemyShip"
-                                                  , zPosition: 2
-                                                  , scale: 1
-                                                  , health: 5
-                                                  , bullet: Bullet(textureName: "bullet 1"
-                                                                   , position: player.position
-                                                                   , zPosition: 1
-                                                                   , scale: 10
-                                                                   , soundName: "shooting.wav"))
-        verticalMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: verticalMoveEnemy.size)
-//        verticalMoveEnemy.physicsBody?.affectedByGravity = false
-        verticalMoveEnemy.physicsBody?.categoryBitMask = physicsCategories.Enemy
-        verticalMoveEnemy.physicsBody?.collisionBitMask = physicsCategories.None
-        verticalMoveEnemy.physicsBody?.contactTestBitMask = physicsCategories.Bullet | physicsCategories.Player
-        
-        self.addChild(verticalMoveEnemy)
-        verticalMoveEnemy.move()
-        
+        spawnManager?.spawnEnemiesForLevel()
     }
     
     func spawnEnemyPerSecond(timeInterval: Float) {
@@ -282,6 +251,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             shootBullet()
             timeSinceLastBullet = 0
         }
+        
+        timeSinceLastEnemySpawn += deltaTime
+        
+        if timeSinceLastEnemySpawn >= spawnDelay {
+            spawnManager?.spawnEnemiesForLevel()
+            timeSinceLastEnemySpawn = 0
+        }
+        print("timeSinceLastBullet: \(timeSinceLastBullet)")
+        print("timeSinceLastEnemySpawn: \(timeSinceLastEnemySpawn)")
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

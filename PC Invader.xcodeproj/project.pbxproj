@@ -28,6 +28,7 @@
 		A1E7503B2A8CAD5800E43ED8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */; };
 		A1E7503D2A8CC06200E43ED8 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7503C2A8CC06200E43ED8 /* GameManager.swift */; };
 		A1E750412A8CD38100E43ED8 /* VerticalMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E750402A8CD38100E43ED8 /* VerticalMovementEnemy.swift */; };
+		A1E750432A8CDC1500E43ED8 /* SpawnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E750422A8CDC1500E43ED8 /* SpawnManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A1E7503C2A8CC06200E43ED8 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		A1E750402A8CD38100E43ED8 /* VerticalMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalMovementEnemy.swift; sourceTree = "<group>"; };
+		A1E750422A8CDC1500E43ED8 /* SpawnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				A1B4564B2A873C020088A39E /* Actions.sks */,
 				A1B4564D2A873C020088A39E /* GameScene.swift */,
 				A1E7503C2A8CC06200E43ED8 /* GameManager.swift */,
+				A1E750422A8CDC1500E43ED8 /* SpawnManager.swift */,
 				A1E750392A8CAD4800E43ED8 /* Ultils */,
 				A1B3AB232A8BCEC700F0DBA1 /* Scene */,
 				A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */,
@@ -245,6 +248,7 @@
 				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
+				A1E750432A8CDC1500E43ED8 /* SpawnManager.swift in Sources */,
 				A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */,
 				A1B456632A87BA640088A39E /* Bullet.swift in Sources */,
 			);
