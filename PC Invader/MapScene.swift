@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 class MapScene: SKScene{
-    var levelNodeArray: [SKNode] = []
+    var levelNodeArray: [LevelNode] = []
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
         
@@ -26,14 +26,11 @@ class MapScene: SKScene{
         headerLogo.position.y += 700
         
         createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
-        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 200)
-        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
         createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 400)
-        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
-        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 600)
-        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
-        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 800)
-
+        createLevelNode(level: 3, positionX: nodePosition.x, positionY: nodePosition.y + 800)
+        createLevelNode(level: 4, positionX: nodePosition.x, positionY: nodePosition.y + 1200)
+        createLevelNode(level: 5, positionX: nodePosition.x, positionY: nodePosition.y + 1600)
+        createLevelNode(level: 6, positionX: nodePosition.x, positionY: nodePosition.y + 2000)
         
         self.addChild(background)
         self.addChild(headerLogo)
@@ -45,7 +42,7 @@ class MapScene: SKScene{
                                  , positionX: positionX
                                  , positionY: positionY)
             node.zPosition = 1
-            node.position = CGPoint(x: positionX, y: positionY)
+//            node.position = CGPoint(x: positionX, y: positionY)
             levelNodeArray.append(node)
             self.addChild(node)
         }
@@ -86,7 +83,7 @@ class MapScene: SKScene{
             
             for node in levelNodeArray {
                 if node.contains(location){
-                    changeScene(sceneToMove: GameScene(size: self.size))
+                    changeToGameScene(level: node.level)
                 }
             }
         }
@@ -97,6 +94,11 @@ class MapScene: SKScene{
         sceneToMove.scaleMode = self.scaleMode
         let transition = SKTransition.fade(withDuration: 1)
         self.view?.presentScene(sceneToMove, transition: transition)
+    }
+    
+    func changeToGameScene(level: Int){
+        GameScene.setLevel(level: level)
+        changeScene(sceneToMove: GameScene(size: self.size))
     }
   
 }

@@ -16,12 +16,12 @@ class SpawnManager {
         self.gameScene = gameScene
     }
     
-    func spawnEnemiesForLevel() {
+    func spawnEnemiesForLevel(level: Int) {
         switch level {
         case 1:
             spawnVerticalEnemies(count: 3)
         case 2:
-//            spawnVerticalEnemies(count: 3)
+            spawnVerticalEnemies(count: 3)
             spawnRandomMovementEnemies(count: 3)
         // Add more cases for other levels
         default:

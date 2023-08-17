@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118A7252A8A8F12004E4EB2 /* Enemy.swift */; };
+		A12E17492A8E92A600EB5D95 /* ethnocentric.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12E17472A8E92A600EB5D95 /* ethnocentric.otf */; };
+		A12E174A2A8E92A600EB5D95 /* ethnocentric rg it.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12E17482A8E92A600EB5D95 /* ethnocentric rg it.otf */; };
 		A135F9792A8E176A00CA647A /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F9782A8E176A00CA647A /* MainMenuScene.swift */; };
 		A135F97D2A8E20B600CA647A /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F97C2A8E20B600CA647A /* MapScene.swift */; };
 		A135F9802A8E353300CA647A /* LevelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F97F2A8E353300CA647A /* LevelNode.swift */; };
@@ -34,6 +36,9 @@
 
 /* Begin PBXFileReference section */
 		A118A7252A8A8F12004E4EB2 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		A12E17472A8E92A600EB5D95 /* ethnocentric.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ethnocentric.otf; sourceTree = "<group>"; };
+		A12E17482A8E92A600EB5D95 /* ethnocentric rg it.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ethnocentric rg it.otf"; sourceTree = "<group>"; };
+		A12E174B2A8E942200EB5D95 /* PC-Invader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PC-Invader-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A135F9782A8E176A00CA647A /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		A135F97C2A8E20B600CA647A /* MapScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
 		A135F97F2A8E353300CA647A /* LevelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNode.swift; sourceTree = "<group>"; };
@@ -70,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A12E17462A8E929500EB5D95 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				A12E17482A8E92A600EB5D95 /* ethnocentric rg it.otf */,
+				A12E17472A8E92A600EB5D95 /* ethnocentric.otf */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
 		A135F97A2A8E1AF100CA647A /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +141,7 @@
 		A1B3AB232A8BCEC700F0DBA1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4564D2A873C020088A39E /* GameScene.swift */,
 				A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */,
 				A135F9782A8E176A00CA647A /* MainMenuScene.swift */,
 				A135F97E2A8E351E00CA647A /* Map */,
@@ -153,8 +168,9 @@
 		A1B456462A873C010088A39E /* PC Invader */ = {
 			isa = PBXGroup;
 			children = (
+				A12E174B2A8E942200EB5D95 /* PC-Invader-Info.plist */,
+				A12E17462A8E929500EB5D95 /* Font */,
 				A1B456472A873C010088A39E /* AppDelegate.swift */,
-				A1B4564D2A873C020088A39E /* GameScene.swift */,
 				A1E7503C2A8CC06200E43ED8 /* GameManager.swift */,
 				A1E750422A8CDC1500E43ED8 /* SpawnManager.swift */,
 				A1E750392A8CAD4800E43ED8 /* Ultils */,
@@ -247,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B456532A873C020088A39E /* Main.storyboard in Resources */,
+				A12E174A2A8E92A600EB5D95 /* ethnocentric rg it.otf in Resources */,
 				A1B456552A873C030088A39E /* Assets.xcassets in Resources */,
+				A12E17492A8E92A600EB5D95 /* ethnocentric.otf in Resources */,
 				A15E9A6E2A8A54BF00416761 /* PlayerSpaceShipTrail.sks in Resources */,
 				A15013092A87C3F500DDB2AC /* shooting.wav in Resources */,
 				A1B456582A873C030088A39E /* LaunchScreen.storyboard in Resources */,
@@ -427,6 +445,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QUV7VD99GR;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PC-Invader-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -455,6 +474,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QUV7VD99GR;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PC-Invader-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

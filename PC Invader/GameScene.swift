@@ -6,9 +6,8 @@
 //
 
 import SpriteKit
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
-
+    static var level: Int = 1
     var player: Player!
     var healthBar: HealthBar!
     var spawnManager: SpawnManager?
@@ -22,6 +21,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case Menu
         case inGame
         case gameOver
+    }
+    
+    public static func setLevel(level: Int){
+        self.level = level
     }
     
     var currentGameState = gameState.inGame
@@ -194,20 +197,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return randomFloat() * (max - min) + min
     }
     
-    func spawnEnemy(){
-        spawnManager?.spawnEnemiesForLevel()
-    }
-    
-    func spawnEnemyPerSecond(timeInterval: Float) {
-        
-        let spawnEnemyAction = SKAction.run { [weak self] in
-                self?.spawnEnemy()
-            }
-        let wait = SKAction.wait(forDuration: TimeInterval(timeInterval), withRange: 0.1)
-        let spawnSequence = SKAction.sequence([spawnEnemyAction, wait])
-        let spawnForever = SKAction.repeatForever(spawnSequence)
-        self.run(SKAction.repeatForever(spawnForever))
-    }
+//    func spawnEnemy(){
+//        spawnManager?.spawnEnemiesForLevel(level: 2)
+//    }
+//
+//    func spawnEnemyPerSecond(timeInterval: Float) {
+//
+//        let spawnEnemyAction = SKAction.run { [weak self] in
+//                self?.spawnEnemy()
+//            }
+//        let wait = SKAction.wait(forDuration: TimeInterval(timeInterval), withRange: 0.1)
+//        let spawnSequence = SKAction.sequence([spawnEnemyAction, wait])
+//        let spawnForever = SKAction.repeatForever(spawnSequence)
+//        self.run(SKAction.repeatForever(spawnForever))
+//    }
 
     
     func shootBullet(){
@@ -258,7 +261,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timeSinceLastEnemySpawn += deltaTime
         
         if timeSinceLastEnemySpawn >= spawnDelay {
-            spawnManager?.spawnEnemiesForLevel()
+            spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
             timeSinceLastEnemySpawn = 0
         }
         print("timeSinceLastBullet: \(timeSinceLastBullet)")
