@@ -46,12 +46,12 @@ class RandomMovementEnemy: Enemy{
         
         let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
         
-        self.zRotation = rotation
+        self.zRotation = rotation 
         
-        let moveEnemy = SKAction.move(to: endPosition, duration: 2)
+        let moveEnemy = SKAction.move(to: endPosition, duration: 5)
         let disposeEnemy = SKAction.removeFromParent()
         let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
         self.run(sequenceEnemy)
-        print("Wrong: startPo: \(startPosition), endPo: \(endPosition), rotation: \(rotation)")
+
     }
 }

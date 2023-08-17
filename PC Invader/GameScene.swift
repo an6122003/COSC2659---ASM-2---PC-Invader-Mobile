@@ -16,7 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timeSinceLastBullet: TimeInterval = 0
     let bulletDelay: TimeInterval = 0.1 // Adjust this delay as needed
     var timeSinceLastEnemySpawn: TimeInterval = 0
-    let spawnDelay: TimeInterval = 1 // Adjest time to spawn enemy wave
+    let spawnDelay: TimeInterval = 3 // Adjest time to spawn enemy wave
     
     enum gameState{
         case Menu
@@ -91,19 +91,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             body2 = contact.bodyA
         }
         
-        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy{
-            //Bullet hit Enemy
-            if body2.node != nil{ // only remove the enemy when inside the screen area
-                if body2.node!.position.y < self.size.height{
-                    spawnExplosion(position: body2.node!.position, explosionName: "explosion")
-                    body2.node?.removeFromParent()
-                }
-                else{
-                    spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy {
+            // Bullet hit Enemy
+            if let enemy = body2.node as? Enemy {
+                enemy.health -= 1
+                
+                if enemy.health <= 0 {
+                    spawnExplosion(position: enemy.position, explosionName: "explosion")
+                    enemy.removeFromParent()
                 }
             }
+            
+            if body2.node != nil && body2.node!.position.y < self.size.height {
+//                spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+            }
+            
             body1.node?.removeFromParent()
-            body2.node?.removeFromParent()
         }
         
         if body1.categoryBitMask == physicsCategories.Player && body2.categoryBitMask == physicsCategories.Enemy{

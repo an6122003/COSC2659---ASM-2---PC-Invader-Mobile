@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameOverScene: SKScene{
     let replayButton = SKSpriteNode(imageNamed: "replay-btn")
+    let closeButton = SKSpriteNode(imageNamed: "close-btn")
 
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -90,7 +91,6 @@ class GameOverScene: SKScene{
         continueButton.zPosition = 3
         continueButton.setScale(0.85)
         
-        let closeButton = SKSpriteNode(imageNamed: "close-btn")
         closeButton.position = window.position
         closeButton.position.x += 250
         closeButton.position.y -= 320
@@ -121,13 +121,16 @@ class GameOverScene: SKScene{
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-                    let location = touch.location(in: self)
-                    
-                    if replayButton.contains(location) {
-                        // The replay button was clicked, perform your function here
-                        changeScene(sceneToMove: GameScene(size: self.size))
-                    }
-                }
+            let location = touch.location(in: self)
+            
+            if replayButton.contains(location) {
+                changeScene(sceneToMove: GameScene(size: self.size))
+            }
+    
+            if closeButton.contains(location){
+                changeScene(sceneToMove: MainMenuScene(size: self.size))
+            }
+        }
     }
     
     

@@ -36,7 +36,11 @@ class VerticalMovementEnemy: Enemy{
     }
     
     override func move() {
-        let moveAction = SKAction.move(by: movementDirection, duration: 1.0)
-                run(moveAction)
+        let endPosition = CGPoint(x: self.position.x, y: -GameManager.gameManager.gamePlayableArea!.size.height * 0.1)
+        
+        let moveEnemy = SKAction.move(to: endPosition, duration: 5)
+        let disposeEnemy = SKAction.removeFromParent()
+        let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
+        self.run(sequenceEnemy)
     }
 }

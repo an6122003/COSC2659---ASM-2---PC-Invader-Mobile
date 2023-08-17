@@ -10,7 +10,7 @@ import SpriteKit
 
 class SpawnManager {
     var gameScene: GameScene
-    var level: Int = 2
+    var level: Int = 1
     
     init(gameScene: GameScene) {
         self.gameScene = gameScene
@@ -21,7 +21,7 @@ class SpawnManager {
         case 1:
             spawnVerticalEnemies(count: 3)
         case 2:
-            spawnVerticalEnemies(count: 3)
+//            spawnVerticalEnemies(count: 3)
             spawnRandomMovementEnemies(count: 3)
         // Add more cases for other levels
         default:
@@ -41,7 +41,7 @@ class SpawnManager {
                                                                        , scale: 10
                                                                        , soundName: "shooting.wav"))
             verticalMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: verticalMoveEnemy.size)
-    //        verticalMoveEnemy.physicsBody?.affectedByGravity = false
+            verticalMoveEnemy.physicsBody?.affectedByGravity = false
             verticalMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
             verticalMoveEnemy.physicsBody?.collisionBitMask = GameScene.physicsCategories.None
             verticalMoveEnemy.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player
