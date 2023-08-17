@@ -16,7 +16,8 @@ class MapScene: SKScene{
         background.position = CGPoint(x: self.size.width/2
                                       , y: self.size.height/2)
         background.zPosition = 0
-        let bgPosition = background.position
+        var nodePosition = background.position
+        nodePosition.y -= 600
         
         let headerLogo = SKSpriteNode(imageNamed: "main-menu-header")
         headerLogo.zPosition = 1
@@ -24,14 +25,14 @@ class MapScene: SKScene{
         headerLogo.position = background.position
         headerLogo.position.y += 700
         
-        createLevelNode(level: 1, positionX: bgPosition.x, positionY: bgPosition.y)
-        createLevelNode(level: 2, positionX: bgPosition.x, positionY: bgPosition.y + 200)
-        createLevelNode(level: 1, positionX: bgPosition.x, positionY: bgPosition.y)
-        createLevelNode(level: 2, positionX: bgPosition.x, positionY: bgPosition.y + 400)
-        createLevelNode(level: 1, positionX: bgPosition.x, positionY: bgPosition.y)
-        createLevelNode(level: 2, positionX: bgPosition.x, positionY: bgPosition.y + 600)
-        createLevelNode(level: 1, positionX: bgPosition.x, positionY: bgPosition.y)
-        createLevelNode(level: 2, positionX: bgPosition.x, positionY: bgPosition.y + 800)
+        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
+        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 200)
+        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
+        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 400)
+        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
+        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 600)
+        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
+        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 800)
 
         
         self.addChild(background)
@@ -39,7 +40,10 @@ class MapScene: SKScene{
         
         
         func createLevelNode(level: Int, positionX: CGFloat, positionY: CGFloat){
-            let node = SKSpriteNode(imageNamed: "level-node")
+            let node = LevelNode(imageName: "level-node"
+                                 , level: level
+                                 , positionX: positionX
+                                 , positionY: positionY)
             node.zPosition = 1
             node.position = CGPoint(x: positionX, y: positionY)
             levelNodeArray.append(node)
@@ -63,6 +67,36 @@ class MapScene: SKScene{
         for node in levelNodeArray{
             node.position.y += DeltaY
         }
+    }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch in touches {
+//            let location = touch.location(in: self)
+//
+//            if startButton.contains(location) {
+//                // The replay button was clicked, perform your function here
+//                changeScene(sceneToMove: GameScene(size: self.size))
+//            }
+//        }
+//    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            
+            for node in levelNodeArray {
+                if node.contains(location){
+                    changeScene(sceneToMove: GameScene(size: self.size))
+                }
+            }
+        }
+    }
+    
+    func changeScene(sceneToMove: SKScene){
+        sceneToMove.size = self.size
+        sceneToMove.scaleMode = self.scaleMode
+        let transition = SKTransition.fade(withDuration: 1)
+        self.view?.presentScene(sceneToMove, transition: transition)
     }
   
 }

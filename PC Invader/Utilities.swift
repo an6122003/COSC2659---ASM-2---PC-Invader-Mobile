@@ -16,6 +16,7 @@ public func randomFloat(min: CGFloat, max: CGFloat) -> CGFloat{
     return randomFloat() * (max - min) + min
 }
 
+
 class Utilities{
     
 }
