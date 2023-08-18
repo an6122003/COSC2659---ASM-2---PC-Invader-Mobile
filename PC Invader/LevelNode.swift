@@ -24,7 +24,7 @@ class LevelNode: SKSpriteNode{
                                        , y: -85)
 //        placeholder.position.x -= 900
 //        placeholder.position.y = positionY - 50
-        placeholder.zPosition = 1
+//        placeholder.zPosition = 1
         placeholder.setScale(0.5)
         self.addChild(placeholder)
         
@@ -32,7 +32,7 @@ class LevelNode: SKSpriteNode{
         label.text = "Level: \(String(level))"
         label.fontSize = 23
         label.position = CGPoint(x: 0, y: -90)
-        label.zPosition = 2
+        label.zPosition = 1
         self.addChild(label)
         
         print("levelNode X: \(self.position.x), Y: \(self.position.y)")
