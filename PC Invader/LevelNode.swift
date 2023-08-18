@@ -17,7 +17,7 @@ class LevelNode: SKSpriteNode{
         super.init(texture: texture, color: .clear, size: texture.size())
         self.position.x = positionX
         self.position.y = positionY
-        self.setScale(1.5)
+        self.setScale(1.0)
         
         let placeholder = SKSpriteNode(imageNamed: "placeholder")
         placeholder.position = CGPoint(x: 0

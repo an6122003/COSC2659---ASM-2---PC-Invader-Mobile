@@ -23,9 +23,9 @@ class MapScene: SKScene{
         
         let headerLogo = SKSpriteNode(imageNamed: "main-menu-header")
         headerLogo.zPosition = 2
-        headerLogo.setScale(0.4)
+        headerLogo.setScale(0.6)
         headerLogo.position = background.position
-        headerLogo.position.y += 700
+        headerLogo.position.y += 750
         
         headerRect = CGRect(x: 0, y: 1500, width: self.size.width, height: 600)
         
@@ -64,10 +64,20 @@ class MapScene: SKScene{
         func createNodes() {
             var currentLevel = 1
                 let positions = [
-                    CGPoint(x: 700, y: 500),
-                    CGPoint(x: 900, y: 800),
-                    CGPoint(x: 600, y: 1000),
-                    CGPoint(x: 800, y: 1300)
+                    CGPoint(x: 1050, y: 400),
+                    CGPoint(x: 950, y: 600),
+                    CGPoint(x: 700, y: 625),
+                    CGPoint(x: 550, y: 825),
+                    CGPoint(x: 800, y: 1000),
+                    CGPoint(x: 1000, y: 1150),
+                    CGPoint(x: 950, y: 1400),
+                    CGPoint(x: 750, y: 1225),
+                    CGPoint(x: 600, y: 1450),
+                    CGPoint(x: Int.random(in: 500...1050), y: 1625),
+                    CGPoint(x: Int.random(in: 500...1050), y: 1800),
+                    CGPoint(x: Int.random(in: 500...1050), y: 1975),
+                    
+    
                 ]
                 
                 // Create node
@@ -84,7 +94,7 @@ class MapScene: SKScene{
                 path.addLine(to: levelNodeArray[i + 1].position)
                 
                 let line = SKShapeNode(path: path)
-                line.strokeColor = SKColor.blue
+                line.strokeColor = SKColor.systemBlue
                 line.lineWidth = 5
                 line.zPosition = 1
                 self.addChild(line)
@@ -115,6 +125,16 @@ class MapScene: SKScene{
             } else {
                 node.zPosition = 1 // Below or within the header area
             }
+        }
+        
+        for line in lineArray {
+            let halflineHeight = line.frame.height / 2 // Adjust this based on your line's height
+            if line.position.y - halflineHeight > headerBottom {
+                line.zPosition = -1 // Above the header area
+            } else {
+                line.zPosition = 1 // Below or within the header area
+            }
+            print("Zposition: \(line.zPosition)")
         }
     }
     
