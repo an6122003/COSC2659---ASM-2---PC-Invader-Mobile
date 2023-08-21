@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import SpriteKit
 
 class MapScene: SKScene{
@@ -35,21 +36,16 @@ class MapScene: SKScene{
 //        headerRectNode.zPosition = 2 // Ensure it's behind the headerLogo
 //        self.addChild(headerRectNode)
         //
-        
-//        createLevelNode(level: 1, positionX: nodePosition.x, positionY: nodePosition.y)
-//        createLevelNode(level: 2, positionX: nodePosition.x, positionY: nodePosition.y + 400)
-//        createLevelNode(level: 3, positionX: nodePosition.x, positionY: nodePosition.y + 800)
-//        createLevelNode(level: 4, positionX: nodePosition.x, positionY: nodePosition.y + 1200)
-//        createLevelNode(level: 5, positionX: nodePosition.x, positionY: nodePosition.y + 1600)
-//        createLevelNode(level: 6, positionX: nodePosition.x, positionY: nodePosition.y + 2000)
         createNodes()
         connectNodesWithLines()
         self.addChild(background)
         self.addChild(headerLogo)
-        
-        
-        
-        
+//        var n = 0
+//        for line in lineArray{
+//            n += 1
+//            print("line \(n): \(line.position)")
+//        }
+
         func createLevelNode(level: Int, positionX: CGFloat, positionY: CGFloat){
             let node = LevelNode(imageName: "level-node"
                                  , level: level
@@ -89,17 +85,25 @@ class MapScene: SKScene{
         
         func connectNodesWithLines() {
             for i in 0..<levelNodeArray.count - 1 {
-                let path = CGMutablePath()
-                path.move(to: levelNodeArray[i].position)
-                path.addLine(to: levelNodeArray[i + 1].position)
-                
-                let line = SKShapeNode(path: path)
-                line.strokeColor = SKColor.systemBlue
-                line.lineWidth = 5
-                line.zPosition = 1
-                self.addChild(line)
-                lineArray.append(line)
-            }
+                    let path = CGMutablePath()
+                    
+                    let startPosition = levelNodeArray[i].position
+                    let endPosition = levelNodeArray[i + 1].position
+                    
+                    // Set coordinate to match the origin of the screen
+                    path.move(to: CGPoint(x: 0, y: 0))
+                    // Draw line to end position
+                    path.addLine(to: CGPoint(x: endPosition.x - startPosition.x, y: endPosition.y - startPosition.y))
+                    
+                    let line = SKShapeNode(path: path)
+                    line.strokeColor = SKColor.systemBlue
+                    line.lineWidth = 5
+                    line.zPosition = 1
+                    line.position = startPosition
+                    
+                    self.addChild(line)
+                    lineArray.append(line)
+                }
         }
     }
     
@@ -119,23 +123,21 @@ class MapScene: SKScene{
         let headerBottom = headerRect.minY
 
         for node in levelNodeArray {
-            let halfNodeHeight = node.size.height / 2 // Adjust this based on your node's height
-            if node.position.y - halfNodeHeight > headerBottom {
-                node.zPosition = -1 // Above the header area
-            } else {
-                node.zPosition = 1 // Below or within the header area
-            }
+            let halfNodeHeight = node.size.height / 2
+            let targetAlpha: CGFloat = (node.position.y - halfNodeHeight > headerBottom) ? 0 : 1
+            node.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.5))
         }
-        
+//        var n = 1
+
         for line in lineArray {
-            let halflineHeight = line.frame.height / 2 // Adjust this based on your line's height
-            if line.position.y - halflineHeight > headerBottom {
-                line.zPosition = -1 // Above the header area
-            } else {
-                line.zPosition = 1 // Below or within the header area
-            }
-            print("Zposition: \(line.zPosition)")
+            let halfLineHeight = line.frame.height / 2
+            let condition = line.position.y + halfLineHeight > headerBottom
+            let targetAlpha: CGFloat = condition ? 0 : 1
+            line.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.5))
+//            print("Line: \(n) Position: \(line.position), Header Bottom: \(headerBottom), Condition: \(condition)")
+//            n += 1
         }
+
     }
     
     func scrollMap(DeltaY: CGFloat){
