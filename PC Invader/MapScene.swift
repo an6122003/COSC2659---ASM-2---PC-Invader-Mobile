@@ -125,7 +125,7 @@ class MapScene: SKScene{
         for node in levelNodeArray {
             let halfNodeHeight = node.size.height / 2
             let targetAlpha: CGFloat = (node.position.y - halfNodeHeight > headerBottom) ? 0 : 1
-            node.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.5))
+            node.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.2))
         }
 //        var n = 1
 
@@ -133,7 +133,7 @@ class MapScene: SKScene{
             let halfLineHeight = line.frame.height / 2
             let condition = line.position.y + halfLineHeight > headerBottom
             let targetAlpha: CGFloat = condition ? 0 : 1
-            line.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.5))
+            line.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.2))
 //            print("Line: \(n) Position: \(line.position), Header Bottom: \(headerBottom), Condition: \(condition)")
 //            n += 1
         }

@@ -11,6 +11,11 @@ import SpriteKit
 class SpawnManager {
     var gameScene: GameScene
     var level: Int = 1
+    let bullet = Bullet(textureName: "bullet 1"
+                        , position: .zero
+               , zPosition: 1
+               , scale: 10
+               , soundName: "shooting.wav")
     
     init(gameScene: GameScene) {
         self.gameScene = gameScene
@@ -19,7 +24,8 @@ class SpawnManager {
     func spawnEnemiesForLevel(level: Int) {
         switch level {
         case 1:
-            spawnVerticalEnemies(count: 3)
+            spawnVerticalEnemyWave(count: 2, wave: 5)
+
         case 2:
             spawnVerticalEnemies(count: 3)
             spawnRandomMovementEnemies(count: 3)
@@ -33,13 +39,9 @@ class SpawnManager {
         for _ in 1...count {
             let verticalMoveEnemy = VerticalMovementEnemy(textureName: "enemyShip"
                                                       , zPosition: 2
-                                                      , scale: 1
+                                                          , scale: 0.8
                                                       , health: 5
-                                                      , bullet: Bullet(textureName: "bullet 1"
-                                                                       , position: gameScene.player.position
-                                                                       , zPosition: 1
-                                                                       , scale: 10
-                                                                       , soundName: "shooting.wav"))
+                                                      , bullet: bullet)
             verticalMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: verticalMoveEnemy.size)
             verticalMoveEnemy.physicsBody?.affectedByGravity = false
             verticalMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
@@ -48,8 +50,25 @@ class SpawnManager {
             
             gameScene.addChild(verticalMoveEnemy)
             verticalMoveEnemy.move()
+            verticalMoveEnemy.shootLoop(gameScene: gameScene)
         }
     }
+    
+    private func spawnVerticalEnemyWave(count: Int, wave: Int) {
+        let spawnAction = SKAction.run {
+            self.spawnVerticalEnemies(count: count)
+        }
+        let waitAction = SKAction.wait(forDuration: 3)
+        let gameWonAction = SKAction.run {
+            self.gameScene.gameWin()
+        }
+        let spawnSequence = SKAction.sequence([spawnAction,waitAction])
+        let repeatSequence = SKAction.repeat(spawnSequence
+                                             , count: wave)
+        let finalSequence = SKAction.sequence([repeatSequence, gameWonAction])
+        gameScene.run(finalSequence)
+    }
+    
     
     private func spawnRandomMovementEnemies(count: Int) {
         for _ in 1...count {

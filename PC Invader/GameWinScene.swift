@@ -1,14 +1,14 @@
 //
-//  GameOverScene.swift
+//  GameWinScene.swift
 //  PC Invader
 //
-//  Created by An on 8/15/23.
+//  Created by An on 8/23/23.
 //
 
 import Foundation
 import SpriteKit
 
-class GameOverScene: SKScene{
+class GameWinScene: SKScene{
     let replayButton = SKSpriteNode(imageNamed: "replay-btn")
     let continueButton = SKSpriteNode(imageNamed: "continue-btn")
     let closeButton = SKSpriteNode(imageNamed: "close-btn")
@@ -25,26 +25,26 @@ class GameOverScene: SKScene{
         window.position = background.position
         window.zPosition = 1
         
-        let youLoseText = SKSpriteNode(imageNamed: "you-lose")
+        let youLoseText = SKSpriteNode(imageNamed: "you-win")
         youLoseText.position = window.position
         youLoseText.position.y += 390
         youLoseText.zPosition = 2
         
-        let leftStar = SKSpriteNode(imageNamed: "star-1")
+        let leftStar = SKSpriteNode(imageNamed: "star-3")
         leftStar.position = window.position
         leftStar.position.x -= 230
         leftStar.position.y += 130
         leftStar.zPosition = 3
         leftStar.setScale(0.85)
         
-        let middleStar = SKSpriteNode(imageNamed: "star-1")
+        let middleStar = SKSpriteNode(imageNamed: "star-3")
         middleStar.position = window.position
         middleStar.position.x += 0
         middleStar.position.y += 180
         middleStar.zPosition = 3
         middleStar.setScale(0.85)
         
-        let rightStar = SKSpriteNode(imageNamed: "star-1")
+        let rightStar = SKSpriteNode(imageNamed: "star-3")
         rightStar.position = window.position
         rightStar.position.x += 230
         rightStar.position.y += 130

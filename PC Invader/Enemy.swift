@@ -38,4 +38,6 @@ class Enemy: SKSpriteNode{
         let moveAction = SKAction.move(by: movementDirection, duration: 1)
         run(moveAction)
     }
+    
+    func shoot(gameScene: GameScene){}
 }

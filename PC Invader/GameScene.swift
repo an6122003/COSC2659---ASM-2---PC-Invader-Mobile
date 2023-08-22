@@ -78,6 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
+        spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
+
 //        spawnEnemyPerSecond(timeInterval: 1)
         
     }
@@ -129,6 +131,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             healthBar.updateHealthBar()
 
         }
+        
+        if body1.categoryBitMask  == physicsCategories.Player && body2.categoryBitMask == physicsCategories.enemyBullet {
+            playerHit()
+            healthBar.updateHealthBar()
+            if body2.node != nil{
+                spawnExplosion(position: player.position, explosionName: "explosion")
+                body2.node?.removeFromParent()
+            }
+            
+        }
     }
     
     func playerHit(){
@@ -161,6 +173,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(changeSceneSequence)
     }
     
+    func gameWin(){
+        currentGameState = gameState.gameOver
+        
+        self.removeAllActions()
+        
+        self.enumerateChildNodes(withName: "Bullet"){
+            bullet, arg in
+            bullet.removeAllActions()
+        }
+        
+        self.enumerateChildNodes(withName: "Enemy"){
+            enemy, arg in
+            enemy.removeAllActions()
+        }
+        
+        let changeSceneAction = SKAction.run { [self] in
+            changeScene(sceneToMove: GameWinScene())
+        }
+        let wait = SKAction.wait(forDuration: 1)
+        let changeSceneSequence = SKAction.sequence([wait, changeSceneAction])
+        self.run(changeSceneSequence)
+    }
+    
     func changeScene(sceneToMove: SKScene){
         sceneToMove.size = self.size
         sceneToMove.scaleMode = self.scaleMode
@@ -186,6 +221,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let Player: UInt32 = 0b1 // 1 in binary
         static let Bullet: UInt32 = 0b10 // 2 in binary
         static let Enemy: UInt32 = 0b100 // 4 in binary, 3 will represent bot Player and Bullet (1 and 2)
+        static let enemyBullet: UInt32 = 0b1000
         
     }
     
@@ -261,7 +297,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timeSinceLastEnemySpawn += deltaTime
         
         if timeSinceLastEnemySpawn >= spawnDelay {
-            spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
+//            spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
             timeSinceLastEnemySpawn = 0
         }
         print("timeSinceLastBullet: \(timeSinceLastBullet)")
