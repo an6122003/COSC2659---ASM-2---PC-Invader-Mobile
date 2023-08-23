@@ -6,6 +6,8 @@
 //
 
 import SpriteKit
+import SwiftUI
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     static var level: Int = 1
     var player: Player!
@@ -16,6 +18,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let bulletDelay: TimeInterval = 0.1 // Adjust this delay as needed
     var timeSinceLastEnemySpawn: TimeInterval = 0
     let spawnDelay: TimeInterval = 3 // Adjest time to spawn enemy wave
+    static var playerScore: Int = 0
+    let scoreLabel = SKLabelNode(fontNamed: "ethnocentric")
+    
+
     
     enum gameState{
         case Menu
@@ -25,6 +31,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     public static func setLevel(level: Int){
         self.level = level
+    }
+    
+    public static func getPlayerScore() -> Int{
+        return self.playerScore
     }
     
     var currentGameState = gameState.inGame
@@ -73,11 +83,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
         
+        GameScene.playerScore = 0
+        scoreLabel.text = "Score: \(GameScene.playerScore)"
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        scoreLabel.position = CGPoint(x: self.size.width*0.75, y: self.size.height*0.9)
+        scoreLabel.zPosition = 3
+        
         
         // add all node to the scene
         self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
+        self.addChild(scoreLabel)
         spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
 
 //        spawnEnemyPerSecond(timeInterval: 1)
@@ -100,10 +117,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Bullet hit Enemy
             if let enemy = body2.node as? Enemy {
                 enemy.health -= 1
+                GameScene.playerScore += 1
+                scoreLabel.text = "Score: \(GameScene.playerScore)"
                 
                 if enemy.health <= 0 {
                     spawnExplosion(position: enemy.position, explosionName: "explosion")
                     enemy.removeFromParent()
+                    GameScene.playerScore += 10
+                    scoreLabel.text = "Score: \(GameScene.playerScore)"
                 }
             }
             
@@ -146,6 +167,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func playerHit(){
         player.health -= 1
         if player.health == 0{
+        if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
+            UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
+        }
             gameOver()
         }
     }

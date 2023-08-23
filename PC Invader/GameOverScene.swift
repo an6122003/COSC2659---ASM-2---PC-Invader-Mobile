@@ -12,6 +12,8 @@ class GameOverScene: SKScene{
     let replayButton = SKSpriteNode(imageNamed: "replay-btn")
     let continueButton = SKSpriteNode(imageNamed: "continue-btn")
     let closeButton = SKSpriteNode(imageNamed: "close-btn")
+    let score = GameScene.getPlayerScore()
+    let highScore = UserDefaults.standard.integer(forKey: "highScore")
 
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -65,6 +67,13 @@ class GameOverScene: SKScene{
         scoreCollumn.zPosition = 3
         scoreCollumn.setScale(0.85)
         
+        let scoreLabel = SKLabelNode(fontNamed: "ethnocentric")
+        scoreLabel.text = String(score)
+        scoreLabel.zPosition = 4
+        scoreLabel.position = scoreCollumn.position
+        scoreLabel.position.y -= 13
+        scoreLabel.fontSize = 50
+        
         let recordText = SKSpriteNode(imageNamed: "record")
         recordText.position = window.position
         recordText.position.x -= 170
@@ -78,6 +87,13 @@ class GameOverScene: SKScene{
         recordCollumn.position.y -= 160
         recordCollumn.zPosition = 3
         recordCollumn.setScale(0.85)
+        
+        let highScoreLabel = SKLabelNode(fontNamed: "ethnocentric")
+        highScoreLabel.text = String(highScore)
+        highScoreLabel.zPosition = 4
+        highScoreLabel.position = recordCollumn.position
+        highScoreLabel.position.y -= 13
+        highScoreLabel.fontSize = 50
         
         replayButton.position = window.position
         replayButton.position.x -= 250
@@ -105,8 +121,10 @@ class GameOverScene: SKScene{
         self.addChild(rightStar)
         self.addChild(scoreText)
         self.addChild(scoreCollumn)
+        self.addChild(scoreLabel)
         self.addChild(recordText)
         self.addChild(recordCollumn)
+        self.addChild(highScoreLabel)
         self.addChild(replayButton)
         self.addChild(continueButton)
         self.addChild(closeButton)

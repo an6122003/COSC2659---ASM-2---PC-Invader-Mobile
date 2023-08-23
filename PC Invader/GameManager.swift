@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 class GameManager {
     static let gameManager = GameManager()
     
     var gamePlayableArea: CGRect?
-    
+//    @AppStorage("highScore") var highScore = 0
+    static var highScore: Int = UserDefaults.standard.integer(forKey: "highScore") // Default value is 0
     private init() { }
     
     func calculatePlayableArea(size: CGSize) {

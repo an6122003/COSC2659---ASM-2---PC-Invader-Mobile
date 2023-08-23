@@ -60,6 +60,9 @@ class SpawnManager {
         }
         let waitAction = SKAction.wait(forDuration: 3)
         let gameWonAction = SKAction.run {
+            if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
+                UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
+            }
             self.gameScene.gameWin()
         }
         let spawnSequence = SKAction.sequence([spawnAction,waitAction])
