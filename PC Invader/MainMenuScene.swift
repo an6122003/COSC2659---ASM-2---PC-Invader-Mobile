@@ -27,13 +27,13 @@ class MainMenuScene: SKScene{
         startButton.position.x += 0
         startButton.position.y -= 0
         startButton.zPosition = 1
-        startButton.setScale(0.8)
+        startButton.setScale(1)
         
         mapButton.position = background.position
         mapButton.position.x += 0
         mapButton.position.y -= 150
         mapButton.zPosition = 1
-        mapButton.setScale(0.8)
+        mapButton.setScale(1)
         
         self.addChild(background)
         self.addChild(headerLogo)

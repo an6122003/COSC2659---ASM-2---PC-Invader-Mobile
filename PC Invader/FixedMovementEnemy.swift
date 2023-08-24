@@ -8,15 +8,15 @@
 import Foundation
 import SpriteKit
 
-class DiagonalMovementEnemy: Enemy{
+class FixedMovementEnemy: Enemy{
     init(textureName: String,
          zPosition: CGFloat,
          scale: CGFloat,
          health: Int,
-         bullet: Bullet) {
+         bullet: Bullet,
+         startX: CGFloat) {
         
-        let startPosition = CGPoint(x: randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX,
-                                                   max: GameManager.gameManager.gamePlayableArea!.maxX),
+        let startPosition = CGPoint(x: startX,
                                     y: GameManager.gameManager.gamePlayableArea!.size.height * 1.1)
         
         super.init(textureName: textureName,
@@ -33,7 +33,12 @@ class DiagonalMovementEnemy: Enemy{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func move() {
+    func move(positionPercentage: CGFloat) {
+        let endPosition = CGPoint(x: self.position.x, y: GameManager.gameManager.gamePlayableArea!.size.height * positionPercentage)
         
+        let moveEnemy = SKAction.move(to: endPosition, duration: 8)
+//        let disposeEnemy = SKAction.removeFromParent()
+        let sequenceEnemy = SKAction.sequence([moveEnemy])
+        self.run(sequenceEnemy)
     }
 }

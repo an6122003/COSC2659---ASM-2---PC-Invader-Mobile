@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class HorizontalMovementEnemy: Enemy{
+class HorizontalRightMovementEnemy: Enemy{
     init(textureName: String,
          zPosition: CGFloat,
          scale: CGFloat,

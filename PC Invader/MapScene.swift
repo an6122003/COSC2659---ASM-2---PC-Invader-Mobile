@@ -13,6 +13,7 @@ class MapScene: SKScene{
     var headerRect: CGRect!
     var levelNodeArray: [LevelNode] = []
     var lineArray: [SKShapeNode] = []
+    var backButton: SKSpriteNode!
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
         
@@ -36,10 +37,24 @@ class MapScene: SKScene{
 //        headerRectNode.zPosition = 2 // Ensure it's behind the headerLogo
 //        self.addChild(headerRectNode)
         //
-        createNodes()
-        connectNodesWithLines()
+        
+        backButton = SKSpriteNode(imageNamed: "map-back-button")
+//        backButton.position = background.position
+        backButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.95)
+        print(backButton.position.x)
+        print(backButton.position.y)
+//        backButton.position.x = self.size.width * 0.1
+//        backButton.position.y = self.size.height * 0.9
+        backButton.zPosition = 5
+        backButton.setScale(0.5)
+        
         self.addChild(background)
         self.addChild(headerLogo)
+        self.addChild(backButton)
+        createNodes()
+        connectNodesWithLines()
+        updateLevelNodeZPosition()
+
 //        var n = 0
 //        for line in lineArray{
 //            n += 1
@@ -169,6 +184,10 @@ class MapScene: SKScene{
                     changeToGameScene(level: node.level)
                 }
             }
+            
+            if backButton.contains(location){
+                changeScene(sceneToMove: MainMenuScene(size: self.size))
+            }
         }
     }
     
@@ -183,6 +202,7 @@ class MapScene: SKScene{
         GameScene.setLevel(level: level)
         changeScene(sceneToMove: GameScene(size: self.size))
     }
+    
   
 }
 
