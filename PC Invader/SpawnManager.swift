@@ -24,12 +24,32 @@ class SpawnManager {
     func spawnEnemiesForLevel(level: Int) {
         switch level {
         case 1:
-            spawnVerticalEnemyWave(count: 2, wave: 5)
-
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2) }),
+                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2) }),
+                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
+            ])
         case 2:
-            spawnVerticalEnemies(count: 3)
-            spawnRandomMovementEnemies(count: 3)
-        // Add more cases for other levels
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 2), { self.spawnVerticalEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 2), { self.spawnVerticalEnemies(count: 2) }),
+                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 2), { self.spawnVerticalEnemies(count: 2) }),
+                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) })
+            ])
+        case 3:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 3), {
+                    self.spawnVerticalEnemies(count: 3)
+                    self.spawnRandomMovementEnemies(count: 3)
+                }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2) }),
+                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2) }),
+                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
+            ])
         default:
             break
         }
@@ -68,9 +88,33 @@ class SpawnManager {
         let spawnSequence = SKAction.sequence([spawnAction,waitAction])
         let repeatSequence = SKAction.repeat(spawnSequence
                                              , count: wave)
-        let finalSequence = SKAction.sequence([repeatSequence, gameWonAction])
+        let finalSequence = SKAction.sequence([repeatSequence,gameWonAction])
         gameScene.run(finalSequence)
     }
+    
+    func spawnEnemy(actions: [(SKAction, () -> Void)]) {
+        var spawnAction: [SKAction] = []
+        
+        let waitAction = SKAction.wait(forDuration: 3)
+        let gameWonAction = SKAction.run {
+            if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
+                UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
+            }
+            self.gameScene.gameWin()
+        }
+        
+        for (action, actionClosure) in actions {
+            let runAction = SKAction.run(actionClosure)
+            spawnAction.append(runAction)
+            spawnAction.append(action)
+        }
+        
+        let repeatSequence = SKAction.repeat(SKAction.sequence(spawnAction), count: 1)
+        
+        let sequenceAction = SKAction.sequence([repeatSequence,gameWonAction])
+        gameScene.run(sequenceAction)
+    }
+
     
     
     private func spawnRandomMovementEnemies(count: Int) {

@@ -324,8 +324,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
             timeSinceLastEnemySpawn = 0
         }
-        print("timeSinceLastBullet: \(timeSinceLastBullet)")
-        print("timeSinceLastEnemySpawn: \(timeSinceLastEnemySpawn)")
+//        print("timeSinceLastBullet: \(timeSinceLastBullet)")
+//        print("timeSinceLastEnemySpawn: \(timeSinceLastEnemySpawn)")
         
     }
     
