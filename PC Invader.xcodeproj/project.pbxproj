@@ -16,6 +16,9 @@
 		A15013092A87C3F500DDB2AC /* shooting.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15013082A87C3F500DDB2AC /* shooting.wav */; };
 		A15E9A6E2A8A54BF00416761 /* PlayerSpaceShipTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */; };
 		A15E9A702A8A550100416761 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* MyParticle.sks */; };
+		A19076352A9765C100CC8EAB /* HorizontalMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076342A9765C100CC8EAB /* HorizontalMovementEnemy.swift */; };
+		A19076372A9765D700CC8EAB /* DiagonalMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076362A9765D700CC8EAB /* DiagonalMovementEnemy.swift */; };
+		A19076392A9765F300CC8EAB /* CircularMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */; };
 		A1B2B1032A952DE2005A7FF0 /* GameWinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2B1022A952DE2005A7FF0 /* GameWinScene.swift */; };
 		A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */; };
 		A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */; };
@@ -46,6 +49,9 @@
 		A15013082A87C3F500DDB2AC /* shooting.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shooting.wav; sourceTree = "<group>"; };
 		A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerSpaceShipTrail.sks; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		A19076342A9765C100CC8EAB /* HorizontalMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMovementEnemy.swift; sourceTree = "<group>"; };
+		A19076362A9765D700CC8EAB /* DiagonalMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagonalMovementEnemy.swift; sourceTree = "<group>"; };
+		A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularMovementEnemy.swift; sourceTree = "<group>"; };
 		A1B2B1022A952DE2005A7FF0 /* GameWinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWinScene.swift; sourceTree = "<group>"; };
 		A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeathBar.swift; sourceTree = "<group>"; };
 		A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
@@ -195,6 +201,9 @@
 				A118A7252A8A8F12004E4EB2 /* Enemy.swift */,
 				A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */,
 				A1E750402A8CD38100E43ED8 /* VerticalMovementEnemy.swift */,
+				A19076342A9765C100CC8EAB /* HorizontalMovementEnemy.swift */,
+				A19076362A9765D700CC8EAB /* DiagonalMovementEnemy.swift */,
+				A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */,
 			);
 			name = Enemy;
 			sourceTree = "<group>";
@@ -285,6 +294,7 @@
 			files = (
 				A135F9792A8E176A00CA647A /* MainMenuScene.swift in Sources */,
 				A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */,
+				A19076372A9765D700CC8EAB /* DiagonalMovementEnemy.swift in Sources */,
 				A1E750412A8CD38100E43ED8 /* VerticalMovementEnemy.swift in Sources */,
 				A1E7503D2A8CC06200E43ED8 /* GameManager.swift in Sources */,
 				A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */,
@@ -298,8 +308,10 @@
 				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
+				A19076352A9765C100CC8EAB /* HorizontalMovementEnemy.swift in Sources */,
 				A1E750432A8CDC1500E43ED8 /* SpawnManager.swift in Sources */,
 				A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */,
+				A19076392A9765F300CC8EAB /* CircularMovementEnemy.swift in Sources */,
 				A1B456632A87BA640088A39E /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

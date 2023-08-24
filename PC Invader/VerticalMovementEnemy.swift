@@ -25,7 +25,6 @@ class VerticalMovementEnemy: Enemy{
                    scale: scale,
                    health: health,
                    bullet: bullet)
-        movementDirection = CGVector(dx: 0, dy: 10)
         self.zRotation = -CGFloat.pi/2
     }
         
