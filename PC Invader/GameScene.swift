@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                 , zPosition: 0)
 
         // initiate player
-        player = Player(textureName: "player-ship 1"
+        player = Player(textureName: "player-ship-0"
                             , zPosition: 2
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
                             , scale: 1

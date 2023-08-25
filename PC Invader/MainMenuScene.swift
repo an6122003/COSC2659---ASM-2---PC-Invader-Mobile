@@ -11,6 +11,7 @@ import SpriteKit
 class MainMenuScene: SKScene{
     let startButton = SKSpriteNode(imageNamed: "start-btn")
     let mapButton = SKSpriteNode(imageNamed: "map-btn")
+    let shopButton = SKSpriteNode(imageNamed: "shop-placeholder")
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: self.size.width/2
@@ -35,10 +36,25 @@ class MainMenuScene: SKScene{
         mapButton.zPosition = 1
         mapButton.setScale(1)
         
+        shopButton.position = background.position
+        shopButton.position.x += 0
+        shopButton.position.y -= 300
+        shopButton.zPosition = 1
+        shopButton.setScale(1)
+        
+        let shopText = SKSpriteNode(imageNamed: "shop-text")
+        shopText.position = background.position
+        shopText.position.x += 0
+        shopText.position.y -= 300
+        shopText.zPosition = 2
+        shopText.setScale(0.7)
+        
         self.addChild(background)
         self.addChild(headerLogo)
         self.addChild(startButton)
         self.addChild(mapButton)
+        self.addChild(shopButton)
+        self.addChild(shopText)
     }
     
     func changeScene(sceneToMove: SKScene){
@@ -60,6 +76,10 @@ class MainMenuScene: SKScene{
             if mapButton.contains(location) {
                 // The replay button was clicked, perform your function here
                 changeScene(sceneToMove: MapScene(size: self.size))
+            }
+            
+            if shopButton.contains(location){
+                changeScene(sceneToMove: ShopScene(size: self.size))
             }
         }
     }

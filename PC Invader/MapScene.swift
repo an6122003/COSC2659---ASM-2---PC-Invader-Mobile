@@ -39,12 +39,9 @@ class MapScene: SKScene{
         //
         
         backButton = SKSpriteNode(imageNamed: "map-back-button")
-//        backButton.position = background.position
         backButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.95)
         print(backButton.position.x)
         print(backButton.position.y)
-//        backButton.position.x = self.size.width * 0.1
-//        backButton.position.y = self.size.height * 0.9
         backButton.zPosition = 5
         backButton.setScale(0.5)
         

@@ -16,6 +16,7 @@
 		A15013092A87C3F500DDB2AC /* shooting.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15013082A87C3F500DDB2AC /* shooting.wav */; };
 		A15E9A6E2A8A54BF00416761 /* PlayerSpaceShipTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */; };
 		A15E9A702A8A550100416761 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* MyParticle.sks */; };
+		A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183BDC12A9891C500641C6F /* ShopScene.swift */; };
 		A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */; };
 		A19076372A9765D700CC8EAB /* FixedMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */; };
 		A19076392A9765F300CC8EAB /* CircularMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */; };
@@ -50,6 +51,7 @@
 		A15013082A87C3F500DDB2AC /* shooting.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shooting.wav; sourceTree = "<group>"; };
 		A15E9A6D2A8A54BF00416761 /* PlayerSpaceShipTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerSpaceShipTrail.sks; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		A183BDC12A9891C500641C6F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
 		A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightMovementEnemy.swift; sourceTree = "<group>"; };
 		A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedMovementEnemy.swift; sourceTree = "<group>"; };
 		A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularMovementEnemy.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */,
 				A1B2B1022A952DE2005A7FF0 /* GameWinScene.swift */,
 				A135F9782A8E176A00CA647A /* MainMenuScene.swift */,
+				A183BDC12A9891C500641C6F /* ShopScene.swift */,
 				A135F97E2A8E351E00CA647A /* Map */,
 			);
 			name = Scene;
@@ -309,6 +312,7 @@
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
 				A1B2B1032A952DE2005A7FF0 /* GameWinScene.swift in Sources */,
+				A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */,
 				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
