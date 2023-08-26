@@ -61,12 +61,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                 , zPosition: 0)
 
         // initiate player
-        player = Player(textureName: "player-ship-0"
+        let shipTexture = GameManager.PlayerTextureInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]
+        let shipHealth = GameManager.PlayerHealthInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]
+        let shipTrailEmitter = GameManager.PlayerTrailEmitterInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]
+        player = Player(textureName: shipTexture!
                             , zPosition: 2
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
                             , scale: 1
-                            , trailEmitterName: "MyParticle"
-                            , health: 5)
+                            , trailEmitterName: shipTrailEmitter!
+                            , health: shipHealth!)
         
         healthBar = HealthBar(player: player)
         healthBar.position = CGPoint(x: size.width / 4, y: size.height * 0.9)

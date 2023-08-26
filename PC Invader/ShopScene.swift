@@ -11,7 +11,9 @@ import SpriteKit
 class ShopScene: SKScene{
     var backButton: SKSpriteNode!
     var backwardButton: SKSpriteNode!
+    var selectButton: SKSpriteNode!
     var forwardButton: SKSpriteNode!
+    var buyButton: SKSpriteNode!
     var shipImage: SKSpriteNode!
     let shipDictionary:[Int: String] = [0: "player-ship-0",
                                         1: "player-ship-1",
@@ -27,22 +29,37 @@ class ShopScene: SKScene{
         
         let headerLogo = SKSpriteNode(imageNamed: "main-menu-header")
         headerLogo.zPosition = 1
-        headerLogo.setScale(0.8)
+        headerLogo.setScale(0.5)
         headerLogo.position = background.position
-        headerLogo.position.y += 500
+        headerLogo.position.y += 750
         
 //        if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
 //            UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
 //        }
         
+        let shopWindow = SKSpriteNode(imageNamed: "shop-window")
+        shopWindow.zPosition = 1
+        shopWindow.setScale(0.85)
+        shopWindow.position = background.position
+//        shopWindow.position.y -= 130
+        
+        let shopHeader = SKSpriteNode(imageNamed: "shop-header")
+        shopHeader.zPosition = 2
+        shopHeader.setScale(0.85)
+        shopHeader.position = shopWindow.position
+        shopHeader.position.y += 530
+        
+        let shopShipPlaceholder = SKSpriteNode(imageNamed: "shop-ship-placeholder")
+        shopShipPlaceholder.zPosition = 2
+        shopShipPlaceholder.setScale(1)
+        shopShipPlaceholder.position = shopWindow.position
+        shopShipPlaceholder.position.y += 120
         
         shipImage = SKSpriteNode(imageNamed: shipDictionary[currentSelectedShip]!)
-        
-        shipImage.position = background.position
-        
-        shipImage.zPosition = 1
+        shipImage.position = shopShipPlaceholder.position
+        shipImage.zPosition = 3
         shipImage.zRotation = CGFloat.pi/2
-        shipImage.setScale(3)
+        shipImage.setScale(2)
         
         backButton = SKSpriteNode(imageNamed: "map-back-button")
         backButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.95)
@@ -50,23 +67,42 @@ class ShopScene: SKScene{
         backButton.setScale(0.5)
         
         backwardButton = SKSpriteNode(imageNamed:"shop-backward-button")
-        backwardButton.position = shipImage.position
-        backwardButton.position.x -= 300
-        backwardButton.zPosition = 1
+        backwardButton.position = shopWindow.position
+        backwardButton.position.x -= 250
+        backwardButton.position.y -= 450
+        backwardButton.zPosition = 2
         backwardButton.setScale(0.7)
         
         forwardButton = SKSpriteNode(imageNamed:"shop-forward-button")
-        forwardButton.position = shipImage.position
-        forwardButton.position.x += 300
-        forwardButton.zPosition = 1
+        forwardButton.position = shopWindow.position
+        forwardButton.position.x += 250
+        forwardButton.position.y -= 450
+        forwardButton.zPosition = 2
         forwardButton.setScale(0.7)
+        
+        selectButton = SKSpriteNode(imageNamed:"shop-select-button")
+        selectButton.position = shopWindow.position
+        selectButton.position.y -= 450
+        selectButton.zPosition = 2
+        selectButton.setScale(0.7)
+        
+        buyButton = SKSpriteNode(imageNamed:"shop-buy-button")
+        buyButton.position = shopWindow.position
+        buyButton.position.y -= 250
+        buyButton.zPosition = 2
+        buyButton.setScale(1)
 
         self.addChild(background)
         self.addChild(headerLogo)
+        self.addChild(shopWindow)
+        self.addChild(shopHeader)
+        self.addChild(shopShipPlaceholder)
         self.addChild(shipImage)
         self.addChild(backButton)
         self.addChild(backwardButton)
         self.addChild(forwardButton)
+        self.addChild(selectButton)
+        self.addChild(buyButton)
     }
     
     func updateShipDisplay(){
