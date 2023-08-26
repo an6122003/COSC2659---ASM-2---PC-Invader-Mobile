@@ -130,6 +130,10 @@ class ShopScene: SKScene{
         self.addChild(forwardButton)
         self.addChild(selectButton)
         self.addChild(buyButton)
+        
+        //Money for testing
+        UserDefaults.standard.set(3000, forKey: "playerMoney")
+
     }
     
     func updateShipDisplay(){
@@ -183,12 +187,59 @@ class ShopScene: SKScene{
         if GameManager.shipBought.contains(currentViewShip){
             UserDefaults.standard.set(currentViewShip, forKey: "currentSelectedShip")
             print("Choose: \(UserDefaults.standard.integer(forKey: "currentSelectedShip"))")
-        } else{ //testing
-            GameManager.shipBought.append(currentViewShip)
-            GameManager.saveShipBought()
-            print("selected pressed: \(GameManager.shipBought)")
+            if let viewController = self.view?.window?.rootViewController{ // Alert
+                let alert = UIAlertController(title: "Select Succesful"
+                                              , message: "You have succesfully selected this ship!"
+                                              , preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                viewController.present(alert, animated: true)
+            }
+        }else{
+            if let viewController = self.view?.window?.rootViewController {
+                let alert = UIAlertController(title: "Select Failed"
+                                              , message: "You have not buy this ship!"
+                                              , preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .destructive))
+                viewController.present(alert, animated: true)
+            }
         }
         updateShipDisplay()
+    }
+    
+    func buyButtonPressed(){
+        if !GameManager.shipBought.contains(currentViewShip) && UserDefaults.standard.integer(forKey: "playerMoney") >= GameManager.ShipPrice[currentViewShip]! {
+            //Update ship bought
+            GameManager.shipBought.append(currentViewShip)
+            GameManager.saveShipBought()
+            //Update Money
+            let currentMoney = UserDefaults.standard.integer(forKey: "playerMoney")
+            print(currentMoney)
+            let shipMoney = GameManager.ShipPrice[currentViewShip]!
+            UserDefaults.standard.set(currentMoney - shipMoney, forKey: "playerMoney")
+            
+            updateShipDisplay()
+            
+//            print("Buy button pressed: \(GameManager.shipBought), Money After: \(UserDefaults.standard.integer(forKey: "playerMoney"))")
+            
+            // Alert
+            if let viewController = self.view?.window?.rootViewController {
+                let alert = UIAlertController(title: "Purchase Successful"
+                                              , message: "You have successfully purchased the ship!"
+                                              , preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                viewController.present(alert, animated: true)
+            }
+            }else{
+                if let viewController = self.view?.window?.rootViewController {
+                    let alert = UIAlertController(title: "Insufficient Funds"
+                                                  , message: "You don't have enough money to make this purchase."
+                                                  , preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .destructive))
+                    viewController.present(alert, animated: true)
+                }
+            
+//            print("Not enough money!")
+        }
     }
     
     func changeScene(sceneToMove: SKScene){
@@ -207,16 +258,20 @@ class ShopScene: SKScene{
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }
             
-            if backwardButton.contains(location){
+            if backwardButton.contains(location) {
                 backwardButtonPressed()
             }
             
-            if forwardButton.contains(location){
+            if forwardButton.contains(location) {
                 forwardButtonPressed()
             }
             
-            if selectButton.contains(location){
+            if selectButton.contains(location) {
                 selectButtonPressed()
+            }
+            
+            if buyButton.contains(location) {
+                buyButtonPressed()
             }
             
         }
