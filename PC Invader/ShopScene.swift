@@ -133,20 +133,22 @@ class ShopScene: SKScene{
     }
     
     func updateShipDisplay(){
-        self.currentSelectedShip = UserDefaults.standard.integer(forKey: "currentSelectedShip")
+//        self.currentSelectedShip = UserDefaults.standard.integer(forKey: "currentSelectedShip")
 //        self.shipImage = SKSpriteNode(imageNamed: self.shipDictionary[self.currentSelectedShip]!)
-        let newTexture = SKTexture(imageNamed: self.shipDictionary[currentSelectedShip]!)
+        //Texture
+        let newTexture = SKTexture(imageNamed: self.shipDictionary[currentViewShip]!)
         self.shipImage.texture = newTexture
-        self.shipHealth.text = "Health: \(GameManager.PlayerHealthInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]!)"
+        //Health
+        self.shipHealth.text = "Health: \(GameManager.PlayerHealthInformation[currentViewShip]!)"
         //Buy Status
-        if GameManager.shipBought.contains(UserDefaults.standard.integer(forKey: "currentSelectedShip")){
+        if GameManager.shipBought.contains(currentViewShip){
             shipPrice.position = buyButton.position
             shipPrice.text = "Acquired"
             shipPrice.fontSize = 40
             shipPrice.position.y -= 10
         }else{
             shipPrice.position = buyButton.position
-            shipPrice.text = String(GameManager.ShipPrice[UserDefaults.standard.integer(forKey: "currentSelectedShip")]!)
+            shipPrice.text = String(GameManager.ShipPrice[currentViewShip]!)
             shipPrice.fontSize = 60
             shipPrice.position.y -= 15
         }
@@ -154,30 +156,40 @@ class ShopScene: SKScene{
     }
     
     func backwardButtonPressed(){
-        if UserDefaults.standard.integer(forKey: "currentSelectedShip") == 0 {
+        if currentViewShip == 0 {
             return
         }else{
-            let temp = UserDefaults.standard.integer(forKey: "currentSelectedShip")
-            UserDefaults.standard.set(temp - 1, forKey: "currentSelectedShip")
+            let temp = currentViewShip
+            currentViewShip -= 1
             updateShipDisplay()
-            print(UserDefaults.standard.integer(forKey: "currentSelectedShip"))
+            print(currentViewShip)
             print("backward pressed")
         }
     }
     
     func forwardButtonPressed(){
-        if UserDefaults.standard.integer(forKey: "currentSelectedShip") == 4 {
+        if currentViewShip == 4 {
             return
         }else{
-            let temp = UserDefaults.standard.integer(forKey: "currentSelectedShip")
-            UserDefaults.standard.set(temp + 1, forKey: "currentSelectedShip")
+            let temp = currentViewShip
+            currentViewShip += 1
             updateShipDisplay()
-            print(UserDefaults.standard.integer(forKey: "currentSelectedShip"))
+            print(currentViewShip)
             print("forward pressed")
         }
     }
     
-    
+    func selectButtonPressed(){
+        if GameManager.shipBought.contains(currentViewShip){
+            UserDefaults.standard.set(currentViewShip, forKey: "currentSelectedShip")
+            print("Choose: \(UserDefaults.standard.integer(forKey: "currentSelectedShip"))")
+        } else{ //testing
+            GameManager.shipBought.append(currentViewShip)
+            GameManager.saveShipBought()
+            print("selected pressed: \(GameManager.shipBought)")
+        }
+        updateShipDisplay()
+    }
     
     func changeScene(sceneToMove: SKScene){
         sceneToMove.size = self.size
@@ -194,12 +206,19 @@ class ShopScene: SKScene{
             if backButton.contains(location){
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }
+            
             if backwardButton.contains(location){
                 backwardButtonPressed()
             }
+            
             if forwardButton.contains(location){
                 forwardButtonPressed()
             }
+            
+            if selectButton.contains(location){
+                selectButtonPressed()
+            }
+            
         }
     }
     

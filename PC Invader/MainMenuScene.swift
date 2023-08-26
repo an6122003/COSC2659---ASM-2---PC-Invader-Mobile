@@ -9,10 +9,13 @@ import Foundation
 import SpriteKit
 
 class MainMenuScene: SKScene{
+    
     let startButton = SKSpriteNode(imageNamed: "start-btn")
     let mapButton = SKSpriteNode(imageNamed: "map-btn")
     let shopButton = SKSpriteNode(imageNamed: "shop-placeholder")
     override func didMove(to view: SKView) {
+        GameManager.loadShipBought() // load ship bought as UserDefaults data
+        
         let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: self.size.width/2
                                       , y: self.size.height/2)
