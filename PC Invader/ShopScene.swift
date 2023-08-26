@@ -15,12 +15,15 @@ class ShopScene: SKScene{
     var forwardButton: SKSpriteNode!
     var buyButton: SKSpriteNode!
     var shipImage: SKSpriteNode!
+    var shipHealth: SKLabelNode!
+    var shipPrice: SKLabelNode!
     let shipDictionary:[Int: String] = [0: "player-ship-0",
                                         1: "player-ship-1",
                                         2: "player-ship-2",
                                         3: "player-ship-3",
                                         4: "player-ship-4"]
     var currentSelectedShip = UserDefaults.standard.integer(forKey: "currentSelectedShip")
+    var currentViewShip = 0
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: self.size.width/2
@@ -57,9 +60,17 @@ class ShopScene: SKScene{
         
         shipImage = SKSpriteNode(imageNamed: shipDictionary[currentSelectedShip]!)
         shipImage.position = shopShipPlaceholder.position
+        shipImage.position.y += 50
         shipImage.zPosition = 3
         shipImage.zRotation = CGFloat.pi/2
         shipImage.setScale(2)
+        
+        shipHealth = SKLabelNode(fontNamed: "ethnocentric")
+        shipHealth.text = "Health: \(GameManager.PlayerHealthInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]!)"
+        shipHealth.fontSize = 40
+        shipHealth.position = shipImage.position
+        shipHealth.position.y -= 200
+        shipHealth.zPosition = 3
         
         backButton = SKSpriteNode(imageNamed: "map-back-button")
         backButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.95)
@@ -91,6 +102,20 @@ class ShopScene: SKScene{
         buyButton.position.y -= 250
         buyButton.zPosition = 2
         buyButton.setScale(1)
+        
+        shipPrice = SKLabelNode(fontNamed: "ethnocentric")
+        if GameManager.shipBought.contains(UserDefaults.standard.integer(forKey: "currentSelectedShip")){
+            shipPrice.position = buyButton.position
+            shipPrice.text = "Acquired"
+            shipPrice.fontSize = 40
+            shipPrice.position.y -= 10
+        }else{
+            shipPrice.position = buyButton.position
+            shipPrice.text = String(GameManager.ShipPrice[UserDefaults.standard.integer(forKey: "currentSelectedShip")]!)
+            shipPrice.fontSize = 60
+            shipPrice.position.y -= 15
+        }
+        shipPrice.zPosition = 3
 
         self.addChild(background)
         self.addChild(headerLogo)
@@ -98,6 +123,8 @@ class ShopScene: SKScene{
         self.addChild(shopHeader)
         self.addChild(shopShipPlaceholder)
         self.addChild(shipImage)
+        self.addChild(shipHealth)
+        self.addChild(shipPrice)
         self.addChild(backButton)
         self.addChild(backwardButton)
         self.addChild(forwardButton)
@@ -110,6 +137,20 @@ class ShopScene: SKScene{
 //        self.shipImage = SKSpriteNode(imageNamed: self.shipDictionary[self.currentSelectedShip]!)
         let newTexture = SKTexture(imageNamed: self.shipDictionary[currentSelectedShip]!)
         self.shipImage.texture = newTexture
+        self.shipHealth.text = "Health: \(GameManager.PlayerHealthInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]!)"
+        //Buy Status
+        if GameManager.shipBought.contains(UserDefaults.standard.integer(forKey: "currentSelectedShip")){
+            shipPrice.position = buyButton.position
+            shipPrice.text = "Acquired"
+            shipPrice.fontSize = 40
+            shipPrice.position.y -= 10
+        }else{
+            shipPrice.position = buyButton.position
+            shipPrice.text = String(GameManager.ShipPrice[UserDefaults.standard.integer(forKey: "currentSelectedShip")]!)
+            shipPrice.fontSize = 60
+            shipPrice.position.y -= 15
+        }
+        
     }
     
     func backwardButtonPressed(){
@@ -135,6 +176,8 @@ class ShopScene: SKScene{
             print("forward pressed")
         }
     }
+    
+    
     
     func changeScene(sceneToMove: SKScene){
         sceneToMove.size = self.size

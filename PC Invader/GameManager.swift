@@ -16,6 +16,14 @@ class GameManager {
     static var highScore: Int = UserDefaults.standard.integer(forKey: "highScore") // Default value is 0
     static var currentSelectedShip: Int = UserDefaults.standard.integer(forKey: "currentSelectedShip") // Default value is 0
     
+    static var shipBought: [Int] = [0] // Initial ship is 0
+    
+    static let ShipPrice: [Int: Int] = [0: 200,
+                                        1: 400,
+                                        2: 1000,
+                                        3: 2000,
+                                        4: 4000]
+    
     static let PlayerHealthInformation: [Int: Int] = [0: 2,
                                                       1: 4,
                                                       2: 6,
