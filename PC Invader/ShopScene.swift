@@ -24,6 +24,7 @@ class ShopScene: SKScene{
                                         4: "player-ship-4"]
     var currentSelectedShip = UserDefaults.standard.integer(forKey: "currentSelectedShip")
     var currentViewShip = 0
+    var playerMoneyText: SKLabelNode!
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: self.size.width/2
@@ -36,15 +37,39 @@ class ShopScene: SKScene{
         headerLogo.position = background.position
         headerLogo.position.y += 750
         
-//        if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
-//            UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
-//        }
-        
         let shopWindow = SKSpriteNode(imageNamed: "shop-window")
         shopWindow.zPosition = 1
         shopWindow.setScale(0.85)
         shopWindow.position = background.position
 //        shopWindow.position.y -= 130
+        
+        let playerMoneyPlaceholder = SKSpriteNode(imageNamed: "shop-money-placeholder")
+        playerMoneyPlaceholder.position = shopWindow.position
+        playerMoneyPlaceholder.position.y -= 770
+        playerMoneyPlaceholder.zPosition = 2
+        playerMoneyPlaceholder.setScale(0.85)
+        
+        let playerMoneySymbol = SKSpriteNode(imageNamed: "shop-money-symbol")
+        playerMoneySymbol.position = playerMoneyPlaceholder.position
+        playerMoneySymbol.position.x -= 120
+        playerMoneySymbol.zPosition = 3
+        playerMoneySymbol.setScale(1.5)
+        
+        playerMoneyText = SKLabelNode(fontNamed: "ethnocentric")
+        playerMoneyText.text = String(UserDefaults.standard.integer(forKey: "playerMoney"))
+        playerMoneyText.fontSize = 60
+        playerMoneyText.position = playerMoneyPlaceholder.position
+        playerMoneyText.position.x += 40
+        playerMoneyText.position.y -= 15
+        playerMoneyText.zPosition = 3
+        
+        let playerMoneyHeader = SKLabelNode(fontNamed: "ethnocentric")
+        playerMoneyHeader.text = "Your Crytals"
+        playerMoneyHeader.fontSize = 50
+        playerMoneyHeader.position = playerMoneyPlaceholder.position
+//        playerMoneyHeader.position.x += 40
+        playerMoneyHeader.position.y += 100
+        playerMoneyHeader.zPosition = 3
         
         let shopHeader = SKSpriteNode(imageNamed: "shop-header")
         shopHeader.zPosition = 2
@@ -120,6 +145,10 @@ class ShopScene: SKScene{
         self.addChild(background)
         self.addChild(headerLogo)
         self.addChild(shopWindow)
+        self.addChild(playerMoneyPlaceholder)
+        self.addChild(playerMoneySymbol)
+        self.addChild(playerMoneyText)
+        self.addChild(playerMoneyHeader)
         self.addChild(shopHeader)
         self.addChild(shopShipPlaceholder)
         self.addChild(shipImage)
@@ -132,7 +161,7 @@ class ShopScene: SKScene{
         self.addChild(buyButton)
         
         //Money for testing
-        UserDefaults.standard.set(3000, forKey: "playerMoney")
+//        UserDefaults.standard.set(3000, forKey: "playerMoney")
 
     }
     
@@ -156,6 +185,7 @@ class ShopScene: SKScene{
             shipPrice.fontSize = 60
             shipPrice.position.y -= 15
         }
+        self.playerMoneyText.text = String(UserDefaults.standard.integer(forKey: "playerMoney"))
         
     }
     
@@ -232,7 +262,7 @@ class ShopScene: SKScene{
             }else{
                 if let viewController = self.view?.window?.rootViewController {
                     let alert = UIAlertController(title: "Insufficient Funds"
-                                                  , message: "You don't have enough money to make this purchase."
+                                                  , message: "You don't have enough crystal to make this purchase."
                                                   , preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .destructive))
                     viewController.present(alert, animated: true)
