@@ -17,7 +17,7 @@ class GameManager {
     static var currentSelectedShip: Int = UserDefaults.standard.integer(forKey: "currentSelectedShip") // Default value is 0
     
     static var playerMoney: Int = UserDefaults.standard.integer(forKey: "playerMoney") // Default value is 0
-    
+    static var currentUnlockLevel: Int = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
     
     static var shipBought: [Int] = [0] // Initial ship is 0
     

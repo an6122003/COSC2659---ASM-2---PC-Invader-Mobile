@@ -59,14 +59,26 @@ class MapScene: SKScene{
 //        }
 
         func createLevelNode(level: Int, positionX: CGFloat, positionY: CGFloat){
-            let node = LevelNode(imageName: "level-node"
-                                 , level: level
-                                 , positionX: positionX
-                                 , positionY: positionY)
-            node.zPosition = 1
-//            node.position = CGPoint(x: positionX, y: positionY)
-            levelNodeArray.append(node)
-            self.addChild(node)
+            if level <= UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1{
+                let node = LevelNode(imageName: "level-node"
+                                     , level: level
+                                     , positionX: positionX
+                                     , positionY: positionY)
+                node.zPosition = 1
+    //            node.position = CGPoint(x: positionX, y: positionY)
+                levelNodeArray.append(node)
+                self.addChild(node)
+            }else{
+                let node = LevelNode(imageName: "level-node-bw"
+                                     , level: level
+                                     , positionX: positionX
+                                     , positionY: positionY)
+                node.zPosition = 1
+    //            node.position = CGPoint(x: positionX, y: positionY)
+                levelNodeArray.append(node)
+                self.addChild(node)
+            }
+            
         }
         
         func createNodes() {
@@ -177,8 +189,18 @@ class MapScene: SKScene{
             let location = touch.location(in: self)
             
             for node in levelNodeArray {
-                if node.contains(location){
+                if node.contains(location) && node.level <= UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1{
                     changeToGameScene(level: node.level)
+                }
+                
+                if node.contains(location) && node.level > UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1 {
+                    if let viewController = self.view?.window?.rootViewController {
+                        let alert = UIAlertController(title: "Can Not Play!"
+                                                      , message: "You have not unlocked this mission. Please complete previous level"
+                                                      , preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        viewController.present(alert, animated: true)
+                    }
                 }
             }
             
