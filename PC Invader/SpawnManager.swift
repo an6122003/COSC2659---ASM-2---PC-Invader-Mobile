@@ -33,6 +33,7 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2) }),
                 (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
             ])
+            incrementLevel(Level: level)
         case 2:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 2), { self.spawnHorizontalRightMovementEnemies(count: 3) }),
@@ -42,6 +43,7 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 2), { self.spawnVerticalEnemies(count: 2) }),
                 (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) })
             ])
+            incrementLevel(Level: level)
         case 3:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 3), {
@@ -53,8 +55,16 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2) }),
                 (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
             ])
+            incrementLevel(Level: level)
         default:
             break
+        }
+    }
+    
+    func incrementLevel (Level: Int){
+        if UserDefaults.standard.integer(forKey: "currentUnlockLevel") < Level{
+            var temp = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
+            UserDefaults.standard.set(temp + 1, forKey: "currentUnlockLevel")
         }
     }
     
