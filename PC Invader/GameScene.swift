@@ -20,7 +20,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let spawnDelay: TimeInterval = 3 // Adjest time to spawn enemy wave
     static var playerScore: Int = 0
     let scoreLabel = SKLabelNode(fontNamed: "ethnocentric")
+    let moneyLabel = SKLabelNode(fontNamed: "ethnocentric")
+    static var currentMoneyEarn: Int = 0
     
+    struct physicsCategories{ //We arrange the physics bodies into different categories, so we can manage the interaction more efficient
+        static let None: UInt32 = 0 // for contact with nothing
+        static let Player: UInt32 = 0b1 // 1 in binary
+        static let Bullet: UInt32 = 0b10 // 2 in binary
+        static let Enemy: UInt32 = 0b100 // 4 in binary, 3 will represent bot Player and Bullet (1 and 2)
+        static let enemyBullet: UInt32 = 0b1000
+        static let Money: UInt32 = 0b10000
+    }
 
     
     enum gameState{
@@ -92,12 +102,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position = CGPoint(x: self.size.width*0.75, y: self.size.height*0.9)
         scoreLabel.zPosition = 3
         
+        moneyLabel.text = "Crystal: \(GameScene.currentMoneyEarn)"
+        moneyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        moneyLabel.position = CGPoint(x: self.size.width*0.75, y: self.size.height*0.88)
+        moneyLabel.zPosition = 3
+        
         
         // add all node to the scene
         self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
         self.addChild(scoreLabel)
+        self.addChild(moneyLabel)
         spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
 
 //        spawnEnemyPerSecond(timeInterval: 1)
@@ -122,9 +138,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.health -= 1
                 GameScene.playerScore += 1
                 scoreLabel.text = "Score: \(GameScene.playerScore)"
+
                 
                 if enemy.health <= 0 {
                     spawnExplosion(position: enemy.position, explosionName: "explosion")
+                    dropMoney(position: enemy.position)
                     enemy.removeFromParent()
                     GameScene.playerScore += 10
                     scoreLabel.text = "Score: \(GameScene.playerScore)"
@@ -165,8 +183,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+        
+        if body1.categoryBitMask == physicsCategories.Player && body2.categoryBitMask == physicsCategories.Money {
+            body2.node?.removeFromParent()
+            GameScene.currentMoneyEarn += 1
+            moneyLabel.text = "Crystal: \(GameScene.currentMoneyEarn)"
+            var temp = UserDefaults.standard.integer(forKey: "playerMoney")
+            UserDefaults.standard.set(temp + 1, forKey: "playerMoney")
+        }
     }
     
+    func dropMoney(position: CGPoint) {
+        let randomNum = randomInt(min: 1, max: 5)
+        for _ in 0...randomNum {
+            let money = SKSpriteNode(imageNamed: "shop-money-symbol")
+            money.setScale(1)
+            money.position = position
+            money.zPosition = 2
+            
+            money.physicsBody = SKPhysicsBody(rectangleOf: money.size)
+            money.physicsBody!.affectedByGravity = false
+            money.physicsBody?.categoryBitMask = physicsCategories.Money
+            money.physicsBody?.collisionBitMask = physicsCategories.None
+            money.physicsBody?.contactTestBitMask = physicsCategories.Player
+            
+            addChild(money)
+            
+            
+            let spreadAction = SKAction.moveBy(x: CGFloat.random(in: -300...300), y: CGFloat.random(in: -300...300), duration: 3)
+            let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
+            let removeAction = SKAction.removeFromParent()
+            let spreadSequence = SKAction.sequence([spreadAction, fadeOutAction, removeAction])
+            money.run(spreadSequence)
+        }
+    }
+
     func playerHit(){
         player.health -= 1
         if player.health == 0{
@@ -243,14 +294,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explosion.run(explosionSequence)
     }
     
-    struct physicsCategories{ //We arrange the physics bodies into different categories, so we can manage the interaction more efficient
-        static let None: UInt32 = 0 // for contact with nothing
-        static let Player: UInt32 = 0b1 // 1 in binary
-        static let Bullet: UInt32 = 0b10 // 2 in binary
-        static let Enemy: UInt32 = 0b100 // 4 in binary, 3 will represent bot Player and Bullet (1 and 2)
-        static let enemyBullet: UInt32 = 0b1000
-        
-    }
     
     func randomFloat() -> CGFloat{ // Return a random float
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
@@ -259,6 +302,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func randomFloat(min: CGFloat, max: CGFloat) -> CGFloat{
         return randomFloat() * (max - min) + min
     }
+    
+    func randomInt(min: Int, max: Int) -> Int {
+        return Int.random(in: min...max)
+    }
+
     
 //    func spawnEnemy(){
 //        spawnManager?.spawnEnemiesForLevel(level: 2)

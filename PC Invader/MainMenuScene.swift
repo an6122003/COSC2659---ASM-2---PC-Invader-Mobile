@@ -73,6 +73,7 @@ class MainMenuScene: SKScene{
             
             if startButton.contains(location) {
                 // The replay button was clicked, perform your function here
+                GameScene.setLevel(level: UserDefaults.standard.integer(forKey: "currentUnlockLevel"))
                 changeScene(sceneToMove: GameScene(size: self.size))
             }
     
