@@ -142,7 +142,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if enemy.health <= 0 {
                     spawnExplosion(position: enemy.position, explosionName: "explosion")
-                    dropMoney(position: enemy.position)
+                    let temp = randomInt(min: 1, max: 3)
+                    if temp == 1{ //33% drop rate
+                        dropMoney(position: enemy.position)
+                    }
                     enemy.removeFromParent()
                     GameScene.playerScore += 10
                     scoreLabel.text = "Score: \(GameScene.playerScore)"
@@ -202,7 +205,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             money.zPosition = 2
             
             money.physicsBody = SKPhysicsBody(rectangleOf: money.size)
-            money.physicsBody!.affectedByGravity = false
+            physicsWorld.gravity = CGVector(dx: 0, dy: -1)
+            money.physicsBody?.mass = 1
+            money.physicsBody?.affectedByGravity = true
             money.physicsBody?.categoryBitMask = physicsCategories.Money
             money.physicsBody?.collisionBitMask = physicsCategories.None
             money.physicsBody?.contactTestBitMask = physicsCategories.Player
