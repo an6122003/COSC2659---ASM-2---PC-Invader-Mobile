@@ -65,10 +65,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         // initiate background
-        let inGameBackGround = InGameBackground(textureName: "background"
-                                                , position: CGPoint(x: self.size.width/2, y: self.size.height/2)
-                                                , size: self.size
-                                                , zPosition: 0)
+        for i in 0...2{
+            let inGameBackGround = InGameBackground(textureName: "background"
+                                                    , position: CGPoint(x: self.size.width/2, y: self.size.height*CGFloat((i)))
+                                                    , size: self.size
+                                                    , zPosition: 0)
+            inGameBackGround.anchorPoint = CGPoint(x: 0.5, y: 0)
+            inGameBackGround.name = "Background"
+            self.addChild(inGameBackGround)
+        }
 
         // initiate player
         let shipTexture = GameManager.PlayerTextureInformation[UserDefaults.standard.integer(forKey: "currentSelectedShip")]
@@ -109,7 +114,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         // add all node to the scene
-        self.addChild(inGameBackGround)
         self.addChild(player)
         self.addChild(player.trailEmitter)
         self.addChild(scoreLabel)
@@ -357,6 +361,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var backgroundMovePerSecond: CGFloat = 400
+    
     override func update(_ currentTime: TimeInterval) {
         // Calculate time since last update
         if lastUpdateTime == 0 {
@@ -380,8 +386,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
             timeSinceLastEnemySpawn = 0
         }
-//        print("timeSinceLastBullet: \(timeSinceLastBullet)")
-//        print("timeSinceLastEnemySpawn: \(timeSinceLastEnemySpawn)")
+        
+        let backGroundMovePerFrame = backgroundMovePerSecond * deltaTime
+        
+        self.enumerateChildNodes(withName: "Background") {
+            background, i in
+            background.position.y -= backGroundMovePerFrame
+            
+            if background.position.y < -self.size.height{
+                background.position.y += self.size.height*2
+            }
+        }
         
     }
     

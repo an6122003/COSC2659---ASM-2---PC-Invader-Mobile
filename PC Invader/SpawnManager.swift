@@ -56,6 +56,10 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
             ])
             incrementLevel(Level: level)
+        case 4:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3)})
+            ])
         default:
             break
         }
@@ -75,6 +79,7 @@ class SpawnManager {
                                                           , scale: 0.8
                                                       , health: 5
                                                       , bullet: bullet)
+            verticalMoveEnemy.name = "Enemy"
             verticalMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: verticalMoveEnemy.size)
             verticalMoveEnemy.physicsBody?.affectedByGravity = false
             verticalMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
@@ -141,7 +146,9 @@ class SpawnManager {
                                                                        , zPosition: 1
                                                                        , scale: 10
                                                                        , soundName: "shooting.wav"))
+            randomMoveEnemy.name = "Enemy"
             randomMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: randomMoveEnemy.size)
+            randomMoveEnemy.physicsBody?.affectedByGravity = false
             randomMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
             randomMoveEnemy.physicsBody?.collisionBitMask = GameScene.physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
             randomMoveEnemy.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player// allow contact with Bullet and Player category
@@ -162,7 +169,9 @@ class SpawnManager {
                                                                        , zPosition: 1
                                                                        , scale: 10
                                                                        , soundName: "shooting.wav"))
+            horizontalRightMoveEnemy.name = "Enemy"
             horizontalRightMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: horizontalRightMoveEnemy.size)
+            horizontalRightMoveEnemy.physicsBody?.affectedByGravity = false
             horizontalRightMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
             horizontalRightMoveEnemy.physicsBody?.collisionBitMask = GameScene.physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
             horizontalRightMoveEnemy.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player// allow contact with Bullet and Player category
@@ -183,8 +192,10 @@ class SpawnManager {
                                                                        , zPosition: 1
                                                                        , scale: 10
                                                                        , soundName: "shooting.wav"))
+            horizontalLeftMoveEnemy.name = "Enemy"
             horizontalLeftMoveEnemy.zRotation = CGFloat.pi
             horizontalLeftMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: horizontalLeftMoveEnemy.size)
+            horizontalLeftMoveEnemy.physicsBody?.affectedByGravity = false
             horizontalLeftMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
             horizontalLeftMoveEnemy.physicsBody?.collisionBitMask = GameScene.physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
             horizontalLeftMoveEnemy.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player// allow contact with Bullet and Player category
@@ -209,6 +220,7 @@ class SpawnManager {
                                                                        , scale: 10
                                                                        , soundName: "shooting.wav")
                                                       , startX: spawnPosition)
+            fixedMoveEnemy.name = "Enemy"
             fixedMoveEnemy.zRotation = -CGFloat.pi/2
             fixedMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: fixedMoveEnemy.size)
             fixedMoveEnemy.physicsBody?.affectedByGravity = false
@@ -237,6 +249,7 @@ class SpawnManager {
                                                                        , soundName: "shooting.wav")
                                                                        , centerPoint: center
                                                           , radius: 0.1)
+            circularMoveEnemy.name = "Enemy"
             circularMoveEnemy.zRotation = CGFloat.pi
             circularMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: circularMoveEnemy.size)
             circularMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
