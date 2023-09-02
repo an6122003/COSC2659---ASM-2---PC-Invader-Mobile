@@ -11,7 +11,7 @@ import SpriteKit
 class Enemy: SKSpriteNode{
     var health: Int!
     var bullet: Bullet!
-    var movementDirection: CGVector = .zero
+    var healthBar: EnemyHealthBar!
     init(textureName: String,
          zPosition: CGFloat,
          position: CGPoint,
@@ -19,13 +19,14 @@ class Enemy: SKSpriteNode{
          health: Int,
          bullet: Bullet) {
         let texture = SKTexture(imageNamed: textureName)
+        
         super.init(texture: texture, color: .clear, size: texture.size())
         
         self.zPosition = zPosition
         self.position = position
         self.setScale(scale)
         self.health = health
-        self.bullet = bullet
+        self.bullet = bullet        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,8 +36,7 @@ class Enemy: SKSpriteNode{
     
     
     func move(){
-        let moveAction = SKAction.move(by: movementDirection, duration: 1)
-        run(moveAction)
+        
     }
     
     func shoot(gameScene: GameScene){}

@@ -46,7 +46,7 @@ class RandomMovementEnemy: Enemy{
         
         let rotation = atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) // tan = opposite/adjacent = dy/dx
         
-        self.zRotation = rotation 
+        self.zRotation = rotation
         
         let moveEnemy = SKAction.move(to: endPosition, duration: 5)
         let disposeEnemy = SKAction.removeFromParent()

@@ -18,6 +18,8 @@ class FixedMovementEnemy: Enemy{
         
         let startPosition = CGPoint(x: startX,
                                     y: GameManager.gameManager.gamePlayableArea!.size.height * 1.1)
+        let texture = SKTexture(imageNamed: textureName)
+        var healthBar = EnemyHealthBar(width: texture.size().width, height: 20)
         
         super.init(textureName: textureName,
                    zPosition: zPosition,
@@ -25,6 +27,10 @@ class FixedMovementEnemy: Enemy{
                    scale: scale,
                    health: health,
                    bullet: bullet)
+        healthBar = EnemyHealthBar(width: self.size.width, height: 20)
+        healthBar.position = CGPoint(x: 0.0, y: -self.size.height / 2.0 - 80.0)
+        healthBar.zPosition = 1
+        self.addChild(healthBar)
     }
         
     

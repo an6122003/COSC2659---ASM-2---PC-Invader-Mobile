@@ -17,6 +17,7 @@
 		A15E9A6E2A8A54BF00416761 /* trail-emitter-0.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */; };
 		A15E9A702A8A550100416761 /* trail-emitter-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */; };
 		A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183BDC12A9891C500641C6F /* ShopScene.swift */; };
+		A18A25EF2AA3AA99000656C1 /* EnemyHealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */; };
 		A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */; };
 		A19076372A9765D700CC8EAB /* FixedMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */; };
 		A19076392A9765F300CC8EAB /* CircularMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */; };
@@ -55,6 +56,7 @@
 		A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-0.sks"; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-3.sks"; sourceTree = "<group>"; };
 		A183BDC12A9891C500641C6F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
+		A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHealthBar.swift; sourceTree = "<group>"; };
 		A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightMovementEnemy.swift; sourceTree = "<group>"; };
 		A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedMovementEnemy.swift; sourceTree = "<group>"; };
 		A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularMovementEnemy.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */,
 				A1E6B48C2A99F92100771400 /* trail-emitter-4.sks */,
 				A1B4565E2A878D800088A39E /* Player.swift */,
+				A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -138,7 +141,6 @@
 				A135F97B2A8E1B0300CA647A /* Bullet */,
 				A135F97A2A8E1AF100CA647A /* Player */,
 				A1E750362A8CA9CC00E43ED8 /* Enemy */,
-				A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -219,6 +221,7 @@
 				A1BF00D72A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift */,
 				A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */,
 				A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */,
+				A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */,
 			);
 			name = Enemy;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */,
 				A135F97D2A8E20B600CA647A /* MapScene.swift in Sources */,
 				A1E7503B2A8CAD5800E43ED8 /* Utilities.swift in Sources */,
+				A18A25EF2AA3AA99000656C1 /* EnemyHealthBar.swift in Sources */,
 				A1BF00D82A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift in Sources */,
 				A135F9802A8E353300CA647A /* LevelNode.swift in Sources */,
 				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,

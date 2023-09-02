@@ -62,8 +62,13 @@ class SpawnManager {
             incrementLevel(Level: level)
         case 5:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), { self.spawnCircularMovementEnemies(count: 1, centerPointY: 1800) }),
-                (SKAction.wait(forDuration: 8), {})
+                (SKAction.wait(forDuration: 3), { self.spawnCircularMovementEnemies(count: 6, centerPointY: 2000) }),
+                (SKAction.wait(forDuration: 3), {})
+            ])
+            incrementLevel(Level: level)
+        case 6:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 1) })
             ])
         default:
             break
@@ -241,31 +246,38 @@ class SpawnManager {
     }
     
     func spawnCircularMovementEnemies(count: Int, centerPointY: CGFloat) {
-        let center = CGPoint(x: self.gameScene.size.width/2
-                             , y: self.gameScene.size.height/2)
-        for _ in 1...count {
-            let circularMoveEnemy = CircularMovementEnemy(textureName: "enemy-4"
-                                                      , zPosition: 2
-                                                      , scale: 0.6
-                                                      , health: 1000
-                                                      , bullet: Bullet(textureName: "bullet 1"
-                                                                       , position: gameScene.player.position
-                                                                       , zPosition: 1
-                                                                       , scale: 10
-                                                                       , soundName: "shooting.wav")
-                                                      , centerPoint: CGPoint(x: gameScene.size.width/2, y: centerPointY)
-                                                      , radius: (gameScene.size.width/2) * 1.1)
-//                                                          , radius: 300)
+        let center = CGPoint(x: self.gameScene.size.width/2, y: self.gameScene.size.height/2)
+        
+        let spawnAction = SKAction.run { [weak self] in
+            guard let self = self else { return }
+            
+            let circularMoveEnemy = CircularMovementEnemy(textureName: "enemy-4",
+                                                          zPosition: 2,
+                                                          scale: 0.6,
+                                                          health: 5,
+                                                          bullet: Bullet(textureName: "bullet 1",
+                                                                         position: self.gameScene.player.position,
+                                                                         zPosition: 1,
+                                                                         scale: 10,
+                                                                         soundName: "shooting.wav"),
+                                                          centerPoint: CGPoint(x: self.gameScene.size.width/2, y: centerPointY),
+                                                          radius: (self.gameScene.size.width/2) * 1.1)
             circularMoveEnemy.name = "Enemy"
             circularMoveEnemy.zRotation = CGFloat.pi
             circularMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: circularMoveEnemy.size)
             circularMoveEnemy.physicsBody?.affectedByGravity = false
             circularMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy
-            circularMoveEnemy.physicsBody?.collisionBitMask = GameScene.physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
-            circularMoveEnemy.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player// allow contact with Bullet and Player category
-    
-            gameScene.addChild(circularMoveEnemy)
+            circularMoveEnemy.physicsBody?.collisionBitMask = GameScene.physicsCategories.None
+            circularMoveEnemy.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player
+            
+            self.gameScene.addChild(circularMoveEnemy)
             circularMoveEnemy.move()
         }
+        
+        let waitAction = SKAction.wait(forDuration: 1)
+        let spawnSequence = SKAction.sequence([spawnAction, waitAction])
+        let repeatAction = SKAction.repeat(spawnSequence, count: count)
+        
+        self.gameScene.run(repeatAction)
     }
 }

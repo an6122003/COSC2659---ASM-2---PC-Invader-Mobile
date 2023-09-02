@@ -25,6 +25,7 @@ class VerticalMovementEnemy: Enemy{
                    scale: scale,
                    health: health,
                    bullet: bullet)
+        
 //        self.zRotation = -CGFloat.pi/2
     }
         

@@ -140,8 +140,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy {
             // Bullet hit Enemy
-            if let enemy = body2.node as? Enemy {
+            if let enemy = body2.node as? FixedMovementEnemy {
                 enemy.health -= 1
+                enemy.healthBar.updateHealthBar(currentHealth: CGFloat(enemy.health), maxHealth: 5)
                 GameScene.playerScore += 1
                 scoreLabel.text = "Score: \(GameScene.playerScore)"
 
