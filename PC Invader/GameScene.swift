@@ -101,6 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
         
+        GameScene.currentMoneyEarn = 0
         GameScene.playerScore = 0
         scoreLabel.text = "Score: \(GameScene.playerScore)"
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
@@ -111,6 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moneyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
         moneyLabel.position = CGPoint(x: self.size.width*0.75, y: self.size.height*0.88)
         moneyLabel.zPosition = 3
+        
         
         
         // add all node to the scene

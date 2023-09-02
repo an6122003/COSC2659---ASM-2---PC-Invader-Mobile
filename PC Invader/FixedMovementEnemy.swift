@@ -36,9 +36,12 @@ class FixedMovementEnemy: Enemy{
     func move(positionPercentage: CGFloat) {
         let endPosition = CGPoint(x: self.position.x, y: GameManager.gameManager.gamePlayableArea!.size.height * positionPercentage)
         
-        let moveEnemy = SKAction.move(to: endPosition, duration: 8)
-//        let disposeEnemy = SKAction.removeFromParent()
-        let sequenceEnemy = SKAction.sequence([moveEnemy])
-        self.run(sequenceEnemy)
+        let moveEnemyToEndPosition = SKAction.move(to: endPosition, duration: 5)
+        let moveEnemyLeft = SKAction.moveTo(x: self.position.x - 60, duration: 2)
+        let moveEnemyRight = SKAction.moveTo(x: self.position.x + 60, duration: 2)
+        let moveDownSequence = SKAction.sequence([moveEnemyToEndPosition])
+        let moveLeftRightSequence = SKAction.repeatForever(SKAction.sequence([moveEnemyLeft, moveEnemyRight]))
+        self.run(moveDownSequence)
+        self.run(moveLeftRightSequence)
     }
 }
