@@ -27,8 +27,9 @@ class FixedMovementEnemy: Enemy{
                    health: health,
                    bullet: bullet)
         
-        maxHealth = 5
-        healthBar?.position = CGPoint(x: -self.size.width/2 - 30, y: -self.size.height / 2.0 - 80.0)
+        self.maxHealth = 5
+        healthBar?.position = CGPoint(x: -self.size.width/2 - 20, y: -self.size.height / 2.0 - 70.0)
+        healthBar?.size.width += 40
         healthBar?.zPosition = 1
         self.addChild(healthBar!)
         

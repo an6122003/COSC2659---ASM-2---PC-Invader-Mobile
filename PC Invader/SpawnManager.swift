@@ -68,7 +68,8 @@ class SpawnManager {
             incrementLevel(Level: level)
         case 6:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 0), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8) }),
                 (SKAction.wait(forDuration: 5), {})
 
             ])
@@ -88,7 +89,7 @@ class SpawnManager {
         for _ in 1...count {
             let verticalMoveEnemy = VerticalMovementEnemy(textureName: "enemy-1"
                                                       , zPosition: 2
-                                                          , scale: 5
+                                                          , scale: 0.6
                                                       , health: 5
                                                       , bullet: bullet)
 //            verticalMoveEnemy.zRotation = CGFloat.pi/2

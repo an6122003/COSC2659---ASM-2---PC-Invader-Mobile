@@ -27,6 +27,12 @@ class VerticalMovementEnemy: Enemy{
                    bullet: bullet)
         
 //        self.zRotation = -CGFloat.pi/2
+        
+        self.maxHealth = 5
+        healthBar?.position = CGPoint(x: -self.size.width/2 - 20, y: -self.size.height / 2.0 - 70.0)
+        healthBar?.size.width += 40
+        healthBar?.zPosition = 1
+        self.addChild(healthBar!)
     }
         
     

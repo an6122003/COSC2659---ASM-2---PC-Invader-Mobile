@@ -35,9 +35,6 @@ class RandomMovementEnemy: Enemy{
         
         self.maxHealth = 10
 
-        
-        
-//        healthBar?.position = CGPoint(x: -self.size.width/2 - 30, y: -self.size.height / 2.0 - 80.0)
         healthBar?.position = startPosition
         healthBar?.position.x -= healthBarOffsetX
         healthBar?.position.y -= healthBarOffsetY
