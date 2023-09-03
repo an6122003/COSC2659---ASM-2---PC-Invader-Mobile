@@ -9,15 +9,22 @@ import Foundation
 import SpriteKit
 
 class RandomMovementEnemy: Enemy{
+    var gameScene: GameScene
+    var healthBarOffsetX: CGFloat = 45
+    var healthBarOffsetY: CGFloat = 60
+
     init(textureName: String,
          zPosition: CGFloat,
          scale: CGFloat,
          health: Int,
-         bullet: Bullet) {
+         bullet: Bullet,
+         gameScene: GameScene) {
         
         let startPosition = CGPoint(x: randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX,
                                                    max: GameManager.gameManager.gamePlayableArea!.maxX),
                                     y: GameManager.gameManager.gamePlayableArea!.size.height * 1.1)
+        
+        self.gameScene = gameScene
         
         super.init(textureName: textureName,
                    zPosition: zPosition,
@@ -25,6 +32,17 @@ class RandomMovementEnemy: Enemy{
                    scale: scale,
                    health: health,
                    bullet: bullet)
+        
+        self.maxHealth = 10
+
+        
+        
+//        healthBar?.position = CGPoint(x: -self.size.width/2 - 30, y: -self.size.height / 2.0 - 80.0)
+        healthBar?.position = startPosition
+        healthBar?.position.x -= healthBarOffsetX
+        healthBar?.position.y -= healthBarOffsetY
+        healthBar?.zPosition = 3
+        gameScene.addChild(healthBar!)
     }
         
     
@@ -34,9 +52,6 @@ class RandomMovementEnemy: Enemy{
     }
     
     override func move() {
-        let startX = randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX
-                                 , max: GameManager.gameManager.gamePlayableArea!.maxX)
-        
         let endX = randomFloat(min: GameManager.gameManager.gamePlayableArea!.minX
                                , max: GameManager.gameManager.gamePlayableArea!.maxX)
         
@@ -51,7 +66,21 @@ class RandomMovementEnemy: Enemy{
         let moveEnemy = SKAction.move(to: endPosition, duration: 5)
         let disposeEnemy = SKAction.removeFromParent()
         let sequenceEnemy = SKAction.sequence([moveEnemy, disposeEnemy])
+        
+        var endPositionHealthBar = endPosition
+        endPositionHealthBar.x -= healthBarOffsetX
+        endPositionHealthBar.y -= healthBarOffsetY
+        
+        let moveHealthBar = SKAction.move(to: endPositionHealthBar, duration: 5)
+        let disposeHealthBar = SKAction.removeFromParent()
+        let sequenceHealthBar = SKAction.sequence([moveHealthBar, disposeHealthBar])
+        
+        print("endPosition: \(endPosition)")
+        print("endPositionHealthBar: \(endPositionHealthBar)")
+
+        
         self.run(sequenceEnemy)
+        healthBar?.run(sequenceHealthBar)
 
     }
 }

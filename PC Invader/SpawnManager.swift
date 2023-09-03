@@ -68,7 +68,9 @@ class SpawnManager {
             incrementLevel(Level: level)
         case 6:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 1) })
+                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 5), {})
+
             ])
         default:
             break
@@ -156,7 +158,8 @@ class SpawnManager {
                                                                        , position: gameScene.player.position
                                                                        , zPosition: 1
                                                                        , scale: 10
-                                                                       , soundName: "shooting.wav"))
+                                                                       , soundName: "shooting.wav")
+                                                      , gameScene:  gameScene)
             randomMoveEnemy.name = "Enemy"
             randomMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: randomMoveEnemy.size)
             randomMoveEnemy.physicsBody?.affectedByGravity = false

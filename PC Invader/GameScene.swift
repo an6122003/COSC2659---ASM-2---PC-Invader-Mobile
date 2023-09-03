@@ -140,9 +140,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy {
             // Bullet hit Enemy
-            if let enemy = body2.node as? FixedMovementEnemy {
+            if let enemy = body2.node as? Enemy {
                 enemy.health -= 1
-                enemy.healthBar.updateHealthBar(currentHealth: CGFloat(enemy.health), maxHealth: 5)
+                enemy.healthBar!.updateHealthBar(currentHealth: CGFloat(enemy.health), maxHealth: CGFloat(enemy.maxHealth))
                 GameScene.playerScore += 1
                 scoreLabel.text = "Score: \(GameScene.playerScore)"
 
@@ -174,10 +174,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if body2.node != nil{
                 spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+                if let enemy = body2.node as? Enemy {
+                    enemy.healthBar?.removeFromParent()
+                }
             } // prevent error if there the node not exist
             
 //            body1.node?.removeFromParent() //TODO: Remove the trail
             body2.node?.removeFromParent()
+            
             playerHit()
             print("Player Health: ", player.health!)
             healthBar.updateHealthBar()
@@ -250,6 +254,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.removeAllActions()
         }
         
+        self.enumerateChildNodes(withName: "EnemyHealthBar"){
+            bullet, arg in
+            bullet.removeAllActions()
+        }
+        
         self.enumerateChildNodes(withName: "Enemy"){
             enemy, arg in
             enemy.removeAllActions()
@@ -269,6 +278,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.removeAllActions()
         
         self.enumerateChildNodes(withName: "Bullet"){
+            bullet, arg in
+            bullet.removeAllActions()
+        }
+        
+        self.enumerateChildNodes(withName: "EnemyHealthBar"){
             bullet, arg in
             bullet.removeAllActions()
         }

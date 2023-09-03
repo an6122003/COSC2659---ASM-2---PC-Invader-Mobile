@@ -11,7 +11,8 @@ import SpriteKit
 class Enemy: SKSpriteNode{
     var health: Int!
     var bullet: Bullet!
-    var healthBar: EnemyHealthBar!
+    var healthBar: EnemyHealthBar?
+    var maxHealth: Int!
     init(textureName: String,
          zPosition: CGFloat,
          position: CGPoint,
@@ -26,7 +27,9 @@ class Enemy: SKSpriteNode{
         self.position = position
         self.setScale(scale)
         self.health = health
-        self.bullet = bullet        
+        self.bullet = bullet
+        self.healthBar = EnemyHealthBar(width: self.size.width, height: 20)
+        self.healthBar!.name = "EnemyHealthBar"
     }
     
     required init?(coder aDecoder: NSCoder) {

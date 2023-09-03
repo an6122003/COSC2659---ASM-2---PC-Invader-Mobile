@@ -11,8 +11,8 @@ import SpriteKit
 class EnemyHealthBar: SKSpriteNode {
     init(width: CGFloat, height: CGFloat) {
         let texture = SKTexture(imageNamed: "enemy-health-bar")
-        super.init(texture: texture, color: .green, size: CGSize(width: width, height: height))
-//        anchorPoint = CGPoint(x: 0.0, y: 0.5) // Anchor the health bar to the left
+        super.init(texture: texture, color: .clear, size: CGSize(width: width, height: height))
+        anchorPoint = CGPoint(x: 0.0, y: 0.5) // Anchor the health bar to the left
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -20,7 +20,8 @@ class EnemyHealthBar: SKSpriteNode {
     }
 
     func updateHealthBar(currentHealth: CGFloat, maxHealth: CGFloat) {
+        print("updated")
         let newWidth = size.width * (currentHealth / maxHealth)
-        size.width = max(newWidth, 0.0) // Ensure the health bar doesn't have a negative width
+        self.size.width = newWidth // Ensure the health bar doesn't have a negative width
     }
 }
