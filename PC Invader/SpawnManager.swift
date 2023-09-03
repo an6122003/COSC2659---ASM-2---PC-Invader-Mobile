@@ -63,7 +63,7 @@ class SpawnManager {
         case 5:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 3), { self.spawnCircularMovementEnemies(count: 6, centerPointY: 2000) }),
-                (SKAction.wait(forDuration: 3), {})
+                (SKAction.wait(forDuration: 1000), {})
             ])
             incrementLevel(Level: level)
         case 6:

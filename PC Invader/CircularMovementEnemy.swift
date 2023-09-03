@@ -9,8 +9,8 @@ import Foundation
 import SpriteKit
 
 class CircularMovementEnemy: Enemy {
-    let centerPoint: CGPoint
-    let radius: CGFloat
+    var centerPoint: CGPoint
+    var radius: CGFloat
     var angle: CGFloat = 0.0
 
     init(textureName: String,
@@ -32,6 +32,13 @@ class CircularMovementEnemy: Enemy {
                    scale: scale,
                    health: health,
                    bullet: bullet)
+        
+        self.maxHealth = 5
+        healthBar?.position = CGPoint(x: -self.size.width/2 - 20, y: -self.size.height / 2.0 - 70.0)
+        healthBar?.size.width += 40
+        healthBar?.zPosition = 1
+//        healthBar?.zRotation = -CGFloat.pi/4
+        self.addChild(healthBar!)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -215,11 +215,11 @@
 			isa = PBXGroup;
 			children = (
 				A118A7252A8A8F12004E4EB2 /* Enemy.swift */,
-				A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */,
 				A1E750402A8CD38100E43ED8 /* VerticalMovementEnemy.swift */,
 				A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */,
 				A1BF00D72A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift */,
 				A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */,
+				A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */,
 				A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */,
 				A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */,
 			);
