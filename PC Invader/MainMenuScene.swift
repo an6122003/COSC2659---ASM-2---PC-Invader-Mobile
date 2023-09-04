@@ -13,6 +13,8 @@ class MainMenuScene: SKScene{
     let startButton = SKSpriteNode(imageNamed: "start-btn")
     let mapButton = SKSpriteNode(imageNamed: "map-btn")
     let shopButton = SKSpriteNode(imageNamed: "shop-placeholder")
+    let leaderboardButton = SKSpriteNode(imageNamed: "shop-placeholder")
+
     override func didMove(to view: SKView) {
         GameManager.loadShipBought() // load ship bought as UserDefaults data
         
@@ -52,12 +54,28 @@ class MainMenuScene: SKScene{
         shopText.zPosition = 2
         shopText.setScale(0.7)
         
+        leaderboardButton.position = background.position
+        leaderboardButton.position.x += 0
+        leaderboardButton.position.y -= 450
+        leaderboardButton.zPosition = 1
+        leaderboardButton.setScale(1)
+        
+        let leaderboardText = SKLabelNode(fontNamed: "ethnocentric")
+        leaderboardText.position = background.position
+        leaderboardText.text = "Leaderboard"
+        leaderboardText.position.x += 0
+        leaderboardText.position.y -= 460
+        leaderboardText.zPosition = 3
+        leaderboardText.fontSize = 35
+        
         self.addChild(background)
         self.addChild(headerLogo)
         self.addChild(startButton)
         self.addChild(mapButton)
         self.addChild(shopButton)
         self.addChild(shopText)
+        self.addChild(leaderboardButton)
+        self.addChild(leaderboardText)
     }
     
     func changeScene(sceneToMove: SKScene){
@@ -84,6 +102,10 @@ class MainMenuScene: SKScene{
             
             if shopButton.contains(location){
                 changeScene(sceneToMove: ShopScene(size: self.size))
+            }
+            
+            if leaderboardButton.contains(location){
+                changeScene(sceneToMove: LeaderboardScene(size: self.size))
             }
         }
     }
