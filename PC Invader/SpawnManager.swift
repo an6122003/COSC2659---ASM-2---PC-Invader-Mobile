@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 class SpawnManager {
+    var isWinning = false
     var gameScene: GameScene
     var level: Int = 1
     let bullet = Bullet(textureName: "bullet 1"
@@ -166,9 +167,10 @@ class SpawnManager {
 //    incrementLevel(Level: level)
     
     func incrementLevel (Level: Int){
-        if UserDefaults.standard.integer(forKey: "currentUnlockLevel") < Level{
-            var temp = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
+        if UserDefaults.standard.integer(forKey: "currentUnlockLevel") < Level && isWinning == true{
+            let temp = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
             UserDefaults.standard.set(temp + 1, forKey: "currentUnlockLevel")
+            isWinning = false
         }
     }
     
@@ -214,11 +216,11 @@ class SpawnManager {
     func spawnEnemy(actions: [(SKAction, () -> Void)], repeatTime: Int) {
         var spawnAction: [SKAction] = []
         
-        let waitAction = SKAction.wait(forDuration: 3)
         let gameWonAction = SKAction.run {
             if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
                 UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
             }
+            self.isWinning = true
             self.gameScene.gameWin()
         }
         
