@@ -25,56 +25,145 @@ class SpawnManager {
         switch level {
         case 1:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8, fireDelay: 5) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
-            ])
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.8, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.7, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.6, fireDelay: 5) }),
+            ], repeatTime: 2)
             incrementLevel(Level: level)
         case 2:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 2), { self.spawnHorizontalRightMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 2), { self.spawnHorizontalLeftMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) })
-            ])
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.7, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
+            ], repeatTime: 2)
             incrementLevel(Level: level)
         case 3:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), {
-                    self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5)
-                    self.spawnRandomMovementEnemies(count: 3)
-                }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
-            ])
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) })
+            ], repeatTime: 2)
             incrementLevel(Level: level)
         case 4:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3)})
-            ])
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) })
+            ], repeatTime: 2)
             incrementLevel(Level: level)
         case 5:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), { self.spawnCircularMovementEnemies(count: 6, centerPointY: 2000) }),
-                (SKAction.wait(forDuration: 5), {})
-            ])
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5)
+                    self.spawnRandomMovementEnemies(count: 3)
+                }),
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5)
+                    self.spawnRandomMovementEnemies(count: 3)
+                }),
+            ], repeatTime: 2)
             incrementLevel(Level: level)
         case 6:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 0), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8, fireDelay: 5) }),
-                (SKAction.wait(forDuration: 0), { self.spawnCircularMovementEnemies(count: 6, centerPointY: 2000) }),
-                (SKAction.wait(forDuration: 0), { self.spawnHorizontalRightMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 0), { self.spawnHorizontalLeftMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 0), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),
-                (SKAction.wait(forDuration: 8), {})
-
-            ])
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 3), {self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) })
+            ], repeatTime: 2)
+            incrementLevel(Level: level)
+        case 7:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5)
+                    self.spawnRandomMovementEnemies(count: 4)
+                }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5) }),
+            ], repeatTime: 4)
+            incrementLevel(Level: level)
+        case 8:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5)
+                    self.spawnRandomMovementEnemies(count: 5)
+                }),
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnCircularMovementEnemies(count: 3, centerPointY: self.gameScene.size.height*0.9)
+                    self.spawnRandomMovementEnemies(count: 3)
+                }),
+                (SKAction.wait(forDuration: 5), { self.spawnVerticalEnemies(count: 4, bulletCount: 7, fireDelay: 5) }),
+            ], repeatTime: 2)
+            incrementLevel(Level: level)
+        case 9:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5)
+                    self.spawnRandomMovementEnemies(count: 5)
+                }),
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnCircularMovementEnemies(count: 3, centerPointY: self.gameScene.size.height*0.9)
+                    self.spawnRandomMovementEnemies(count: 3)
+                    self.spawnHorizontalRightMovementEnemies(count: 3)
+                }),
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5)
+                    self.spawnHorizontalLeftMovementEnemies(count: 3)
+                }),
+            ], repeatTime: 2)
+            incrementLevel(Level: level)
+        case 10:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 4)
+                    self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 3)
+                }),
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnCircularMovementEnemies(count: 4, centerPointY: self.gameScene.size.height*0.9)
+                    self.spawnRandomMovementEnemies(count: 3)
+                    self.spawnHorizontalRightMovementEnemies(count: 3)
+                }),
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5)
+                    self.spawnHorizontalLeftMovementEnemies(count: 3)
+                }),
+            ], repeatTime: 2)
+            incrementLevel(Level: level)
+        case 11:
+            spawnEnemy(actions: [
+                (SKAction.wait(forDuration: 5), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 4)
+                    self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8, fireDelay: 3)
+                }),
+                (SKAction.wait(forDuration: 3), {
+                    self.spawnCircularMovementEnemies(count: 5, centerPointY: self.gameScene.size.height*0.9)
+                    self.spawnRandomMovementEnemies(count: 3)
+                    self.spawnHorizontalRightMovementEnemies(count: 4)
+                }),
+                (SKAction.wait(forDuration: 3), {
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5)
+                    self.spawnHorizontalLeftMovementEnemies(count: 4)
+                }),
+            ], repeatTime: 3)
+            incrementLevel(Level: level)
+//        case 12:
+//
+//            break
         default:
             break
         }
     }
+    
+//    spawnEnemy(actions: [
+//        (SKAction.wait(forDuration: 3), {
+//            self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5)
+//            self.spawnRandomMovementEnemies(count: 3)
+//        }),
+//        (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+//        (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
+//    ], repeatTime: <#Int#>)
+//    incrementLevel(Level: level)
     
     func incrementLevel (Level: Int){
         if UserDefaults.standard.integer(forKey: "currentUnlockLevel") < Level{
@@ -122,7 +211,7 @@ class SpawnManager {
 //        gameScene.run(finalSequence)
 //    }
     
-    func spawnEnemy(actions: [(SKAction, () -> Void)]) {
+    func spawnEnemy(actions: [(SKAction, () -> Void)], repeatTime: Int) {
         var spawnAction: [SKAction] = []
         
         let waitAction = SKAction.wait(forDuration: 3)
@@ -139,7 +228,7 @@ class SpawnManager {
             spawnAction.append(action)
         }
         
-        let repeatSequence = SKAction.repeat(SKAction.sequence(spawnAction), count: 1)
+        let repeatSequence = SKAction.repeat(SKAction.sequence(spawnAction), count: repeatTime)
         
         let sequenceAction = SKAction.sequence([repeatSequence,gameWonAction])
         gameScene.run(sequenceAction)
