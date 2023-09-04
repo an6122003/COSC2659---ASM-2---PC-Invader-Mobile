@@ -35,8 +35,8 @@ class LevelNode: SKSpriteNode{
         label.zPosition = 1
         self.addChild(label)
         
-        print("levelNode X: \(self.position.x), Y: \(self.position.y)")
-        print("placeHolder X: \(placeholder.position.x), Y: \(placeholder.position.y)")
+//        print("levelNode X: \(self.position.x), Y: \(self.position.y)")
+//        print("placeHolder X: \(placeholder.position.x), Y: \(placeholder.position.y)")
     }
     
     required init?(coder aDecoder: NSCoder) {

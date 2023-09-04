@@ -30,14 +30,12 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.7, fireDelay: 5) }),
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.6, fireDelay: 5) }),
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 2:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 3, positionPercentage: 0.7, fireDelay: 5) }),
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 3:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
@@ -45,7 +43,6 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 5), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
                 (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) })
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 4:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
@@ -53,7 +50,6 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.8, fireDelay: 5) }),
                 (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) })
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 5:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), {
@@ -66,7 +62,6 @@ class SpawnManager {
                     self.spawnRandomMovementEnemies(count: 3)
                 }),
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 6:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 4, positionPercentage: 0.6, fireDelay: 5) }),
@@ -74,7 +69,6 @@ class SpawnManager {
                 (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),
                 (SKAction.wait(forDuration: 5), {self.spawnRandomMovementEnemies(count: 3) })
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 7:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), {
@@ -83,7 +77,6 @@ class SpawnManager {
                 }),
                 (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 7, fireDelay: 5) }),
             ], repeatTime: 4)
-            incrementLevel(Level: level)
         case 8:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), {
@@ -96,7 +89,6 @@ class SpawnManager {
                 }),
                 (SKAction.wait(forDuration: 5), { self.spawnVerticalEnemies(count: 4, bulletCount: 7, fireDelay: 5) }),
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 9:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), {
@@ -113,7 +105,6 @@ class SpawnManager {
                     self.spawnHorizontalLeftMovementEnemies(count: 3)
                 }),
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 10:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), {
@@ -130,7 +121,6 @@ class SpawnManager {
                     self.spawnHorizontalLeftMovementEnemies(count: 3)
                 }),
             ], repeatTime: 2)
-            incrementLevel(Level: level)
         case 11:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 5), {
@@ -147,7 +137,6 @@ class SpawnManager {
                     self.spawnHorizontalLeftMovementEnemies(count: 4)
                 }),
             ], repeatTime: 3)
-            incrementLevel(Level: level)
 //        case 12:
 //
 //            break
@@ -167,10 +156,17 @@ class SpawnManager {
 //    incrementLevel(Level: level)
     
     func incrementLevel (Level: Int){
-        if UserDefaults.standard.integer(forKey: "currentUnlockLevel") < Level && isWinning == true{
+//        print("Before Increment: "+String(self.isWinning))
+//        print("Before Increment key: "+String(UserDefaults.standard.integer(forKey: "currentUnlockLevel")))
+//        print("Before Increment Level arg: "+String(Level))
+
+        if UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1 == GameScene.level && self.isWinning == true{
             let temp = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
             UserDefaults.standard.set(temp + 1, forKey: "currentUnlockLevel")
-            isWinning = false
+            self.isWinning = false
+//            print("After Increment: "+String(self.isWinning))
+//            print("After Increment key: "+String(temp + 1))
+
         }
     }
     
@@ -194,26 +190,11 @@ class SpawnManager {
             verticalMoveEnemy.shootLoop(gameScene: gameScene, bulletCount: bulletCount, fireDelay: fireDelay)
         }
     }
-    
-//    func spawnVerticalEnemyWave(count: Int, wave: Int) {
-//        let spawnAction = SKAction.run {
-//            self.spawnVerticalEnemies(count: count)
-//        }
-//        let waitAction = SKAction.wait(forDuration: 3)
-//        let gameWonAction = SKAction.run {
-//            if UserDefaults.standard.integer(forKey: "highScore") < GameScene.playerScore{
-//                UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
-//            }
-//            self.gameScene.gameWin()
-//        }
-//        let spawnSequence = SKAction.sequence([spawnAction,waitAction])
-//        let repeatSequence = SKAction.repeat(spawnSequence
-//                                             , count: wave)
-//        let finalSequence = SKAction.sequence([repeatSequence,gameWonAction])
-//        gameScene.run(finalSequence)
-//    }
+
     
     func spawnEnemy(actions: [(SKAction, () -> Void)], repeatTime: Int) {
+//        print("Initial Increment key: "+String(UserDefaults.standard.integer(forKey: "currentUnlockLevel")))
+//        print("Initial Level arg choose: "+String(GameScene.level))
         var spawnAction: [SKAction] = []
         
         let gameWonAction = SKAction.run {
@@ -221,7 +202,9 @@ class SpawnManager {
                 UserDefaults.standard.set(GameScene.playerScore, forKey: "highScore")
             }
             self.isWinning = true
+            print("Win Action: "+String(self.isWinning))
             self.gameScene.gameWin()
+            self.incrementLevel(Level: self.level)
         }
         
         for (action, actionClosure) in actions {

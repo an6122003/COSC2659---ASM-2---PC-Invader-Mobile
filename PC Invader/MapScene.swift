@@ -40,8 +40,8 @@ class MapScene: SKScene{
         
         backButton = SKSpriteNode(imageNamed: "map-back-button")
         backButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.95)
-        print(backButton.position.x)
-        print(backButton.position.y)
+//        print(backButton.position.x)
+//        print(backButton.position.y)
         backButton.zPosition = 5
         backButton.setScale(0.5)
         
