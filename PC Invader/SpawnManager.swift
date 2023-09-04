@@ -25,34 +25,28 @@ class SpawnManager {
         switch level {
         case 1:
             spawnEnemy(actions: [
-                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2, bulletCount: 5) }),
-                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2, bulletCount: 5) }),
-                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
             ])
             incrementLevel(Level: level)
         case 2:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 2), { self.spawnHorizontalRightMovementEnemies(count: 3) }),
                 (SKAction.wait(forDuration: 2), { self.spawnHorizontalLeftMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 2), { self.spawnVerticalEnemies(count: 2, bulletCount: 5) }),
-                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 2), { self.spawnVerticalEnemies(count: 2, bulletCount: 5) }),
-                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) })
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),                (SKAction.wait(forDuration: 2), { self.spawnRandomMovementEnemies(count: 3) })
             ])
             incrementLevel(Level: level)
         case 3:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 3), {
-                    self.spawnVerticalEnemies(count: 3, bulletCount: 6)
+                    self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5)
                     self.spawnRandomMovementEnemies(count: 3)
                 }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2, bulletCount: 6) }),
-                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 2, bulletCount: 6) }),
-                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
             ])
             incrementLevel(Level: level)
         case 4:
@@ -63,14 +57,18 @@ class SpawnManager {
         case 5:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 3), { self.spawnCircularMovementEnemies(count: 6, centerPointY: 2000) }),
-                (SKAction.wait(forDuration: 1000), {})
+                (SKAction.wait(forDuration: 5), {})
             ])
             incrementLevel(Level: level)
         case 6:
             spawnEnemy(actions: [
                 (SKAction.wait(forDuration: 0), { self.spawnRandomMovementEnemies(count: 3) }),
-                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8) }),
-                (SKAction.wait(forDuration: 5), {})
+                (SKAction.wait(forDuration: 3), { self.spawnFixedMovementEnemies(count: 5, positionPercentage: 0.8, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 0), { self.spawnCircularMovementEnemies(count: 6, centerPointY: 2000) }),
+                (SKAction.wait(forDuration: 0), { self.spawnHorizontalRightMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 0), { self.spawnHorizontalLeftMovementEnemies(count: 3) }),
+                (SKAction.wait(forDuration: 0), { self.spawnVerticalEnemies(count: 3, bulletCount: 5, fireDelay: 5) }),
+                (SKAction.wait(forDuration: 8), {})
 
             ])
         default:
@@ -85,7 +83,7 @@ class SpawnManager {
         }
     }
     
-    func spawnVerticalEnemies(count: Int, bulletCount: Int) {
+    func spawnVerticalEnemies(count: Int, bulletCount: Int, fireDelay: CGFloat) {
         for _ in 1...count {
             let verticalMoveEnemy = VerticalMovementEnemy(textureName: "enemy-1"
                                                       , zPosition: 2
@@ -102,7 +100,7 @@ class SpawnManager {
             
             gameScene.addChild(verticalMoveEnemy)
             verticalMoveEnemy.move()
-            verticalMoveEnemy.shootLoop(gameScene: gameScene, bulletCount: bulletCount)
+            verticalMoveEnemy.shootLoop(gameScene: gameScene, bulletCount: bulletCount, fireDelay: fireDelay)
         }
     }
     
@@ -175,9 +173,9 @@ class SpawnManager {
     
     func spawnHorizontalRightMovementEnemies(count: Int) {
         for _ in 1...count {
-            let horizontalRightMoveEnemy = HorizontalRightMovementEnemy(textureName: "enemyShip"
+            let horizontalRightMoveEnemy = HorizontalRightMovementEnemy(textureName: "enemy-5"
                                                       , zPosition: 2
-                                                      , scale: 1
+                                                                        , scale: 0.6
                                                       , health: 5
                                                       , bullet: Bullet(textureName: "bullet 1"
                                                                        , position: gameScene.player.position
@@ -198,9 +196,9 @@ class SpawnManager {
     
     func spawnHorizontalLeftMovementEnemies(count: Int) {
         for _ in 1...count {
-            let horizontalLeftMoveEnemy = HorizontalLeftMovementEnemy(textureName: "enemyShip"
+            let horizontalLeftMoveEnemy = HorizontalLeftMovementEnemy(textureName: "enemy-6"
                                                       , zPosition: 2
-                                                      , scale: 1
+                                                      , scale: 0.6
                                                       , health: 5
                                                       , bullet: Bullet(textureName: "bullet 1"
                                                                        , position: gameScene.player.position
@@ -220,7 +218,7 @@ class SpawnManager {
         }
     }
     
-    func spawnFixedMovementEnemies(count: Int, positionPercentage: CGFloat) {
+    func spawnFixedMovementEnemies(count: Int, positionPercentage: CGFloat, fireDelay: CGFloat) {
         var spawnPosition = (GameManager.gameManager.gamePlayableArea!.maxX*0.9 / CGFloat(count))
         var spawnIncrement = (GameManager.gameManager.gamePlayableArea!.maxX*0.9 / CGFloat(count))
 
@@ -246,6 +244,7 @@ class SpawnManager {
             gameScene.addChild(fixedMoveEnemy)
             spawnPosition += spawnIncrement
             fixedMoveEnemy.move(positionPercentage: positionPercentage)
+            fixedMoveEnemy.shootLoop(gameScene: gameScene, fireDelay: fireDelay)
         }
     }
     
@@ -259,10 +258,10 @@ class SpawnManager {
                                                           zPosition: 2,
                                                           scale: 0.6,
                                                           health: 5,
-                                                          bullet: Bullet(textureName: "bullet 1",
+                                                          bullet: Bullet(textureName: "circular-enemy-bullet",
                                                                          position: self.gameScene.player.position,
                                                                          zPosition: 1,
-                                                                         scale: 10,
+                                                                         scale: 0.3,
                                                                          soundName: "shooting.wav"),
                                                           centerPoint: CGPoint(x: self.gameScene.size.width/2, y: centerPointY),
                                                           radius: (self.gameScene.size.width/2) * 1.1)
@@ -276,6 +275,7 @@ class SpawnManager {
             
             self.gameScene.addChild(circularMoveEnemy)
             circularMoveEnemy.move()
+            circularMoveEnemy.shootLoop(gameScene: gameScene, fireRate: 1)
         }
         
         let waitAction = SKAction.wait(forDuration: 1)

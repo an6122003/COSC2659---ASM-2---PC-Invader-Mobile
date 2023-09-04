@@ -34,6 +34,7 @@
 		A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456602A87992B0088A39E /* InGameBackground.swift */; };
 		A1B456632A87BA640088A39E /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456622A87BA640088A39E /* Bullet.swift */; };
 		A1BF00D82A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF00D72A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift */; };
+		A1C972E12AA5A16A00F3F030 /* Boss.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C972E02AA5A16A00F3F030 /* Boss.swift */; };
 		A1E6B4872A99F62800771400 /* trail-emitter-2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1E6B4862A99F62800771400 /* trail-emitter-2.sks */; };
 		A1E6B4892A99F73300771400 /* trail-emitter-1.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1E6B4882A99F73300771400 /* trail-emitter-1.sks */; };
 		A1E6B48D2A99F92100771400 /* trail-emitter-4.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1E6B48C2A99F92100771400 /* trail-emitter-4.sks */; };
@@ -74,6 +75,7 @@
 		A1B456602A87992B0088A39E /* InGameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameBackground.swift; sourceTree = "<group>"; };
 		A1B456622A87BA640088A39E /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		A1BF00D72A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftMovementEnemy.swift; sourceTree = "<group>"; };
+		A1C972E02AA5A16A00F3F030 /* Boss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boss.swift; sourceTree = "<group>"; };
 		A1E6B4862A99F62800771400 /* trail-emitter-2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-2.sks"; sourceTree = "<group>"; };
 		A1E6B4882A99F73300771400 /* trail-emitter-1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-1.sks"; sourceTree = "<group>"; };
 		A1E6B48C2A99F92100771400 /* trail-emitter-4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-4.sks"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */,
 				A1BF00D72A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift */,
 				A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */,
+				A1C972E02AA5A16A00F3F030 /* Boss.swift */,
 				A1E750372A8CA9E300E43ED8 /* RandomMovementEnemy.swift */,
 				A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */,
 				A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */,
@@ -331,6 +334,7 @@
 				A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */,
 				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
+				A1C972E12AA5A16A00F3F030 /* Boss.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
 				A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */,
 				A1E750432A8CDC1500E43ED8 /* SpawnManager.swift in Sources */,

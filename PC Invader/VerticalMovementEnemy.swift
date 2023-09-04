@@ -89,11 +89,11 @@ class VerticalMovementEnemy: Enemy{
     }
 
     
-    func shootLoop(gameScene: GameScene, bulletCount: Int) {
+    func shootLoop(gameScene: GameScene, bulletCount: Int, fireDelay: CGFloat) {
         let shootAction = SKAction.run { [weak self] in
             self?.shoot(gameScene: gameScene, bulletCount: bulletCount)
         }
-        let waitAction = SKAction.wait(forDuration: 5) // Adjust the duration as needed
+        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration as needed
         let shootSequence = SKAction.sequence([waitAction, shootAction])
         let loopAction = SKAction.repeatForever(shootSequence)
         run(loopAction)

@@ -52,4 +52,45 @@ class FixedMovementEnemy: Enemy{
         self.run(moveDownSequence)
         self.run(moveLeftRightSequence)
     }
+    
+    override func shoot(gameScene: GameScene) {
+        let bullet = Bullet(textureName: "fixed-move-enemy-bullet",
+                            position: self.position,
+                            zPosition: 3,
+                            scale: 0.3,
+                            soundName: "shooting.wav")
+
+        bullet.zPosition = 1
+        bullet.zRotation = -CGFloat.pi
+//        bullet.setScale(6)
+        bullet.name = "Bullet" // Name to gather all bullet objects to dispose later
+        bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
+        bullet.physicsBody?.affectedByGravity = false
+        bullet.physicsBody?.categoryBitMask = GameScene.physicsCategories.enemyBullet
+        bullet.physicsBody?.collisionBitMask = GameScene.physicsCategories.None
+        bullet.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Player
+        gameScene.addChild(bullet)
+
+        // Calculate the end position based on the bullet's rotation
+        let endX = self.position.x
+        let endY = -gameScene.size.height * 0.1
+        let endPosition = gameScene.player.position
+
+        let bulletMove = SKAction.move(to: endPosition, duration: 5)
+        let deleteBullet = SKAction.removeFromParent()
+        let playSoundBullet = bullet.soundSkAction!
+        let bulletSequence = SKAction.sequence([bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
+        bullet.run(bulletSequence)
+    }
+
+    
+    func shootLoop(gameScene: GameScene, fireDelay: CGFloat ) {
+        let shootAction = SKAction.run { [weak self] in
+            self?.shoot(gameScene: gameScene)
+        }
+        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration as needed
+        let shootSequence = SKAction.sequence([waitAction, shootAction])
+        let loopAction = SKAction.repeatForever(shootSequence)
+        run(loopAction)
+    }
 }
