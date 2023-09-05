@@ -7,12 +7,13 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 class GameManager {
-    static let gameManager = GameManager()
-    
+    static let gameManager = GameManager() // Singleton design pattern
+    private init() { }
+
     var gamePlayableArea: CGRect?
-//    @AppStorage("highScore") var highScore = 0
     static var highScore: Int = UserDefaults.standard.integer(forKey: "highScore") // Default value is 0
     static var currentSelectedShip: Int = UserDefaults.standard.integer(forKey: "currentSelectedShip") // Default value is 0
     static var playerName: String = UserDefaults.standard.string(forKey: "playerName")!
@@ -43,7 +44,40 @@ class GameManager {
                                                                2: "trail-emitter-2",
                                                                3: "trail-emitter-3",
                                                                4: "trail-emitter-4"]
-    private init() { }
+    
+    var backgroundMusicPlayer: AVAudioPlayer?
+    var soundEffectPlayer: AVAudioPlayer?
+
+    // Function to play background music
+    func playBackgroundMusic(fileName: String, type: String) {
+        if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
+            do {
+                backgroundMusicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
+                backgroundMusicPlayer?.volume = 0.5  // Adjust volume as needed
+                backgroundMusicPlayer?.numberOfLoops = -1  // Loop indefinitely
+                backgroundMusicPlayer?.play()
+            } catch {
+                print("Error loading background music: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func stopBackgroundMusic(){
+        backgroundMusicPlayer?.stop()
+    }
+    
+    func playSoundEffect(fileName: String, type: String) {
+        if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
+            do {
+                soundEffectPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
+                soundEffectPlayer?.volume = 0.3  // Adjust volume as needed
+                soundEffectPlayer?.numberOfLoops = 1  // Loop indefinitely
+                soundEffectPlayer?.play()
+            } catch {
+                print("Error loading background music: \(error.localizedDescription)")
+            }
+        }
+    }
     
     static func saveShipBought() {
         do {

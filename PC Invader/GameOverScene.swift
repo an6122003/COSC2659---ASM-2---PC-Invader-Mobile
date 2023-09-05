@@ -16,6 +16,7 @@ class GameOverScene: SKScene{
     let highScore = UserDefaults.standard.integer(forKey: "highScore")
 
     override func didMove(to view: SKView) {
+        GameManager.gameManager.playBackgroundMusic(fileName: "game-over", type: "mp3")
         let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: self.size.width/2
                                       , y: self.size.height/2)

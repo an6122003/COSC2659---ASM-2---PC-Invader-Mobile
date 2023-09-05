@@ -61,6 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        GameManager.gameManager.playBackgroundMusic(fileName: "game-scene", type: "mp3")
         //initate physics world
         self.physicsWorld.contactDelegate = self
         
@@ -380,6 +381,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let playSoundBullet = bullet.soundSkAction!
                 let bulletSequence = SKAction.sequence([ bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
                 bullet.run(bulletSequence)
+                GameManager.gameManager.playSoundEffect(fileName: "shooting", type: ".wav")
             }
         }
     }

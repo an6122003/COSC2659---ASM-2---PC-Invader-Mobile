@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118A7252A8A8F12004E4EB2 /* Enemy.swift */; };
 		A12E17492A8E92A600EB5D95 /* ethnocentric.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12E17472A8E92A600EB5D95 /* ethnocentric.otf */; };
-		A12E174A2A8E92A600EB5D95 /* ethnocentric rg it.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12E17482A8E92A600EB5D95 /* ethnocentric rg it.otf */; };
 		A135F9792A8E176A00CA647A /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F9782A8E176A00CA647A /* MainMenuScene.swift */; };
 		A135F97D2A8E20B600CA647A /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F97C2A8E20B600CA647A /* MapScene.swift */; };
 		A135F9802A8E353300CA647A /* LevelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F97F2A8E353300CA647A /* LevelNode.swift */; };
@@ -21,6 +20,10 @@
 		A15639E02AA7141A00687CE3 /* AchievementScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DF2AA7141A00687CE3 /* AchievementScene.swift */; };
 		A15639E32AA715CB00687CE3 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639E22AA715CB00687CE3 /* Achievement.swift */; };
 		A15639E52AA7236D00687CE3 /* Achievement2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639E42AA7236D00687CE3 /* Achievement2.swift */; };
+		A15639F22AA738CD00687CE3 /* game-over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A15639EF2AA738CD00687CE3 /* game-over.mp3 */; };
+		A15639F32AA738CD00687CE3 /* main-menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A15639F02AA738CD00687CE3 /* main-menu.mp3 */; };
+		A15639F42AA738CD00687CE3 /* game-win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A15639F12AA738CD00687CE3 /* game-win.mp3 */; };
+		A15639F62AA73AC600687CE3 /* game-scene.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A15639F52AA73AC600687CE3 /* game-scene.mp3 */; };
 		A15E9A6E2A8A54BF00416761 /* trail-emitter-0.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */; };
 		A15E9A702A8A550100416761 /* trail-emitter-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */; };
 		A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183BDC12A9891C500641C6F /* ShopScene.swift */; };
@@ -55,7 +58,6 @@
 /* Begin PBXFileReference section */
 		A118A7252A8A8F12004E4EB2 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		A12E17472A8E92A600EB5D95 /* ethnocentric.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ethnocentric.otf; sourceTree = "<group>"; };
-		A12E17482A8E92A600EB5D95 /* ethnocentric rg it.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ethnocentric rg it.otf"; sourceTree = "<group>"; };
 		A12E174B2A8E942200EB5D95 /* PC-Invader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PC-Invader-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A135F9782A8E176A00CA647A /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		A135F97C2A8E20B600CA647A /* MapScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
@@ -68,6 +70,10 @@
 		A15639DF2AA7141A00687CE3 /* AchievementScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementScene.swift; sourceTree = "<group>"; };
 		A15639E22AA715CB00687CE3 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		A15639E42AA7236D00687CE3 /* Achievement2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement2.swift; sourceTree = "<group>"; };
+		A15639EF2AA738CD00687CE3 /* game-over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-over.mp3"; sourceTree = "<group>"; };
+		A15639F02AA738CD00687CE3 /* main-menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "main-menu.mp3"; sourceTree = "<group>"; };
+		A15639F12AA738CD00687CE3 /* game-win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-win.mp3"; sourceTree = "<group>"; };
+		A15639F52AA73AC600687CE3 /* game-scene.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-scene.mp3"; sourceTree = "<group>"; };
 		A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-0.sks"; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-3.sks"; sourceTree = "<group>"; };
 		A183BDC12A9891C500641C6F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
@@ -114,7 +120,6 @@
 		A12E17462A8E929500EB5D95 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				A12E17482A8E92A600EB5D95 /* ethnocentric rg it.otf */,
 				A12E17472A8E92A600EB5D95 /* ethnocentric.otf */,
 			);
 			name = Font;
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				A15013082A87C3F500DDB2AC /* shooting.wav */,
+				A15639E62AA7332400687CE3 /* BackgroundMusic */,
 			);
 			name = Sfx;
 			sourceTree = "<group>";
@@ -185,6 +191,17 @@
 				A15639E42AA7236D00687CE3 /* Achievement2.swift */,
 			);
 			name = AchievementGroup;
+			sourceTree = "<group>";
+		};
+		A15639E62AA7332400687CE3 /* BackgroundMusic */ = {
+			isa = PBXGroup;
+			children = (
+				A15639F52AA73AC600687CE3 /* game-scene.mp3 */,
+				A15639EF2AA738CD00687CE3 /* game-over.mp3 */,
+				A15639F02AA738CD00687CE3 /* main-menu.mp3 */,
+				A15639F12AA738CD00687CE3 /* game-win.mp3 */,
+			);
+			name = BackgroundMusic;
 			sourceTree = "<group>";
 		};
 		A1B3AB232A8BCEC700F0DBA1 /* Scene */ = {
@@ -327,14 +344,17 @@
 				A1E6B4872A99F62800771400 /* trail-emitter-2.sks in Resources */,
 				A1E6B48D2A99F92100771400 /* trail-emitter-4.sks in Resources */,
 				A1B456532A873C020088A39E /* Main.storyboard in Resources */,
-				A12E174A2A8E92A600EB5D95 /* ethnocentric rg it.otf in Resources */,
 				A1B456552A873C030088A39E /* Assets.xcassets in Resources */,
 				A12E17492A8E92A600EB5D95 /* ethnocentric.otf in Resources */,
 				A1E6B4892A99F73300771400 /* trail-emitter-1.sks in Resources */,
 				A15E9A6E2A8A54BF00416761 /* trail-emitter-0.sks in Resources */,
 				A15013092A87C3F500DDB2AC /* shooting.wav in Resources */,
+				A15639F22AA738CD00687CE3 /* game-over.mp3 in Resources */,
+				A15639F62AA73AC600687CE3 /* game-scene.mp3 in Resources */,
 				A1B456582A873C030088A39E /* LaunchScreen.storyboard in Resources */,
 				A15E9A702A8A550100416761 /* trail-emitter-3.sks in Resources */,
+				A15639F32AA738CD00687CE3 /* main-menu.mp3 in Resources */,
+				A15639F42AA738CD00687CE3 /* game-win.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

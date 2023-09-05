@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
                 if UserDefaults.standard.string(forKey: "playerName") == nil {
                     scene = RegistrationScene(size: CGSize(width: 1536, height: 2048))
                 }else{
-                    scene = AchievementScene(size: CGSize(width: 1536, height: 2048))
+                    scene = MainMenuScene(size: CGSize(width: 1536, height: 2048))
                 }
 
                     // Set the scale mode to scale to fit the window

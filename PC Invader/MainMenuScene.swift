@@ -17,6 +17,7 @@ class MainMenuScene: SKScene{
 
     override func didMove(to view: SKView) {
         GameManager.loadShipBought() // load ship bought as UserDefaults data
+        GameManager.gameManager.playBackgroundMusic(fileName: "main-menu", type: ".mp3")
         
         let background = SKSpriteNode(imageNamed: "background")
         background.position = CGPoint(x: self.size.width/2
