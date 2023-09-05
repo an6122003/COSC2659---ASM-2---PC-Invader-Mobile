@@ -35,6 +35,16 @@ class LevelNode: SKSpriteNode{
         label.zPosition = 1
         self.addChild(label)
         
+        if level == 12{
+            let bossLabel = SKLabelNode(fontNamed: "ethnocentric")
+            bossLabel.text = "Boss"
+            bossLabel.fontSize = 40
+            bossLabel.fontColor = .yellow
+            bossLabel.position = CGPoint(x: 0, y: 70)
+            bossLabel.zPosition = 1
+            self.addChild(bossLabel)
+        }
+        
 //        print("levelNode X: \(self.position.x), Y: \(self.position.y)")
 //        print("placeHolder X: \(placeholder.position.x), Y: \(placeholder.position.y)")
     }
