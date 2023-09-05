@@ -12,7 +12,7 @@ class Achievement: SKSpriteNode {
     var achievementDescription: String
     var achievementName: String
     let currentScore: Int
-    let goalScore: Int  // Set your goal score here
+    let goalScore: Int
 
     init(imageName: String, achievementName: String, achievementDescription: String, currentScrore: Int, goalScore: Int) {
         var img = imageName
@@ -54,7 +54,7 @@ class Achievement: SKSpriteNode {
         let progressBarWidth = 500 * CGFloat(progress)
         let progressRect = CGRect(x: 0, y: 0, width: progressBarWidth, height: 20)
         let progressNode = SKShapeNode(rect: progressRect)
-        progressNode.fillColor = .blue  // Adjust the color as needed
+        progressNode.fillColor = .blue  
         progressNode.lineWidth = 0
         progressBar.addChild(progressNode)
         

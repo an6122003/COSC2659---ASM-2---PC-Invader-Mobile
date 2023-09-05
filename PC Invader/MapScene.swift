@@ -40,8 +40,6 @@ class MapScene: SKScene{
         
         backButton = SKSpriteNode(imageNamed: "map-back-button")
         backButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.95)
-//        print(backButton.position.x)
-//        print(backButton.position.y)
         backButton.zPosition = 5
         backButton.setScale(0.5)
         
@@ -52,12 +50,6 @@ class MapScene: SKScene{
         connectNodesWithLines()
         updateLevelNodeZPosition()
 
-//        var n = 0
-//        for line in lineArray{
-//            n += 1
-//            print("line \(n): \(line.position)")
-//        }
-
         func createLevelNode(level: Int, positionX: CGFloat, positionY: CGFloat){
             if level <= UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1{
                 let node = LevelNode(imageName: "level-node"
@@ -65,7 +57,6 @@ class MapScene: SKScene{
                                      , positionX: positionX
                                      , positionY: positionY)
                 node.zPosition = 1
-    //            node.position = CGPoint(x: positionX, y: positionY)
                 levelNodeArray.append(node)
                 self.addChild(node)
             }else{
@@ -74,7 +65,6 @@ class MapScene: SKScene{
                                      , positionX: positionX
                                      , positionY: positionY)
                 node.zPosition = 1
-    //            node.position = CGPoint(x: positionX, y: positionY)
                 levelNodeArray.append(node)
                 self.addChild(node)
             }
@@ -151,15 +141,12 @@ class MapScene: SKScene{
             let targetAlpha: CGFloat = (node.position.y - halfNodeHeight > headerBottom) ? 0 : 1
             node.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.2))
         }
-//        var n = 1
 
         for line in lineArray {
             let halfLineHeight = line.frame.height / 2
             let condition = line.position.y + halfLineHeight > headerBottom
             let targetAlpha: CGFloat = condition ? 0 : 1
             line.run(SKAction.fadeAlpha(to: targetAlpha, duration: 0.2))
-//            print("Line: \(n) Position: \(line.position), Header Bottom: \(headerBottom), Condition: \(condition)")
-//            n += 1
         }
 
     }
@@ -172,17 +159,6 @@ class MapScene: SKScene{
             line.position.y += DeltaY
         }
     }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            let location = touch.location(in: self)
-//
-//            if startButton.contains(location) {
-//                // The replay button was clicked, perform your function here
-//                changeScene(sceneToMove: GameScene(size: self.size))
-//            }
-//        }
-//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

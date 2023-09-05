@@ -83,7 +83,7 @@ class VerticalMovementEnemy: Enemy{
             let bulletMove = SKAction.move(to: endPosition, duration: 10)
             let deleteBullet = SKAction.removeFromParent()
             let playSoundBullet = bullet.soundSkAction!
-            let bulletSequence = SKAction.sequence([bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
+            let bulletSequence = SKAction.sequence([bulletMove, deleteBullet])
             bullet.run(bulletSequence)
         }
     }
@@ -93,7 +93,7 @@ class VerticalMovementEnemy: Enemy{
         let shootAction = SKAction.run { [weak self] in
             self?.shoot(gameScene: gameScene, bulletCount: bulletCount)
         }
-        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration as needed
+        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration for fire rate
         let shootSequence = SKAction.sequence([waitAction, shootAction])
         let loopAction = SKAction.repeatForever(shootSequence)
         run(loopAction)

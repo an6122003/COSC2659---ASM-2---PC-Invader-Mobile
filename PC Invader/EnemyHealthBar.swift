@@ -23,6 +23,6 @@ class EnemyHealthBar: SKSpriteNode {
 
     func updateHealthBar(currentHealth: CGFloat, maxHealth: CGFloat) {
         let newWidth = initialWidth * (currentHealth / maxHealth)
-        self.size.width = newWidth // Ensure the health bar doesn't have a negative width
+        self.size.width = newWidth
     }
 }

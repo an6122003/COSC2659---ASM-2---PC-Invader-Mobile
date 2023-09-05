@@ -167,28 +167,11 @@ class SpawnManager {
         }
     }
     
-//    spawnEnemy(actions: [
-//        (SKAction.wait(forDuration: 3), {
-//            self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5)
-//            self.spawnRandomMovementEnemies(count: 3)
-//        }),
-//        (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) }),
-//        (SKAction.wait(forDuration: 3), { self.spawnVerticalEnemies(count: 3, bulletCount: 6, fireDelay: 5) }),                (SKAction.wait(forDuration: 3), { self.spawnRandomMovementEnemies(count: 3) })
-//    ], repeatTime: <#Int#>)
-//    incrementLevel(Level: level)
-    
     func incrementLevel (Level: Int){
-//        print("Before Increment: "+String(self.isWinning))
-//        print("Before Increment key: "+String(UserDefaults.standard.integer(forKey: "currentUnlockLevel")))
-//        print("Before Increment Level arg: "+String(Level))
-
         if UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1 == GameScene.level && self.isWinning == true{
             let temp = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
             UserDefaults.standard.set(temp + 1, forKey: "currentUnlockLevel")
             self.isWinning = false
-//            print("After Increment: "+String(self.isWinning))
-//            print("After Increment key: "+String(temp + 1))
-
         }
     }
     
@@ -199,7 +182,6 @@ class SpawnManager {
                                                           , scale: 0.6
                                                       , health: 5
                                                       , bullet: bullet)
-//            verticalMoveEnemy.zRotation = CGFloat.pi/2
             verticalMoveEnemy.name = "Enemy"
             verticalMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: verticalMoveEnemy.size)
             verticalMoveEnemy.physicsBody?.affectedByGravity = false
@@ -213,10 +195,8 @@ class SpawnManager {
         }
     }
 
-    
+    // Accept a sequence of spawn action, this execute the input func 1 by 1 and end with a win action
     func spawnEnemy(actions: [(SKAction, () -> Void)], repeatTime: Int) {
-//        print("Initial Increment key: "+String(UserDefaults.standard.integer(forKey: "currentUnlockLevel")))
-//        print("Initial Level arg choose: "+String(GameScene.level))
         var spawnAction: [SKAction] = []
         
         let gameWonAction = SKAction.run {
@@ -330,7 +310,6 @@ class SpawnManager {
                                                                        , soundName: "shooting.wav")
                                                       , startX: spawnPosition)
             fixedMoveEnemy.name = "Enemy"
-//            fixedMoveEnemy.zRotation = -CGFloat.pi/2
             fixedMoveEnemy.physicsBody = SKPhysicsBody(rectangleOf: fixedMoveEnemy.size)
             fixedMoveEnemy.physicsBody?.affectedByGravity = false
             fixedMoveEnemy.physicsBody?.categoryBitMask = GameScene.physicsCategories.Enemy

@@ -14,11 +14,11 @@ class MainMenuScene: SKScene{
     let mapButton = SKSpriteNode(imageNamed: "map-btn")
     let shopButton = SKSpriteNode(imageNamed: "shop-placeholder")
     let leaderboardButton = SKSpriteNode(imageNamed: "shop-placeholder")
+    var questionButton: SKSpriteNode!
     var soundButton: SKSpriteNode!
     var musicButton: SKSpriteNode!
 
     override func didMove(to view: SKView) {
-        UserDefaults.standard.set(11, forKey: "currentUnlockLevel")
         GameManager.loadShipBought() // load ship bought as UserDefaults data
         GameManager.gameManager.playBackgroundMusic(fileName: "main-menu", type: ".mp3")
         
@@ -72,6 +72,11 @@ class MainMenuScene: SKScene{
         leaderboardText.zPosition = 3
         leaderboardText.fontSize = 35
         
+        questionButton = SKSpriteNode(imageNamed: "question-btn")
+        questionButton.position = CGPoint(x: self.size.width * 0.75, y: self.size.height * 0.22)
+        questionButton.zPosition = 2
+        questionButton.setScale(0.5)
+        
         if UserDefaults.standard.bool(forKey: "soundMute") == false{
             soundButton = SKSpriteNode(imageNamed: "sound-btn")
         }else{
@@ -98,6 +103,7 @@ class MainMenuScene: SKScene{
         self.addChild(shopText)
         self.addChild(leaderboardButton)
         self.addChild(leaderboardText)
+        self.addChild(questionButton)
         self.addChild(soundButton)
         self.addChild(musicButton)
     }
@@ -136,14 +142,12 @@ class MainMenuScene: SKScene{
             
             if startButton.contains(location) {
                 GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
-                // The replay button was clicked, perform your function here
                 GameScene.setLevel(level: UserDefaults.standard.integer(forKey: "currentUnlockLevel")+1)
                 changeScene(sceneToMove: GameScene(size: self.size))
             }
     
             if mapButton.contains(location) {
                 GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
-                // The replay button was clicked, perform your function here
                 changeScene(sceneToMove: MapScene(size: self.size))
             }
             
@@ -165,6 +169,11 @@ class MainMenuScene: SKScene{
             if soundButton.contains(location){
                 GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 soundButtonPressed()
+            }
+            
+            if questionButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
+                changeScene(sceneToMove: HowToPlayScene(size: self.size))
             }
         }
     }

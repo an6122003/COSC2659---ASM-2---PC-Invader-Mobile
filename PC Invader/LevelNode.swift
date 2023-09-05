@@ -22,9 +22,6 @@ class LevelNode: SKSpriteNode{
         let placeholder = SKSpriteNode(imageNamed: "placeholder")
         placeholder.position = CGPoint(x: 0
                                        , y: -85)
-//        placeholder.position.x -= 900
-//        placeholder.position.y = positionY - 50
-//        placeholder.zPosition = 1
         placeholder.setScale(0.5)
         self.addChild(placeholder)
         
@@ -44,9 +41,6 @@ class LevelNode: SKSpriteNode{
             bossLabel.zPosition = 1
             self.addChild(bossLabel)
         }
-        
-//        print("levelNode X: \(self.position.x), Y: \(self.position.y)")
-//        print("placeHolder X: \(placeholder.position.x), Y: \(placeholder.position.y)")
     }
     
     required init?(coder aDecoder: NSCoder) {

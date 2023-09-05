@@ -62,7 +62,6 @@ class FixedMovementEnemy: Enemy{
 
         bullet.zPosition = 1
         bullet.zRotation = -CGFloat.pi
-//        bullet.setScale(6)
         bullet.name = "Bullet" // Name to gather all bullet objects to dispose later
         bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
         bullet.physicsBody?.affectedByGravity = false
@@ -88,7 +87,7 @@ class FixedMovementEnemy: Enemy{
         let shootAction = SKAction.run { [weak self] in
             self?.shoot(gameScene: gameScene)
         }
-        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration as needed
+        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration for fire rate
         let shootSequence = SKAction.sequence([waitAction, shootAction])
         let loopAction = SKAction.repeatForever(shootSequence)
         run(loopAction)

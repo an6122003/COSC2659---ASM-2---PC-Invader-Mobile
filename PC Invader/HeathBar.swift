@@ -20,8 +20,6 @@ class HealthBar: SKNode {
     init(player: Player) {
         leftBracket = SKSpriteNode(imageNamed: "left-bracket.png")
         rightBracket = SKSpriteNode(imageNamed: "right-bracket.png")
-//        redRectangle = SKSpriteNode(imageNamed: "active-segment.png")
-//        greyRectangle = SKSpriteNode(imageNamed:"inactive-segment.png")
         initialPlayerHealth = player.health
         self.player = player
         
@@ -37,7 +35,6 @@ class HealthBar: SKNode {
             redRectangle.position.x = startingWidth
             
             addChild(redRectangle)
-//            addChild(greyRectangle)
         }
         
         rightBracket.position.x = startingWidth + 4
@@ -70,11 +67,6 @@ class HealthBar: SKNode {
         addChild(rightBracket)
         print(player.health)
     }
-    
-//    func updateHealth(percentage: CGFloat) {
-//        let newWidth = (redRectangle.size.width + greyRectangle.size.width) * percentage
-//        redRectangle.size.width = max(newWidth, 0)
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

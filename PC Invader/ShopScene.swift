@@ -41,7 +41,6 @@ class ShopScene: SKScene{
         shopWindow.zPosition = 1
         shopWindow.setScale(0.85)
         shopWindow.position = background.position
-//        shopWindow.position.y -= 130
         
         let playerMoneyPlaceholder = SKSpriteNode(imageNamed: "shop-money-placeholder")
         playerMoneyPlaceholder.position = shopWindow.position
@@ -67,7 +66,6 @@ class ShopScene: SKScene{
         playerMoneyHeader.text = "Your Crytals"
         playerMoneyHeader.fontSize = 50
         playerMoneyHeader.position = playerMoneyPlaceholder.position
-//        playerMoneyHeader.position.x += 40
         playerMoneyHeader.position.y += 100
         playerMoneyHeader.zPosition = 3
         
@@ -166,8 +164,6 @@ class ShopScene: SKScene{
     }
     
     func updateShipDisplay(){
-//        self.currentSelectedShip = UserDefaults.standard.integer(forKey: "currentSelectedShip")
-//        self.shipImage = SKSpriteNode(imageNamed: self.shipDictionary[self.currentSelectedShip]!)
         //Texture
         let newTexture = SKTexture(imageNamed: self.shipDictionary[currentViewShip]!)
         self.shipImage.texture = newTexture
@@ -249,8 +245,6 @@ class ShopScene: SKScene{
             
             updateShipDisplay()
             
-//            print("Buy button pressed: \(GameManager.shipBought), Money After: \(UserDefaults.standard.integer(forKey: "playerMoney"))")
-            
             // Alert
             if let viewController = self.view?.window?.rootViewController {
                 let alert = UIAlertController(title: "Purchase Successful"
@@ -268,7 +262,6 @@ class ShopScene: SKScene{
                     viewController.present(alert, animated: true)
                 }
             
-//            print("Not enough money!")
         }
     }
     

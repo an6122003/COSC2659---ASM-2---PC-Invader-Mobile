@@ -88,7 +88,7 @@ class BossEnemy: Enemy{
         let shootAction = SKAction.run { [weak self] in
             self?.shootToPlayer(gameScene: gameScene)
         }
-        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration as needed
+        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration for fire rate
         let shootSequence = SKAction.sequence([waitAction, shootAction])
         let loopAction = SKAction.repeatForever(shootSequence)
         run(loopAction)
@@ -137,7 +137,7 @@ class BossEnemy: Enemy{
         let shootAction = SKAction.run { [weak self] in
             self?.shootCircular(gameScene: gameScene, bulletCount: bulletCount)
         }
-        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration as needed
+        let waitAction = SKAction.wait(forDuration: fireDelay) // Adjust the duration for fire rate
         let shootSequence = SKAction.sequence([waitAction, shootAction])
         let loopAction = SKAction.repeatForever(shootSequence)
         run(loopAction)
@@ -152,7 +152,6 @@ class BossEnemy: Enemy{
 
         bullet.zPosition = 1
         bullet.zRotation = -CGFloat.pi * 0.75
-//        bullet.setScale(6)
         bullet.name = "Bullet" // Name to gather all bullet objects to dispose later
         bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
         bullet.physicsBody?.affectedByGravity = false
@@ -178,7 +177,7 @@ class BossEnemy: Enemy{
         let shootAction = SKAction.run { [weak self] in
             self?.shootStraight(gameScene: gameScene)
         }
-        let waitAction = SKAction.wait(forDuration: fireRate) // Adjust the duration as needed
+        let waitAction = SKAction.wait(forDuration: fireRate) // Adjust the duration for fire rate
         let shootSequence = SKAction.sequence([waitAction, shootAction])
         let loopAction = SKAction.repeatForever(shootSequence)
         run(loopAction)

@@ -15,9 +15,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawnManager: SpawnManager?
     var lastUpdateTime: TimeInterval = 0
     var timeSinceLastBullet: TimeInterval = 0
-    let bulletDelay: TimeInterval = 0.1 // Adjust this delay as needed
+    let bulletDelay: TimeInterval = 0.1 // Adjust this delay for player fire rate
     var timeSinceLastEnemySpawn: TimeInterval = 0
-    let spawnDelay: TimeInterval = 3 // Adjest time to spawn enemy wave
+    let spawnDelay: TimeInterval = 3 // Adjust time to spawn enemy wave
     static var playerScore: Int = 0
     let scoreLabel = SKLabelNode(fontNamed: "ethnocentric")
     let moneyLabel = SKLabelNode(fontNamed: "ethnocentric")
@@ -115,17 +115,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moneyLabel.position = CGPoint(x: self.size.width*0.75, y: self.size.height*0.88)
         moneyLabel.zPosition = 3
         
-        
-        
         // add all node to the scene
         self.addChild(player)
         self.addChild(player.trailEmitter)
         self.addChild(scoreLabel)
         self.addChild(moneyLabel)
         spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
-
-//        spawnEnemyPerSecond(timeInterval: 1)
-        
     }
     
     func didBegin(_ contact: SKPhysicsContact) { // This function process contact of 2 bodies call Body A and Body B
@@ -267,7 +262,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if body2.node != nil && body2.node!.position.y < self.size.height {
-//                spawnExplosion(position: body2.node!.position, explosionName: "explosion")
             }
             
             body1.node?.removeFromParent()
@@ -426,22 +420,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return Int.random(in: min...max)
     }
 
-    
-//    func spawnEnemy(){
-//        spawnManager?.spawnEnemiesForLevel(level: 2)
-//    }
-//
-//    func spawnEnemyPerSecond(timeInterval: Float) {
-//
-//        let spawnEnemyAction = SKAction.run { [weak self] in
-//                self?.spawnEnemy()
-//            }
-//        let wait = SKAction.wait(forDuration: TimeInterval(timeInterval), withRange: 0.1)
-//        let spawnSequence = SKAction.sequence([spawnEnemyAction, wait])
-//        let spawnForever = SKAction.repeatForever(spawnSequence)
-//        self.run(SKAction.repeatForever(spawnForever))
-//    }
-
     func incrementKilledEnemyCount(){
         var temp = UserDefaults.standard.integer(forKey: "enemyKilled")
         UserDefaults.standard.set(temp + 1, forKey: "enemyKilled")
@@ -498,7 +476,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timeSinceLastEnemySpawn += deltaTime
         
         if timeSinceLastEnemySpawn >= spawnDelay {
-//            spawnManager?.spawnEnemiesForLevel(level: GameScene.level)
             timeSinceLastEnemySpawn = 0
         }
         
@@ -528,11 +505,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.position.y += distanceDragY
                     player.trailEmitter.position.x += distanceDragX
                     player.trailEmitter.position.y += distanceDragY
-    //                player.trailEmitter.emissionAngle = atan2(distanceDragY, distanceDragX) + CGFloat.pi / 2
-    //                print("Player X: \(playerPosition.x)")
-    //                print("Player Y: \(playerPosition.y)")
-    //                print("Player Trail X: \(playerPosition.x)")
-    //                print("Player Trail Y: \(playerPosition.y)")
                 }
             }
             //Constraint in x for player to stay within game area

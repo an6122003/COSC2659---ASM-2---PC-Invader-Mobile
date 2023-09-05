@@ -91,7 +91,7 @@ class GameManager {
             }
         }
     }
-    
+    // Function to play sfx
     func playBulletSoundEffect(fileName: String, type: String) {
         if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
             do {
@@ -108,7 +108,7 @@ class GameManager {
             }
         }
     }
-    
+    // save ship bought array to userdefaults
     static func saveShipBought() {
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: Self.shipBought, requiringSecureCoding: false)
@@ -117,7 +117,7 @@ class GameManager {
             print("Error saving shipBought in GameManager: \(error)")
         }
     }
-    
+    // load ship bought array to userdefaults
     static func loadShipBought() {
         if let encodedData = UserDefaults.standard.data(forKey: "shipBought") {
             do {
