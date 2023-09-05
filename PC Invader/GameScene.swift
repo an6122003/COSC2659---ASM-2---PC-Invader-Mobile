@@ -30,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let Enemy: UInt32 = 0b100 // 4 in binary, 3 will represent bot Player and Bullet (1 and 2)
         static let enemyBullet: UInt32 = 0b1000
         static let Money: UInt32 = 0b10000
+        static let Boss: UInt32 = 0b100000
     }
 
     
@@ -216,6 +217,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             UserDefaults.standard.set(temp + 1, forKey: "playerMoney")
             GameManager.gameManager.playSoundEffect(fileName: "collect", type: ".mp3")
         }
+        
+        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Boss {
+            // Bullet hit Enemy
+            if let boss = body2.node as? BossEnemy {
+                boss.health -= 1
+                boss.healthBar!.updateHealthBar(currentHealth: CGFloat(boss.health), maxHealth: CGFloat(boss.maxHealth))
+                GameScene.playerScore += 1
+                scoreLabel.text = "Score: \(GameScene.playerScore)"
+                
+                // Fade boss
+                let fadeOutAction = SKAction.fadeAlpha(to: 0.8, duration: 0.05)
+                let fadeInAction = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
+                let fadeSequence = SKAction.sequence([fadeOutAction, fadeInAction])
+                boss.run(fadeSequence)
+
+                // destroy boss
+                if boss.health <= 0 {
+                    GameManager.gameManager.playSoundEffect(fileName: "explode", type: ".mp3")
+                    spawnExplosion(position: boss.position, explosionName: "explosion")
+                    boss.removeFromParent()
+                    GameScene.playerScore += 10
+                    scoreLabel.text = "Score: \(GameScene.playerScore)"
+                    incrementKilledEnemyCount()
+                    
+                    let winAction = SKAction.run {
+                        self.gameWin()
+                    }
+                    let dropMoneyAction = SKAction.run {
+                        self.dropMoney(position: boss.position, ammount: 50, fadeAmount: 10)
+                    }
+                    let moneyDropWaitAction = SKAction.wait(forDuration: 1)
+                    
+                    let dropSequence = SKAction.sequence([
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        dropMoneyAction,moneyDropWaitAction,
+                        winAction
+                    ])
+                    self.run(dropSequence)
+                }
+            }
+            
+            if body2.node != nil && body2.node!.position.y < self.size.height {
+//                spawnExplosion(position: body2.node!.position, explosionName: "explosion")
+            }
+            
+            body1.node?.removeFromParent()
+        }
     }
     
     func dropMoney(position: CGPoint) {
@@ -239,6 +295,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let spreadAction = SKAction.moveBy(x: CGFloat.random(in: -300...300), y: CGFloat.random(in: -300...300), duration: 3)
             let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
+            let removeAction = SKAction.removeFromParent()
+            let spreadSequence = SKAction.sequence([spreadAction, fadeOutAction, removeAction])
+            money.run(spreadSequence)
+        }
+    }
+    
+    func dropMoney(position: CGPoint, ammount: Int, fadeAmount: CGFloat) {
+        for _ in 0...ammount {
+            let money = SKSpriteNode(imageNamed: "shop-money-symbol")
+            money.setScale(1)
+            money.position = position
+            money.zPosition = 2
+            
+            money.physicsBody = SKPhysicsBody(rectangleOf: money.size)
+            physicsWorld.gravity = CGVector(dx: 0, dy: -1)
+            money.physicsBody?.mass = 1
+            money.physicsBody?.affectedByGravity = true
+            money.physicsBody?.categoryBitMask = physicsCategories.Money
+            money.physicsBody?.collisionBitMask = physicsCategories.None
+            money.physicsBody?.contactTestBitMask = physicsCategories.Player
+            
+            addChild(money)
+            
+            
+            let spreadAction = SKAction.moveBy(x: CGFloat.random(in: -550...550), y: CGFloat.random(in: -300...300), duration: 3)
+            let fadeOutAction = SKAction.fadeOut(withDuration: fadeAmount)
             let removeAction = SKAction.removeFromParent()
             let spreadSequence = SKAction.sequence([spreadAction, fadeOutAction, removeAction])
             money.run(spreadSequence)

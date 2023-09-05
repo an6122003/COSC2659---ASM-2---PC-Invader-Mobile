@@ -18,6 +18,7 @@ class MainMenuScene: SKScene{
     var musicButton: SKSpriteNode!
 
     override func didMove(to view: SKView) {
+        UserDefaults.standard.set(11, forKey: "currentUnlockLevel")
         GameManager.loadShipBought() // load ship bought as UserDefaults data
         GameManager.gameManager.playBackgroundMusic(fileName: "main-menu", type: ".mp3")
         

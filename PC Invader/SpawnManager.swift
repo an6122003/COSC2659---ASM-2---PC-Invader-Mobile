@@ -137,9 +137,31 @@ class SpawnManager {
                     self.spawnHorizontalLeftMovementEnemies(count: 4)
                 }),
             ], repeatTime: 3)
-//        case 12:
-//
-//            break
+        case 12:
+            let boss = BossEnemy(textureName: "enemy-5"
+                                 , zPosition: 2
+                                 , scale: 1.5
+                                 , health: 400
+                                 , bullet: Bullet(textureName: "bullet 1"
+                                                  , position: gameScene.player.position
+                                                  , zPosition: 1
+                                                  , scale: 0.6
+                                                  , soundName: "shooting.wav")
+                                 , startX: self.gameScene.size.width/2)
+            gameScene.addChild(boss)
+            boss.move(positionPercentage: 0.8)
+            boss.shootToPlayerLoop(gameScene: gameScene, fireDelay: 1)
+            boss.shootCircularLoop(gameScene: gameScene, bulletCount: 12, fireDelay: 2)
+            boss.shootStraightLoop(gameScene: gameScene, fireRate: 2)
+            boss.name = "Enemy"
+//            boss.zRotation = -CGFloat.pi/2
+            boss.physicsBody = SKPhysicsBody(rectangleOf: boss.size)
+            boss.physicsBody?.affectedByGravity = false
+            boss.physicsBody?.categoryBitMask = GameScene.physicsCategories.Boss
+            boss.physicsBody?.collisionBitMask = GameScene.physicsCategories.None // set collision to none, as we work with only contact and not collision which will knock the body when collide
+            boss.physicsBody?.contactTestBitMask = GameScene.physicsCategories.Bullet | GameScene.physicsCategories.Player
+            
+            break
         default:
             break
         }
