@@ -17,6 +17,7 @@
 		A15639D82AA64E1300687CE3 /* LeaderboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639D72AA64E1300687CE3 /* LeaderboardScene.swift */; };
 		A15639DA2AA65B9B00687CE3 /* LeaderboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639D92AA65B9B00687CE3 /* LeaderboardScrollView.swift */; };
 		A15639DC2AA6E74500687CE3 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DB2AA6E74500687CE3 /* test.swift */; };
+		A15639DE2AA7065300687CE3 /* Registration Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DD2AA7065300687CE3 /* Registration Scene.swift */; };
 		A15E9A6E2A8A54BF00416761 /* trail-emitter-0.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */; };
 		A15E9A702A8A550100416761 /* trail-emitter-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */; };
 		A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183BDC12A9891C500641C6F /* ShopScene.swift */; };
@@ -60,6 +61,7 @@
 		A15639D72AA64E1300687CE3 /* LeaderboardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardScene.swift; sourceTree = "<group>"; };
 		A15639D92AA65B9B00687CE3 /* LeaderboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardScrollView.swift; sourceTree = "<group>"; };
 		A15639DB2AA6E74500687CE3 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		A15639DD2AA7065300687CE3 /* Registration Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration Scene.swift"; sourceTree = "<group>"; };
 		A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-0.sks"; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-3.sks"; sourceTree = "<group>"; };
 		A183BDC12A9891C500641C6F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		A1B3AB232A8BCEC700F0DBA1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				A15639DD2AA7065300687CE3 /* Registration Scene.swift */,
 				A1B4564D2A873C020088A39E /* GameScene.swift */,
 				A15639D72AA64E1300687CE3 /* LeaderboardScene.swift */,
 				A15639D92AA65B9B00687CE3 /* LeaderboardScrollView.swift */,
@@ -338,6 +341,7 @@
 				A1BF00D82A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift in Sources */,
 				A135F9802A8E353300CA647A /* LevelNode.swift in Sources */,
 				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,
+				A15639DE2AA7065300687CE3 /* Registration Scene.swift in Sources */,
 				A15639DC2AA6E74500687CE3 /* test.swift in Sources */,
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,

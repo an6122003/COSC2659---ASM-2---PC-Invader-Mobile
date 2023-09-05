@@ -19,9 +19,9 @@ class LeaderboardScene: SKScene{
     var prevButton: SKSpriteNode!
     var leaderboardFrame: SKSpriteNode!
     var leaderboardData: [String: Int] = [
-        "You": UserDefaults.standard.integer(forKey: "highScore"),
+        UserDefaults.standard.string(forKey: "playerName")!: UserDefaults.standard.integer(forKey: "highScore"),
         "Tom": 500,
-        "An": 700,
+        "Anna": 700,
         "Bao": 300,
         "Xiaomi": 500,
         "Shelby": 700,
@@ -80,7 +80,7 @@ class LeaderboardScene: SKScene{
         var playerRank = -1
 
         for (index, (playerName, _)) in sortedLeaderboard.enumerated() {
-            if playerName == "You" {
+            if playerName == UserDefaults.standard.string(forKey: "playerName")! {
                 playerRank = index + 1
                 break // Exit the loop as the player's rank is found
             }
@@ -126,7 +126,7 @@ class LeaderboardScene: SKScene{
         for (index, (playerName, highScore)) in sortedLeaderboard[startIndex..<endIndex].enumerated() { //..< means from startIndex to less than endIndex
             let rank = startIndex + (index + 1)
             let nameLabel = SKLabelNode(fontNamed: "ethnocentric")
-            if playerName == "You"{
+            if playerName == UserDefaults.standard.string(forKey: "playerName")!{
                 nameLabel.fontColor = .yellow
             }
             nameLabel.text = "\(rank). \(playerName)"
@@ -138,7 +138,7 @@ class LeaderboardScene: SKScene{
             self.addChild(nameLabel)
 
             let scoreLabel = SKLabelNode(fontNamed: "ethnocentric")
-            if playerName == "You"{
+            if playerName == UserDefaults.standard.string(forKey: "playerName")!{
                 scoreLabel.fontColor = .yellow
             }
             scoreLabel.text = "\(highScore)"

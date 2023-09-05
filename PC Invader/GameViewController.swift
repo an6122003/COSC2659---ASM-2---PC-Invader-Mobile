@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    var scene: SKScene!
     override func viewDidLoad() {
             
     super.viewDidLoad()
@@ -18,8 +18,11 @@ class GameViewController: UIViewController {
             if let view = self.view as! SKView? {
 
                 // Load the SKScene from 'GameScene.sks'
-
-                let scene = MainMenuScene(size: CGSize(width: 1536, height: 2048))
+                if UserDefaults.standard.string(forKey: "playerName") == nil {
+                    scene = RegistrationScene(size: CGSize(width: 1536, height: 2048))
+                }else{
+                    scene = MainMenuScene(size: CGSize(width: 1536, height: 2048))
+                }
 
                     // Set the scale mode to scale to fit the window
 

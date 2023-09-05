@@ -15,7 +15,7 @@ class GameManager {
 //    @AppStorage("highScore") var highScore = 0
     static var highScore: Int = UserDefaults.standard.integer(forKey: "highScore") // Default value is 0
     static var currentSelectedShip: Int = UserDefaults.standard.integer(forKey: "currentSelectedShip") // Default value is 0
-    
+    static var playerName: String = UserDefaults.standard.string(forKey: "playerName")!
     static var playerMoney: Int = UserDefaults.standard.integer(forKey: "playerMoney") // Default value is 0
     static var currentUnlockLevel: Int = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
     
