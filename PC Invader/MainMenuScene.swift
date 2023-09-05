@@ -91,21 +91,25 @@ class MainMenuScene: SKScene{
             let location = touch.location(in: self)
             
             if startButton.contains(location) {
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 // The replay button was clicked, perform your function here
                 GameScene.setLevel(level: UserDefaults.standard.integer(forKey: "currentUnlockLevel")+1)
                 changeScene(sceneToMove: GameScene(size: self.size))
             }
     
             if mapButton.contains(location) {
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 // The replay button was clicked, perform your function here
                 changeScene(sceneToMove: MapScene(size: self.size))
             }
             
             if shopButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: ShopScene(size: self.size))
             }
             
             if leaderboardButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: LeaderboardScene(size: self.size))
             }
         }

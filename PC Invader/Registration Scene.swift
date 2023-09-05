@@ -60,6 +60,7 @@ class RegistrationScene: SKScene {
             let location = touch.location(in: self)
             
             if submitButton.contains(location) {
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 submitButtonPressed()
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }

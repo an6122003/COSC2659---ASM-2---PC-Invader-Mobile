@@ -196,18 +196,22 @@ class LeaderboardScene: SKScene{
             let location = touch.location(in: self)
             
             if backButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }
             
             if nextButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 nextPage()
             }
             
             if prevButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 prevPage()
             }
             
             if achievementButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: AchievementScene(size: self.size))
             }
         }

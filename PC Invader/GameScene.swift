@@ -146,9 +146,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.healthBar!.updateHealthBar(currentHealth: CGFloat(enemy.health), maxHealth: CGFloat(enemy.maxHealth))
                 GameScene.playerScore += 1
                 scoreLabel.text = "Score: \(GameScene.playerScore)"
-
                 
+                // Fade enemy
+                let fadeOutAction = SKAction.fadeAlpha(to: 0.8, duration: 0.05)
+                let fadeInAction = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
+                let fadeSequence = SKAction.sequence([fadeOutAction, fadeInAction])
+                enemy.run(fadeSequence)
+
+                // destroy enemy
                 if enemy.health <= 0 {
+                    GameManager.gameManager.playSoundEffect(fileName: "explode", type: ".mp3")
                     spawnExplosion(position: enemy.position, explosionName: "explosion")
                     let temp = randomInt(min: 1, max: 3)
                     if temp == 1{ //33% drop rate
@@ -181,8 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     incrementKilledEnemyCount()
                 }
             } // prevent error if there the node not exist
-            
-//            body1.node?.removeFromParent() //TODO: Remove the trail
+            GameManager.gameManager.playSoundEffect(fileName: "explode", type: ".mp3")
             body2.node?.removeFromParent()
             
             playerHit()
@@ -192,6 +198,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if body1.categoryBitMask  == physicsCategories.Player && body2.categoryBitMask == physicsCategories.enemyBullet {
+            GameManager.gameManager.playSoundEffect(fileName: "hit", type: ".wav")
             playerHit()
             healthBar.updateHealthBar()
             if body2.node != nil{
@@ -207,6 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moneyLabel.text = "Crystal: \(GameScene.currentMoneyEarn)"
             var temp = UserDefaults.standard.integer(forKey: "playerMoney")
             UserDefaults.standard.set(temp + 1, forKey: "playerMoney")
+            GameManager.gameManager.playSoundEffect(fileName: "collect", type: ".mp3")
         }
     }
     
@@ -381,7 +389,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let playSoundBullet = bullet.soundSkAction!
                 let bulletSequence = SKAction.sequence([ bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
                 bullet.run(bulletSequence)
-                GameManager.gameManager.playSoundEffect(fileName: "shooting", type: ".wav")
+                GameManager.gameManager.playBulletSoundEffect(fileName: "shooting", type: ".wav")
             }
         }
     }

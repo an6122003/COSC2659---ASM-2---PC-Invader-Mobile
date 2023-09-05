@@ -107,6 +107,7 @@ class AchievementScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             if backButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: LeaderboardScene(size: self.size))
             }
         }

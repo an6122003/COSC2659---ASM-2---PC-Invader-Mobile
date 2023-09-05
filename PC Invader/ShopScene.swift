@@ -285,22 +285,25 @@ class ShopScene: SKScene{
         for touch in touches {
             let location = touch.location(in: self)
             if backButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }
             
             if backwardButton.contains(location) {
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 backwardButtonPressed()
             }
             
             if forwardButton.contains(location) {
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 forwardButtonPressed()
             }
             
-            if selectButton.contains(location) {
+            if selectButton.contains(location) {                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 selectButtonPressed()
             }
             
-            if buyButton.contains(location) {
+            if buyButton.contains(location) {                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 buyButtonPressed()
             }
             

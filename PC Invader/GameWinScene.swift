@@ -147,14 +147,16 @@ class GameWinScene: SKScene{
             let location = touch.location(in: self)
             
             if replayButton.contains(location) {
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: GameScene(size: self.size))
             }
             
             if continueButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: MapScene(size: self.size))
             }
     
-            if closeButton.contains(location){
+            if closeButton.contains(location){                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }
         }

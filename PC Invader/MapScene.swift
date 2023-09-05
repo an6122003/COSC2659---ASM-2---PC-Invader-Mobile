@@ -190,10 +190,12 @@ class MapScene: SKScene{
             
             for node in levelNodeArray {
                 if node.contains(location) && node.level <= UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1{
+                    GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                     changeToGameScene(level: node.level)
                 }
                 
                 if node.contains(location) && node.level > UserDefaults.standard.integer(forKey: "currentUnlockLevel") + 1 {
+                    GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                     if let viewController = self.view?.window?.rootViewController {
                         let alert = UIAlertController(title: "Can Not Play!"
                                                       , message: "You have not unlocked this mission. Please complete previous level"
@@ -205,6 +207,7 @@ class MapScene: SKScene{
             }
             
             if backButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }
         }

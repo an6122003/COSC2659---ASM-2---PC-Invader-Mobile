@@ -47,13 +47,14 @@ class GameManager {
     
     var backgroundMusicPlayer: AVAudioPlayer?
     var soundEffectPlayer: AVAudioPlayer?
+    var bulletSoundEffectPlayer: AVAudioPlayer?
 
     // Function to play background music
     func playBackgroundMusic(fileName: String, type: String) {
         if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
             do {
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
-                backgroundMusicPlayer?.volume = 0.5  // Adjust volume as needed
+                backgroundMusicPlayer?.volume = 0.5
                 backgroundMusicPlayer?.numberOfLoops = -1  // Loop indefinitely
                 backgroundMusicPlayer?.play()
             } catch {
@@ -70,9 +71,22 @@ class GameManager {
         if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
             do {
                 soundEffectPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
-                soundEffectPlayer?.volume = 0.3  // Adjust volume as needed
-                soundEffectPlayer?.numberOfLoops = 1  // Loop indefinitely
+                soundEffectPlayer?.volume = 0.5
+                soundEffectPlayer?.numberOfLoops = 0
                 soundEffectPlayer?.play()
+            } catch {
+                print("Error loading background music: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func playBulletSoundEffect(fileName: String, type: String) {
+        if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
+            do {
+                bulletSoundEffectPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
+                bulletSoundEffectPlayer?.volume = 0.1
+                bulletSoundEffectPlayer?.numberOfLoops = 0
+                bulletSoundEffectPlayer?.play()
             } catch {
                 print("Error loading background music: \(error.localizedDescription)")
             }
