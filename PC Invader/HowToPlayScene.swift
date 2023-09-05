@@ -12,6 +12,7 @@ class HowToPlayScene: SKScene{
     var backButton: SKSpriteNode!
     var nextButton: SKSpriteNode!
     var prevButton: SKSpriteNode!
+    var unlockButton: SKSpriteNode!
     var currentPage = 0
     var headerText: SKLabelNode!
     var background: SKSpriteNode!
@@ -52,14 +53,30 @@ class HowToPlayScene: SKScene{
         prevButton.zPosition = 3
         prevButton.setScale(0.7)
         
+        unlockButton = SKSpriteNode(imageNamed: "shop-placeholder")
+        unlockButton.position = CGPoint(x: background.position.x, y: background.position.y - 700)
+        unlockButton.zPosition = 1
+        unlockButton.setScale(0.9)
+        
+        let unlockText = SKLabelNode(fontNamed: "ethnocentric")
+        unlockText.position = unlockButton.position
+        unlockText.position.y -= 10
+        unlockText.zPosition = 2
+        unlockText.text = "Unlock All"
+        unlockText.fontSize = 36
+        
         self.addChild(background)
         self.addChild(headerLogo)
         self.addChild(headerText)
         self.addChild(backButton)
         self.addChild(nextButton)
         self.addChild(prevButton)
+        self.addChild(unlockButton)
+        self.addChild(unlockText)
         
         showInstructions(page: currentPage)
+        
+        
 
     }
     
@@ -80,6 +97,12 @@ class HowToPlayScene: SKScene{
             if prevButton.contains(location){
                 GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
                 previousPage()
+            }
+             
+            if unlockButton.contains(location){
+                GameManager.gameManager.playSoundEffect(fileName: "click", type: ".mp3")
+                UserDefaults.standard.set(10000, forKey: "playerMoney")
+                UserDefaults.standard.set(11, forKey: "currentUnlockLevel")
             }
         }
     }
