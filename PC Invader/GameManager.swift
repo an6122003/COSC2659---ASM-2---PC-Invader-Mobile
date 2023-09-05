@@ -21,6 +21,10 @@ class GameManager {
     static var currentUnlockLevel: Int = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
     static var enemyKilled: Int = UserDefaults.standard.integer(forKey: "enemyKilled") // Default value is 0
     
+    static var musicMute: Bool = UserDefaults.standard.bool(forKey: "musicMute")
+    
+    static var soundMute: Bool = UserDefaults.standard.bool(forKey: "soundMute")
+
     static var shipBought: [Int] = [0] // Initial ship is 0
     
     static let ShipPrice: [Int: Int] = [0: 200,
@@ -54,7 +58,11 @@ class GameManager {
         if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
             do {
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
-                backgroundMusicPlayer?.volume = 0.5
+                if UserDefaults.standard.bool(forKey: "musicMute") == true{
+                    backgroundMusicPlayer?.volume = 0
+                }else{
+                    backgroundMusicPlayer?.volume = 0.5
+                }
                 backgroundMusicPlayer?.numberOfLoops = -1  // Loop indefinitely
                 backgroundMusicPlayer?.play()
             } catch {
@@ -71,7 +79,11 @@ class GameManager {
         if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
             do {
                 soundEffectPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
-                soundEffectPlayer?.volume = 0.5
+                if UserDefaults.standard.bool(forKey: "soundMute") == true{
+                    soundEffectPlayer?.volume = 0
+                }else{
+                    soundEffectPlayer?.volume = 0.5
+                }
                 soundEffectPlayer?.numberOfLoops = 0
                 soundEffectPlayer?.play()
             } catch {
@@ -84,7 +96,11 @@ class GameManager {
         if let musicPath = Bundle.main.path(forResource: fileName, ofType: type){
             do {
                 bulletSoundEffectPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: musicPath))
-                bulletSoundEffectPlayer?.volume = 0.1
+                if UserDefaults.standard.bool(forKey: "soundMute") == true{
+                    bulletSoundEffectPlayer?.volume = 0
+                }else{
+                    bulletSoundEffectPlayer?.volume = 0.1
+                }
                 bulletSoundEffectPlayer?.numberOfLoops = 0
                 bulletSoundEffectPlayer?.play()
             } catch {
