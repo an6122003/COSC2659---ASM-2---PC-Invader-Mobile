@@ -30,6 +30,7 @@
 		A1760ECC2AA7592B004BDE08 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1760ECB2AA7592B004BDE08 /* explode.mp3 */; };
 		A1760ECE2AA75A03004BDE08 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = A1760ECD2AA75A03004BDE08 /* hit.wav */; };
 		A1760ED02AA7682A004BDE08 /* BossEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1760ECF2AA7682A004BDE08 /* BossEnemy.swift */; };
+		A1760ED22AA7890E004BDE08 /* HowToPlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1760ED12AA7890E004BDE08 /* HowToPlayScene.swift */; };
 		A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183BDC12A9891C500641C6F /* ShopScene.swift */; };
 		A18A25EF2AA3AA99000656C1 /* EnemyHealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */; };
 		A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */; };
@@ -84,6 +85,7 @@
 		A1760ECB2AA7592B004BDE08 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode.mp3; sourceTree = "<group>"; };
 		A1760ECD2AA75A03004BDE08 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
 		A1760ECF2AA7682A004BDE08 /* BossEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossEnemy.swift; sourceTree = "<group>"; };
+		A1760ED12AA7890E004BDE08 /* HowToPlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayScene.swift; sourceTree = "<group>"; };
 		A183BDC12A9891C500641C6F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
 		A18A25EE2AA3AA99000656C1 /* EnemyHealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHealthBar.swift; sourceTree = "<group>"; };
 		A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightMovementEnemy.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				A1B2B1022A952DE2005A7FF0 /* GameWinScene.swift */,
 				A135F9782A8E176A00CA647A /* MainMenuScene.swift */,
 				A183BDC12A9891C500641C6F /* ShopScene.swift */,
+				A1760ED12AA7890E004BDE08 /* HowToPlayScene.swift */,
 				A135F97E2A8E351E00CA647A /* Map */,
 			);
 			name = Scene;
@@ -412,6 +415,7 @@
 				A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */,
 				A19076392A9765F300CC8EAB /* CircularMovementEnemy.swift in Sources */,
 				A1B456632A87BA640088A39E /* Bullet.swift in Sources */,
+				A1760ED22AA7890E004BDE08 /* HowToPlayScene.swift in Sources */,
 				A1760ED02AA7682A004BDE08 /* BossEnemy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
