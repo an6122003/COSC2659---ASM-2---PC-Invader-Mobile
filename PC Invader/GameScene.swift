@@ -156,6 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     enemy.removeFromParent()
                     GameScene.playerScore += 10
                     scoreLabel.text = "Score: \(GameScene.playerScore)"
+                    incrementKilledEnemyCount()
                 }
             }
             
@@ -176,6 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spawnExplosion(position: body2.node!.position, explosionName: "explosion")
                 if let enemy = body2.node as? Enemy {
                     enemy.healthBar?.removeFromParent()
+                    incrementKilledEnemyCount()
                 }
             } // prevent error if there the node not exist
             
@@ -349,6 +351,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        self.run(SKAction.repeatForever(spawnForever))
 //    }
 
+    func incrementKilledEnemyCount(){
+        var temp = UserDefaults.standard.integer(forKey: "enemyKilled")
+        UserDefaults.standard.set(temp + 1, forKey: "enemyKilled")
+    }
     
     func shootBullet(){
         if let playerPosition = player?.position{

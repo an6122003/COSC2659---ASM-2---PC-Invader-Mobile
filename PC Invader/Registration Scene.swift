@@ -32,7 +32,6 @@ class RegistrationScene: SKScene {
         let submitButtonText = SKLabelNode(fontNamed: "ethnocentric")
         submitButtonText.position = submitButton.position
         submitButtonText.text = "Submit"
-//        submitButtonText.position.x += 0
         submitButtonText.position.y -= 15
         submitButtonText.zPosition = 3
         submitButtonText.fontSize = 60
@@ -42,19 +41,17 @@ class RegistrationScene: SKScene {
         self.addChild(submitButton)
         self.addChild(submitButtonText)
         
-// Create a UITextField for text input
+        // UITextField for text input
         textField = UITextField(frame: CGRect(x: self.view!.frame.size.width / 2 - 100, y: self.view!.frame.size.height / 2 - 50, width: 200, height: 40))
         textField.placeholder = "Enter your text"
         textField.borderStyle = .roundedRect
         textField.backgroundColor = UIColor.white
         textField.textColor = .black
-        view.addSubview(textField) // Add to the scene's view
+        view.addSubview(textField)
     }
     
     @objc func submitButtonPressed() {
-            // Handle the submit button action here
         UserDefaults.standard.set(textField.text, forKey: "playerName")
-        print("Submit button pressed: \(textField.text)")
         textField.removeFromSuperview()
         }
     
@@ -63,7 +60,6 @@ class RegistrationScene: SKScene {
             let location = touch.location(in: self)
             
             if submitButton.contains(location) {
-                // The replay button was clicked, perform your function here
                 submitButtonPressed()
                 changeScene(sceneToMove: MainMenuScene(size: self.size))
             }

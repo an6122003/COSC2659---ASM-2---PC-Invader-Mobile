@@ -18,6 +18,7 @@ class GameManager {
     static var playerName: String = UserDefaults.standard.string(forKey: "playerName")!
     static var playerMoney: Int = UserDefaults.standard.integer(forKey: "playerMoney") // Default value is 0
     static var currentUnlockLevel: Int = UserDefaults.standard.integer(forKey: "currentUnlockLevel")
+    static var enemyKilled: Int = UserDefaults.standard.integer(forKey: "enemyKilled") // Default value is 0
     
     static var shipBought: [Int] = [0] // Initial ship is 0
     

@@ -17,6 +17,7 @@ class LeaderboardScene: SKScene{
     var backButton: SKSpriteNode!
     var nextButton: SKSpriteNode!
     var prevButton: SKSpriteNode!
+    var achievementButton: SKSpriteNode!
     var leaderboardFrame: SKSpriteNode!
     var leaderboardData: [String: Int] = [
         UserDefaults.standard.string(forKey: "playerName")!: UserDefaults.standard.integer(forKey: "highScore"),
@@ -97,6 +98,19 @@ class LeaderboardScene: SKScene{
         }
         playerRankLabel.zPosition = 3
         
+        achievementButton = SKSpriteNode(imageNamed: "shop-placeholder")
+        achievementButton.position = leaderboardFrame.position
+        achievementButton.position.y -= 850
+        achievementButton.zPosition = 1
+        achievementButton.setScale(1)
+        
+        let achievementButtonText = SKLabelNode(fontNamed: "ethnocentric")
+        achievementButtonText.position = achievementButton.position
+        achievementButtonText.text = "Achievement"
+        achievementButtonText.position.y -= 5
+        achievementButtonText.zPosition = 3
+        achievementButtonText.fontSize = 35
+        
         self.addChild(playerRankLabel)
         self.addChild(background)
         self.addChild(headerLogo)
@@ -104,6 +118,8 @@ class LeaderboardScene: SKScene{
         self.addChild(backButton)
         self.addChild(nextButton)
         self.addChild(prevButton)
+        self.addChild(achievementButton)
+        self.addChild(achievementButtonText)
         displayLeaderboard(page: currentPage)
     }
     
@@ -189,6 +205,10 @@ class LeaderboardScene: SKScene{
             
             if prevButton.contains(location){
                 prevPage()
+            }
+            
+            if achievementButton.contains(location){
+                changeScene(sceneToMove: AchievementScene(size: self.size))
             }
         }
     }

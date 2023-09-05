@@ -18,6 +18,9 @@
 		A15639DA2AA65B9B00687CE3 /* LeaderboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639D92AA65B9B00687CE3 /* LeaderboardScrollView.swift */; };
 		A15639DC2AA6E74500687CE3 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DB2AA6E74500687CE3 /* test.swift */; };
 		A15639DE2AA7065300687CE3 /* Registration Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DD2AA7065300687CE3 /* Registration Scene.swift */; };
+		A15639E02AA7141A00687CE3 /* AchievementScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DF2AA7141A00687CE3 /* AchievementScene.swift */; };
+		A15639E32AA715CB00687CE3 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639E22AA715CB00687CE3 /* Achievement.swift */; };
+		A15639E52AA7236D00687CE3 /* Achievement2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639E42AA7236D00687CE3 /* Achievement2.swift */; };
 		A15E9A6E2A8A54BF00416761 /* trail-emitter-0.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */; };
 		A15E9A702A8A550100416761 /* trail-emitter-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */; };
 		A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183BDC12A9891C500641C6F /* ShopScene.swift */; };
@@ -62,6 +65,9 @@
 		A15639D92AA65B9B00687CE3 /* LeaderboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardScrollView.swift; sourceTree = "<group>"; };
 		A15639DB2AA6E74500687CE3 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		A15639DD2AA7065300687CE3 /* Registration Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration Scene.swift"; sourceTree = "<group>"; };
+		A15639DF2AA7141A00687CE3 /* AchievementScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementScene.swift; sourceTree = "<group>"; };
+		A15639E22AA715CB00687CE3 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		A15639E42AA7236D00687CE3 /* Achievement2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement2.swift; sourceTree = "<group>"; };
 		A15E9A6D2A8A54BF00416761 /* trail-emitter-0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-0.sks"; sourceTree = "<group>"; };
 		A15E9A6F2A8A550100416761 /* trail-emitter-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "trail-emitter-3.sks"; sourceTree = "<group>"; };
 		A183BDC12A9891C500641C6F /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
@@ -171,12 +177,23 @@
 			name = Sfx;
 			sourceTree = "<group>";
 		};
+		A15639E12AA715A000687CE3 /* AchievementGroup */ = {
+			isa = PBXGroup;
+			children = (
+				A15639DF2AA7141A00687CE3 /* AchievementScene.swift */,
+				A15639E22AA715CB00687CE3 /* Achievement.swift */,
+				A15639E42AA7236D00687CE3 /* Achievement2.swift */,
+			);
+			name = AchievementGroup;
+			sourceTree = "<group>";
+		};
 		A1B3AB232A8BCEC700F0DBA1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				A15639DD2AA7065300687CE3 /* Registration Scene.swift */,
 				A1B4564D2A873C020088A39E /* GameScene.swift */,
 				A15639D72AA64E1300687CE3 /* LeaderboardScene.swift */,
+				A15639E12AA715A000687CE3 /* AchievementGroup */,
 				A15639D92AA65B9B00687CE3 /* LeaderboardScrollView.swift */,
 				A15639DB2AA6E74500687CE3 /* test.swift */,
 				A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */,
@@ -336,6 +353,7 @@
 				A1E7503D2A8CC06200E43ED8 /* GameManager.swift in Sources */,
 				A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */,
 				A135F97D2A8E20B600CA647A /* MapScene.swift in Sources */,
+				A15639E52AA7236D00687CE3 /* Achievement2.swift in Sources */,
 				A1E7503B2A8CAD5800E43ED8 /* Utilities.swift in Sources */,
 				A18A25EF2AA3AA99000656C1 /* EnemyHealthBar.swift in Sources */,
 				A1BF00D82A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift in Sources */,
@@ -346,12 +364,14 @@
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
 				A15639D82AA64E1300687CE3 /* LeaderboardScene.swift in Sources */,
+				A15639E32AA715CB00687CE3 /* Achievement.swift in Sources */,
 				A1B2B1032A952DE2005A7FF0 /* GameWinScene.swift in Sources */,
 				A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */,
 				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1C972E12AA5A16A00F3F030 /* Boss.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
+				A15639E02AA7141A00687CE3 /* AchievementScene.swift in Sources */,
 				A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */,
 				A1E750432A8CDC1500E43ED8 /* SpawnManager.swift in Sources */,
 				A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */,
