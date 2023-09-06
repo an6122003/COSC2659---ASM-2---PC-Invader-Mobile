@@ -85,7 +85,7 @@ class ShopScene: SKScene{
         shipImage.position = shopShipPlaceholder.position
         shipImage.position.y += 50
         shipImage.zPosition = 3
-        shipImage.zRotation = CGFloat.pi/2
+//        shipImage.zRotation = CGFloat.pi/2
         shipImage.setScale(2)
         
         shipHealth = SKLabelNode(fontNamed: "ethnocentric")

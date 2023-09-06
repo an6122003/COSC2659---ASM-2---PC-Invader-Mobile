@@ -101,8 +101,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.contactTestBitMask = physicsCategories.Enemy
         
         
-        player.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
-        
+//        player.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
+        player.position.x += 5
         GameScene.currentMoneyEarn = 0
         GameScene.playerScore = 0
         scoreLabel.text = "Score: \(GameScene.playerScore)"
