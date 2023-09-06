@@ -249,7 +249,7 @@ class SpawnManager {
     
     func spawnHorizontalRightMovementEnemies(count: Int) {
         for _ in 1...count {
-            let horizontalRightMoveEnemy = HorizontalRightMovementEnemy(textureName: "enemy-5"
+            let horizontalRightMoveEnemy = HorizontalRightMovementEnemy(textureName: "enemy-7"
                                                       , zPosition: 2
                                                                         , scale: 0.6
                                                       , health: 5

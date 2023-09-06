@@ -508,15 +508,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             //Constraint in x for player to stay within game area
-            if player.position.x > GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/2{
-                player.position.x = GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/2
-                player.trailEmitter.position.x = GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/2
+            if player.position.x > GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/3{
+                player.position.x = GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/3
+                player.trailEmitter.position.x = GameManager.gameManager.gamePlayableArea!.maxX - player.size.width/3
                 player.trailEmitter.position.x += 5
             }
             
-            if player.position.x < GameManager.gameManager.gamePlayableArea!.minX + player.size.width/2{
-                player.position.x = GameManager.gameManager.gamePlayableArea!.minX + player.size.width/2
-                player.trailEmitter.position.x = GameManager.gameManager.gamePlayableArea!.minX + player.size.width/2
+            if player.position.x < GameManager.gameManager.gamePlayableArea!.minX + player.size.width/3{
+                player.position.x = GameManager.gameManager.gamePlayableArea!.minX + player.size.width/3
+                player.trailEmitter.position.x = GameManager.gameManager.gamePlayableArea!.minX + player.size.width/3
                 player.trailEmitter.position.x += 5
             }
             
