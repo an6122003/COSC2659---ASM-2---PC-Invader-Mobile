@@ -1,7 +1,7 @@
 # Space Game
 
 <p align="center">
-  <img width="100" src=" https://github.com/an6122003/COSC2659---ASM-2---PC-Invader-Mobile/blob/main/PC%20Invader/Assets.xcassets/AppIcon.appiconset/Untitled%20design%20(1).png?raw=true">
+  <img width="100" src="https://github.com/an6122003/COSC2659---ASM-2---PC-Invader-Mobile/blob/main/PC%20Invader/Assets.xcassets/AppIcon.appiconset/Untitled%20design%20(1).png?raw=true">
 </p>
 
 ## 📖 Description
