@@ -25,6 +25,7 @@
 
 ## 🏆 Author
 - Nguyen Quoc An - annnguyen612@gmail.com
+- Full report: https://github.com/an6122003/COSC2659---ASM-2---PC-Invader-Mobile/blob/main/Blob/document.pdf
 
 ## 🎖️ Acknowledgement
 - Ethnocentric Font: [Ethnocentric Font | dafont.com](https://www.dafont.com/ethnocentric.font "Ethnocentric Font | dafont.com")
