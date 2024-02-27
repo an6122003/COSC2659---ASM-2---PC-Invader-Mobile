@@ -16,8 +16,8 @@
 - **Watch the full Demo at:  https://www.youtube.com/watchv=7w3A6308n4o&t=6s&ab_channel=anndaynee**
 
 ## 🔧 Build Information
-- Xcode (TBU)
-- Target Deployment iOS (TBU)
+- Xcode 14.3.1
+- Target Deployment iOS 16.4+
 - SpriteKit, SwiftUI, UIKit Framework
 
 ## ⚙️ Build Instruction
