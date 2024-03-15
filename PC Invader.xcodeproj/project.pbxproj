@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A100E9B32BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100E9B22BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift */; };
 		A118A7262A8A8F12004E4EB2 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118A7252A8A8F12004E4EB2 /* Enemy.swift */; };
 		A12E17492A8E92A600EB5D95 /* ethnocentric.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12E17472A8E92A600EB5D95 /* ethnocentric.otf */; };
 		A135F9792A8E176A00CA647A /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F9782A8E176A00CA647A /* MainMenuScene.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A100E9B22BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTextureAndPhysicsBodyExt.swift; sourceTree = "<group>"; };
 		A118A7252A8A8F12004E4EB2 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		A12E17472A8E92A600EB5D95 /* ethnocentric.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ethnocentric.otf; sourceTree = "<group>"; };
 		A12E174B2A8E942200EB5D95 /* PC-Invader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PC-Invader-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */,
+				A100E9B22BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift */,
 			);
 			name = Ultils;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
 				A15639D82AA64E1300687CE3 /* LeaderboardScene.swift in Sources */,
+				A100E9B32BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift in Sources */,
 				A15639E32AA715CB00687CE3 /* Achievement.swift in Sources */,
 				A1B2B1032A952DE2005A7FF0 /* GameWinScene.swift in Sources */,
 				A183BDC22A9891C500641C6F /* ShopScene.swift in Sources */,
@@ -560,6 +564,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -589,6 +594,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

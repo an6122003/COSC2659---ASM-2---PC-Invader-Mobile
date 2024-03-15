@@ -93,8 +93,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         healthBar.setScale(10)
         healthBar.zPosition = 4
         addChild(healthBar)
-        
-        player.physicsBody = SKPhysicsBody(rectangleOf: player.size) //physics body size = self.size
+        // physics body generate from sprite content
+        if let playerTexture = player.texture {
+            player.physicsBody = playerTexture.generatePhysicsBody() // Extension in Utils
+        }
         player.physicsBody!.affectedByGravity = false //remove affect of gravity
         player.physicsBody?.categoryBitMask = physicsCategories.Player // asign this physics body into category of Player
         player.physicsBody?.collisionBitMask = physicsCategories.None
