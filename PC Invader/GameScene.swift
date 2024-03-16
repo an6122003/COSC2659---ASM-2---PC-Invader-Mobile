@@ -139,8 +139,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy {
             // Bullet hit Enemy
-            if let enemy = body2.node as? Enemy {
-                enemy.health -= 1
+            if let bullet = body1.node as? Bullet,let enemy = body2.node as? Enemy {
+                enemy.health -= bullet.damage
                 enemy.healthBar!.updateHealthBar(currentHealth: CGFloat(enemy.health), maxHealth: CGFloat(enemy.maxHealth))
                 GameScene.playerScore += 1
                 scoreLabel.text = "Score: \(GameScene.playerScore)"
@@ -218,8 +218,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Boss {
             // Bullet hit Enemy
-            if let boss = body2.node as? BossEnemy {
-                boss.health -= 1
+            if let bullet = body1.node as? Bullet, let boss = body2.node as? BossEnemy {
+                boss.health -= bullet.damage
                 boss.healthBar!.updateHealthBar(currentHealth: CGFloat(boss.health), maxHealth: CGFloat(boss.maxHealth))
                 GameScene.playerScore += 1
                 scoreLabel.text = "Score: \(GameScene.playerScore)"
