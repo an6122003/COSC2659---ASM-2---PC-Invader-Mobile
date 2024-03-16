@@ -35,11 +35,11 @@
 		A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076342A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift */; };
 		A19076372A9765D700CC8EAB /* FixedMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076362A9765D700CC8EAB /* FixedMovementEnemy.swift */; };
 		A19076392A9765F300CC8EAB /* CircularMovementEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19076382A9765F300CC8EAB /* CircularMovementEnemy.swift */; };
+		A1AD37022BA5E463002D9D61 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4564D2A873C020088A39E /* GameScene.swift */; };
 		A1B2B1032A952DE2005A7FF0 /* GameWinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2B1022A952DE2005A7FF0 /* GameWinScene.swift */; };
 		A1B3AB222A8B8D1E00F0DBA1 /* HeathBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB212A8B8D1E00F0DBA1 /* HeathBar.swift */; };
 		A1B3AB252A8BCEDF00F0DBA1 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3AB242A8BCEDF00F0DBA1 /* GameOverScene.swift */; };
 		A1B456482A873C010088A39E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B456472A873C010088A39E /* AppDelegate.swift */; };
-		A1B4564E2A873C020088A39E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4564D2A873C020088A39E /* GameScene.swift */; };
 		A1B456502A873C020088A39E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4564F2A873C020088A39E /* GameViewController.swift */; };
 		A1B456532A873C020088A39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B456512A873C020088A39E /* Main.storyboard */; };
 		A1B456552A873C030088A39E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B456542A873C030088A39E /* Assets.xcassets */; };
@@ -392,7 +392,6 @@
 				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,
 				A15639DE2AA7065300687CE3 /* Registration Scene.swift in Sources */,
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
-				A1B4564E2A873C020088A39E /* GameScene.swift in Sources */,
 				A15639D82AA64E1300687CE3 /* LeaderboardScene.swift in Sources */,
 				A100E9B32BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift in Sources */,
 				A15639E32AA715CB00687CE3 /* Achievement.swift in Sources */,
@@ -401,6 +400,7 @@
 				A1E750382A8CA9E300E43ED8 /* RandomMovementEnemy.swift in Sources */,
 				A1B456502A873C020088A39E /* GameViewController.swift in Sources */,
 				A1B456482A873C010088A39E /* AppDelegate.swift in Sources */,
+				A1AD37022BA5E463002D9D61 /* GameScene.swift in Sources */,
 				A15639E02AA7141A00687CE3 /* AchievementScene.swift in Sources */,
 				A19076352A9765C100CC8EAB /* HorizontalRightMovementEnemy.swift in Sources */,
 				A1E750432A8CDC1500E43ED8 /* SpawnManager.swift in Sources */,

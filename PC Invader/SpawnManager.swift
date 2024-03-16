@@ -13,6 +13,7 @@ class SpawnManager {
     var gameScene: GameScene
     var level: Int = 1
     let bullet = Bullet(textureName: "bullet 1"
+                        , damage: 1
                         , position: .zero
                , zPosition: 1
                , scale: 10
@@ -143,6 +144,7 @@ class SpawnManager {
                                  , scale: 1.5
                                  , health: 400
                                  , bullet: Bullet(textureName: "bullet 1"
+                                                  , damage: 1
                                                   , position: gameScene.player.position
                                                   , zPosition: 1
                                                   , scale: 0.6
@@ -230,6 +232,7 @@ class SpawnManager {
                                                       , scale: 0.6
                                                       , health: 10
                                                       , bullet: Bullet(textureName: "bullet 1"
+                                                                       , damage: 1
                                                                        , position: gameScene.player.position
                                                                        , zPosition: 1
                                                                        , scale: 10
@@ -254,6 +257,7 @@ class SpawnManager {
                                                                         , scale: 0.6
                                                       , health: 5
                                                       , bullet: Bullet(textureName: "bullet 1"
+                                                                       , damage: 1
                                                                        , position: gameScene.player.position
                                                                        , zPosition: 1
                                                                        , scale: 10
@@ -277,6 +281,7 @@ class SpawnManager {
                                                       , scale: 0.6
                                                       , health: 5
                                                       , bullet: Bullet(textureName: "bullet 1"
+                                                                       , damage: 1
                                                                        , position: gameScene.player.position
                                                                        , zPosition: 1
                                                                        , scale: 10
@@ -304,6 +309,7 @@ class SpawnManager {
                                                     , scale: 0.6
                                                       , health: 5
                                                       , bullet: Bullet(textureName: "bullet 1"
+                                                                       , damage: 1
                                                                        , position: gameScene.player.position
                                                                        , zPosition: 1
                                                                        , scale: 5
@@ -334,6 +340,7 @@ class SpawnManager {
                                                           scale: 0.6,
                                                           health: 5,
                                                           bullet: Bullet(textureName: "circular-enemy-bullet",
+                                                                         damage: 1,
                                                                          position: self.gameScene.player.position,
                                                                          zPosition: 1,
                                                                          scale: 0.3,

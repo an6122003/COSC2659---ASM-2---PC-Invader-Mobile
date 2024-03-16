@@ -74,6 +74,7 @@ class CircularMovementEnemy: Enemy {
     
     override func shoot(gameScene: GameScene) {
         let bullet = Bullet(textureName: "circular-enemy-bullet",
+                            damage: 1,
                             position: self.position,
                             zPosition: 3,
                             scale: 0.3,

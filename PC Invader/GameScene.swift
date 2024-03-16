@@ -196,13 +196,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if body1.categoryBitMask  == physicsCategories.Player && body2.categoryBitMask == physicsCategories.enemyBullet {
-            GameManager.gameManager.playSoundEffect(fileName: "hit", type: ".wav")
-            playerHit()
-            healthBar.updateHealthBar()
             if body2.node != nil{
                 spawnExplosion(position: player.position, explosionName: "explosion")
                 body2.node?.removeFromParent()
             }
+            GameManager.gameManager.playSoundEffect(fileName: "hit", type: ".wav")
+            playerHit()
+            healthBar.updateHealthBar()
+            
             
         }
         
@@ -431,6 +432,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let playerPosition = player?.position{
             if currentGameState == gameState.inGame{
                 let bullet = Bullet(textureName: "bullet 1"
+                                    , damage: 1
                                     , position: playerPosition
                                     , zPosition: 1
                                     , scale: 10

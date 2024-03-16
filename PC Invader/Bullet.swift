@@ -8,15 +8,21 @@
 import Foundation
 import SpriteKit
 
-class Bullet: SKSpriteNode{
+class Bullet: SKSpriteNode {
     var soundSkAction: SKAction?
-    convenience init(textureName: String, position: CGPoint, zPosition: CGFloat, scale: CGFloat, soundName: String ) {
-        self.init(imageNamed: textureName)
+    var damage: Int // Change it to non-optional
+    
+    // Designated initializer
+    init(textureName: String, damage: Int, position: CGPoint, zPosition: CGFloat, scale: CGFloat, soundName: String ) {
+        let texture = SKTexture(imageNamed: textureName)
+        self.damage = damage
+        super.init(texture: texture, color: .clear, size: texture.size())
+        
         self.position = position
         self.zPosition = zPosition
         self.setScale(scale)
         
-        if let soundURL = Bundle.main.url(forResource: soundName, withExtension: nil){
+        if let soundURL = Bundle.main.url(forResource: soundName, withExtension: nil) {
             do {
                 self.soundSkAction = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
             } catch {
@@ -25,6 +31,11 @@ class Bullet: SKSpriteNode{
         } else {
             print("Sound file not found")
         }
-        
+    }
+    
+    // Required initializer
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
+

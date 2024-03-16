@@ -55,6 +55,7 @@ class BossEnemy: Enemy{
     
     func shootToPlayer(gameScene: GameScene) {
         let bullet = Bullet(textureName: "fixed-move-enemy-bullet",
+                            damage: 1,
                             position: self.position,
                             zPosition: 3,
                             scale: 0.3,
@@ -102,6 +103,7 @@ class BossEnemy: Enemy{
 
         for i in 0..<bulletCount {
             let bullet = Bullet(textureName: "vertical-enemy-bullet",
+                                damage: 1,
                                 position: self.position,
                                 zPosition: 3,
                                 scale: 1,
@@ -145,6 +147,7 @@ class BossEnemy: Enemy{
     
     func shootStraight(gameScene: GameScene) {
         let bullet = Bullet(textureName: "circular-enemy-bullet",
+                            damage: 1,
                             position: self.position,
                             zPosition: 3,
                             scale: 0.3,

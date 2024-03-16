@@ -58,6 +58,7 @@ class VerticalMovementEnemy: Enemy{
 
         for i in 0..<bulletCount {
             let bullet = Bullet(textureName: "vertical-enemy-bullet",
+                                damage: 1,
                                 position: self.position,
                                 zPosition: 3,
                                 scale: 1,
