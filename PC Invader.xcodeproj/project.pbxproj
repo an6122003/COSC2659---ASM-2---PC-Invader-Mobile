@@ -13,6 +13,7 @@
 		A135F9792A8E176A00CA647A /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F9782A8E176A00CA647A /* MainMenuScene.swift */; };
 		A135F97D2A8E20B600CA647A /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F97C2A8E20B600CA647A /* MapScene.swift */; };
 		A135F9802A8E353300CA647A /* LevelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135F97F2A8E353300CA647A /* LevelNode.swift */; };
+		A141EF272BA634C10089E116 /* BulletCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141EF262BA634C10089E116 /* BulletCreation.swift */; };
 		A15013092A87C3F500DDB2AC /* shooting.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15013082A87C3F500DDB2AC /* shooting.wav */; };
 		A15639D82AA64E1300687CE3 /* LeaderboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639D72AA64E1300687CE3 /* LeaderboardScene.swift */; };
 		A15639DE2AA7065300687CE3 /* Registration Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15639DD2AA7065300687CE3 /* Registration Scene.swift */; };
@@ -66,6 +67,7 @@
 		A135F9782A8E176A00CA647A /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		A135F97C2A8E20B600CA647A /* MapScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
 		A135F97F2A8E353300CA647A /* LevelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNode.swift; sourceTree = "<group>"; };
+		A141EF262BA634C10089E116 /* BulletCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletCreation.swift; sourceTree = "<group>"; };
 		A15013082A87C3F500DDB2AC /* shooting.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shooting.wav; sourceTree = "<group>"; };
 		A15639D72AA64E1300687CE3 /* LeaderboardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardScene.swift; sourceTree = "<group>"; };
 		A15639DD2AA7065300687CE3 /* Registration Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration Scene.swift"; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			children = (
 				A1E7503A2A8CAD5800E43ED8 /* Utilities.swift */,
 				A100E9B22BA4CCB300B33CDC /* SKTextureAndPhysicsBodyExt.swift */,
+				A141EF262BA634C10089E116 /* BulletCreation.swift */,
 			);
 			name = Ultils;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				A1BF00D82A97BAB800C7B444 /* HorizontalLeftMovementEnemy.swift in Sources */,
 				A135F9802A8E353300CA647A /* LevelNode.swift in Sources */,
 				A1B456612A87992B0088A39E /* InGameBackground.swift in Sources */,
+				A141EF272BA634C10089E116 /* BulletCreation.swift in Sources */,
 				A15639DE2AA7065300687CE3 /* Registration Scene.swift in Sources */,
 				A1B4565F2A878D800088A39E /* Player.swift in Sources */,
 				A15639D82AA64E1300687CE3 /* LeaderboardScene.swift in Sources */,

@@ -430,21 +430,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func shootBullet(){
         if let playerPosition = player?.position{
-            if currentGameState == gameState.inGame{
-                let bullet = Bullet(textureName: "bullet 1"
-                                    , damage: 1
-                                    , position: playerPosition
-                                    , zPosition: 1
-                                    , scale: 10
-                                    , soundName: "shooting.wav")
-                bullet.zRotation = CGFloat.pi / 2 // rotate 90 degree counter clockwise
-                bullet.setScale(10)
-                bullet.name = "Bullet" // Name to gather all bullet objects to dispose later
-                bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size) // physics body of bullet
-                bullet.physicsBody?.affectedByGravity = false
-                bullet.physicsBody?.categoryBitMask = physicsCategories.Bullet
-                bullet.physicsBody?.collisionBitMask = physicsCategories.None
-                bullet.physicsBody?.contactTestBitMask = physicsCategories.Enemy
+            if currentGameState == gameState.inGame && UserDefaults.standard.integer(forKey: "currentSelectedShip") == 0{
+                let bullet = createBullet(textureName: "bullet 1"
+                                          , damage: 1
+                                          , position: playerPosition
+                                          , zPosition: 1
+                                          , scale: 10
+                                          , soundName: "shooting.wav")
                 
                 self.addChild(bullet)
                 
@@ -456,7 +448,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 GameManager.gameManager.playBulletSoundEffect(fileName: "shooting", type: ".wav")
             }
         }
+        
+        if let playerPosition = player?.position{
+            if currentGameState == gameState.inGame && UserDefaults.standard.integer(forKey: "currentSelectedShip") == 1{
+                let bullet = createBullet(textureName: "bullet 1"
+                                          , damage: 1
+                                          , position: CGPoint(x: playerPosition.x-20, y: playerPosition.y)
+                                          , zPosition: 1
+                                          , scale: 10
+                                          , soundName: "shooting.wav")
+                
+                let bullet2 = createBullet(textureName: "bullet 1"
+                                          , damage: 1
+                                        , position: CGPoint(x: playerPosition.x+20, y: playerPosition.y)
+                                          , zPosition: 1
+                                          , scale: 10
+                                          , soundName: "shooting.wav")
+                
+                self.addChild(bullet)
+                self.addChild(bullet2)
+                
+                let bulletMove = SKAction.moveTo(y: self.size.height, duration: 1)
+                let deleteBullet = SKAction.removeFromParent()
+                let playSoundBullet = bullet.soundSkAction!
+                let bulletSequence = SKAction.sequence([ bulletMove, deleteBullet]) //TODO: add playSoundBullet to the sequence
+                bullet.run(bulletSequence)
+                bullet2.run(bulletSequence)
+                GameManager.gameManager.playBulletSoundEffect(fileName: "shooting", type: ".wav")
+            }
+        }
     }
+    
     
     var backgroundMovePerSecond: CGFloat = 400
     
