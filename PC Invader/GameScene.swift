@@ -62,6 +62,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+//        view.showsPhysics = true
+//        view.showsFPS = true
+//        view.showsNodeCount = true
         GameManager.gameManager.playBackgroundMusic(fileName: "game-scene", type: "mp3")
         //initate physics world
         self.physicsWorld.contactDelegate = self
@@ -95,7 +98,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(healthBar)
         // physics body generate from sprite content
         if let playerTexture = player.texture {
-            player.physicsBody = playerTexture.generatePhysicsBody() // Extension in Utils
+//            player.physicsBody = playerTexture.generatePhysicsBody() // Extension in Utils, causing FPS Drop
+            player.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: player.size.width * 0.5, height: player.size.height * 0.5))
         }
         player.physicsBody!.affectedByGravity = false //remove affect of gravity
         player.physicsBody?.categoryBitMask = physicsCategories.Player // asign this physics body into category of Player
