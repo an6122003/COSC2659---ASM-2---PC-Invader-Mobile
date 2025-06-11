@@ -89,7 +89,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             , position: CGPoint(x: self.size.width/2, y: self.size.height/5)
                             , scale: 1
                             , trailEmitterName: shipTrailEmitter!
-                            , health: shipHealth!)
+                            , health: shipHealth!
+                            , armor: 0)
         
         healthBar = HealthBar(player: player)
         healthBar.position = CGPoint(x: size.width / 4, y: size.height * 0.9)

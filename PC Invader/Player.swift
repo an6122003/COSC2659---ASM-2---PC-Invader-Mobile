@@ -8,10 +8,17 @@
 import Foundation
 import SpriteKit
 
-class Player: SKSpriteNode{
+class Player: SKSpriteNode {
     var trailEmitter: SKEmitterNode!
     var health: Int!
-    convenience init(textureName: String, zPosition: CGFloat, position: CGPoint, scale: CGFloat, trailEmitterName: String, health: Int) { // convenience keyword is call the designated constructor of the SKSpriteNode class
+    var armor: Int
+    convenience init(textureName: String,
+                     zPosition: CGFloat,
+                     position: CGPoint,
+                     scale: CGFloat,
+                     trailEmitterName: String,
+                     health: Int,
+                     armor: Int = 0) { // convenience keyword is call the designated constructor of the SKSpriteNode class
         let texture = SKTexture(imageNamed: textureName)
         self.init(texture: texture, color: .clear, size: texture.size()) // pass parameter in the constructor of SKSpriteNode
         self.zPosition = zPosition
@@ -21,6 +28,7 @@ class Player: SKSpriteNode{
         self.trailEmitter.position.x = self.position.x + 5
         self.trailEmitter.position.y = self.position.y + 5
         self.health = health
+        self.armor = armor
     }
     
 //    func shootBullet(){
